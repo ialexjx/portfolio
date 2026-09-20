@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${name} + ' | ' + ${titleRole}">Akshat Jaiswal | FinTech Backend Engineer</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#38bdf8',
+                            emerald: '#10b981',
+                            purple: '#a855f7',
+                            rose: '#f43f5e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Apple Glass Custom Stylesheet -->
+    <link rel="stylesheet" th:href="@{/css/apple-glass.css}">
+    <!-- Avengers Marvel Theme Stylesheet -->
+    <link rel="stylesheet" th:href="@{/css/avengers.css}">
+</head>
+<body class="bg-mesh-grid min-h-screen relative antialiased selection:bg-sky-500/20 selection:text-sky-300">
+
+    <!-- Fullscreen Rocket & Patakhe Fireworks Canvas (Celebration Engine) -->
+    <canvas id="fireworks-canvas" class="fixed inset-0 pointer-events-none z-[70] w-full h-full"></canvas>
+
+    <!-- ====================================================================
+         FLOATING APPLE GLASS NAVBAR
+         ==================================================================== -->
+    <header class="fixed top-4 left-0 right-0 z-40 px-3 sm:px-6 max-w-7xl mx-auto">
+        <nav class="apple-glass rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between transition-all duration-300 shadow-2xl">
+            <!-- Brand / Logo -->
+            <a href="#" class="flex items-center gap-2.5 sm:gap-3 group shrink-0 mr-2 xl:mr-4">
+                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-sky-500 to-emerald-400 p-0.5 shadow-lg shadow-sky-500/20 shrink-0">
+                    <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center text-xs font-black tracking-tighter text-sky-400 font-mono">
+                        AJ
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-extrabold tracking-tight text-white group-hover:text-sky-400 transition-colors leading-tight" th:text="${name}">Akshat Jaiswal</span>
+                    <div class="flex items-center gap-1.5 text-[10px] text-emerald-400 font-mono leading-none pt-0.5">
+                        <span class="pulsing-dot"></span>
+                        <span class="font-bold">SSE @ Digitap</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links (Cleanly spaced, never overlapping) -->
+            <div class="hidden xl:flex items-center gap-1.5 xl:gap-2 text-[11px] font-semibold tracking-wider text-slate-300 whitespace-nowrap">
+                <a href="#stats" class="mac-dock-item hover:text-sky-400 transition-all">METRICS</a>
+                <a href="#projects" class="mac-dock-item hover:text-sky-400 transition-all">PROJECTS</a>
+                <a href="#skills" class="mac-dock-item hover:text-sky-400 transition-all">SKILLS</a>
+                <a href="#experience" class="mac-dock-item hover:text-sky-400 transition-all">EXPERIENCE</a>
+                <a href="#awards" class="mac-dock-item hover:text-sky-400 transition-all">AWARDS</a>
+                <a href="#roasts" class="mac-dock-item hover:text-sky-400 transition-all">ROASTS</a>
+                <a href="#contact" class="mac-dock-item hover:text-sky-400 transition-all">CONTACT</a>
+            </div>
+
+            <!-- Right Controls -->
+            <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                <!-- Systems Lab Portal Button -->
+                <a href="/lab" class="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-bold bg-sky-500/15 text-sky-300 border border-sky-500/35 hover:bg-sky-500/25 hover:scale-105 active:scale-95 transition-all cursor-pointer whitespace-nowrap shrink-0 shadow-sm font-mono" title="Open Interactive Systems Architecture Lab">
+                    <i data-lucide="cpu" class="w-3.5 h-3.5 text-sky-400"></i>
+                    <span>SYSTEMS LAB</span>
+                </a>
+
+                <!-- Download Resume Dropdown -->
+                <div class="relative group hidden sm:block">
+                    <button class="px-3 py-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm">
+                        <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                        <span>Resume</span>
+                        <i data-lucide="chevron-down" class="w-3 h-3"></i>
+                    </button>
+                    <div class="absolute right-0 mt-2 w-48 rounded-2xl apple-glass border border-white/15 p-1.5 shadow-2xl hidden group-hover:block z-50">
+                        <a href="/downloads/Akshat_Jaiswal_Senior_Software_Engineer.pdf" download class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-mono hover:bg-sky-500/20 text-slate-200 hover:text-white transition-colors">
+                            <i data-lucide="file-text" class="w-4 h-4 text-rose-400"></i>
+                            <span>PDF Format</span>
+                        </a>
+                        <a href="/downloads/Akshat_Jaiswal_Senior_Software_Engineer.docx" download class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-mono hover:bg-sky-500/20 text-slate-200 hover:text-white transition-colors">
+                            <i data-lucide="file-code" class="w-4 h-4 text-sky-400"></i>
+                            <span>Word (.docx)</span>
+                        </a>
+                        <a href="/downloads/Akshat_Jaiswal_Senior_Software_Engineer.doc" download class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-mono hover:bg-sky-500/20 text-slate-200 hover:text-white transition-colors">
+                            <i data-lucide="file" class="w-4 h-4 text-amber-400"></i>
+                            <span>Word (.doc)</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Grouped Capsule for Sound & Theme -->
+                <div class="flex items-center p-0.5 rounded-full bg-white/[0.04] border border-white/10 shrink-0">
+                    <!-- Sound FX Toggle Button -->
+                    <button id="sound-toggle-btn" class="p-2 rounded-full hover:bg-white/10 text-slate-300 hover:text-white transition-all cursor-pointer" title="Toggle Tactile Sound FX">
+                        <i data-lucide="volume-2" id="sound-on-icon" class="w-3.5 h-3.5 text-emerald-400"></i>
+                        <i data-lucide="volume-x" id="sound-off-icon" class="w-3.5 h-3.5 hidden text-slate-500"></i>
+                    </button>
+
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle-btn" class="p-2 rounded-full hover:bg-white/10 text-slate-300 hover:text-white transition-all cursor-pointer" title="Toggle Light/Dark Theme">
+                        <i data-lucide="sun" id="theme-sun-icon" class="w-3.5 h-3.5"></i>
+                        <i data-lucide="moon" id="theme-moon-icon" class="w-3.5 h-3.5 hidden"></i>
+                    </button>
+                </div>
+
+                <!-- Break Prod Troll Button -->
+                <button class="break-prod-trigger hidden md:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[10.5px] font-bold bg-rose-500/10 text-rose-400 border border-rose-500/30 hover:bg-rose-500/20 hover:scale-105 active:scale-95 transition-all cursor-pointer whitespace-nowrap shrink-0" title="Break Production (Don't Click!)">
+                    <i data-lucide="alert-triangle" class="w-3 h-3"></i>
+                    <span>BREAK PROD</span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="xl:hidden p-2 rounded-full savage-pill text-slate-300 hover:text-white cursor-pointer" title="Toggle Menu">
+                    <i data-lucide="menu" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden xl:hidden mt-3 apple-glass rounded-2xl p-5 flex flex-col gap-3 text-sm font-medium text-slate-200 shadow-2xl border border-white/10">
+            <a href="/lab" class="hover:text-sky-400 py-1.5 px-3 rounded-lg bg-sky-500/10 text-sky-300 font-bold flex items-center gap-2 transition-all">
+                <i data-lucide="cpu" class="w-4 h-4 text-sky-400"></i> Systems Architecture Lab
+            </a>
+            <a href="/downloads/Akshat_Jaiswal_Senior_Software_Engineer.pdf" download class="hover:text-emerald-400 py-1.5 px-3 rounded-lg bg-emerald-500/10 text-emerald-300 font-bold flex items-center gap-2 transition-all">
+                <i data-lucide="download" class="w-4 h-4 text-emerald-400"></i> Download Resume (.PDF)
+            </a>
+            <a href="#stats" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Metrics</a>
+            <a href="#projects" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">War Stories</a>
+            <a href="#skills" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Skills &amp; Arsenal</a>
+            <a href="#experience" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Experience</a>
+            <a href="#awards" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Awards</a>
+            <a href="#architecture" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Systems Lab Gateway</a>
+            <a href="#roasts" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Confessions (Roasts)</a>
+            <a href="#contact" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Contact</a>
+            <button class="break-prod-trigger flex items-center justify-center gap-2 py-2.5 rounded-xl bg-rose-500/15 text-rose-400 border border-rose-500/30 font-bold text-xs mt-1">
+                <i data-lucide="alert-triangle" class="w-4 h-4"></i> BREAK PROD
+            </button>
+        </div>
+    </header>
+
+    <main class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-32">
+
+        <!-- ====================================================================
+             HERO SECTION: THE SAVAGE INTRO
+             ==================================================================== -->
+        <section class="relative pt-8 pb-4 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            <div class="flex-1 space-y-6 text-center lg:text-left">
+                <!-- Status Pill -->
+                <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 backdrop-blur-md shadow-sm">
+                    <span class="pulsing-dot"></span>
+                    <span>Senior Software Engineer &bull; 4 Products Built Solo &bull; OKYC (3L/day) &bull; DigiLocker (90k/day) &bull; Java 25</span>
+                </div>
+
+                <!-- Main Punchy Title -->
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15] text-white">
+                    I architect backend systems that <span class="bg-gradient-to-r from-sky-400 via-emerald-400 to-teal-300 bg-clip-text text-transparent">don’t break</span> when production catches fire.
+                </h1>
+
+                <!-- Savage Subtitle -->
+                <p class="text-base sm:text-lg text-slate-300 max-w-3xl leading-relaxed">
+                    Senior Software Engineer (SSE) at <span class="text-white font-semibold">Digitap.AI</span>. I architect high-throughput distributed systems powering India’s core FinTech rails — having single-handedly built <span class="text-white font-medium">4 enterprise products from scratch</span>. Across high-volume identity, banking, and digital execution systems like <span class="text-sky-300 font-medium">OKYC (2L–3L daily successes)</span>, <span class="text-emerald-300 font-medium">DigiLocker (scaled 28k to 90k/day)</span>, <span class="text-white font-medium">eSign, eNACH, VKYC, Video-PD, and Clickwrap</span>, I specialize in zero-downtime 150 TPS database migrations, 2,500 TPS purge engines, and turning chaotic third-party banking APIs into sub-50ms Swiss watches.
+                </p>
+
+                <!-- Core Architectural Impact Callout -->
+                <div class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md text-xs sm:text-sm text-slate-300 flex items-center gap-3.5 shadow-sm">
+                    <div class="p-2 rounded-xl bg-sky-500/10 text-sky-400 shrink-0">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i>
+                    </div>
+                    <div class="space-y-0.5 text-left">
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">CORE ARCHITECTURE</span>
+                            <span class="text-xs font-mono text-slate-400">Mission-Critical Scale</span>
+                        </div>
+                        <p class="text-xs sm:text-[13px] text-slate-300 leading-snug">
+                            Engineered on strict distributed state machines, idempotent retries, and zero-downtime DB boundaries — powering <span class="text-white font-semibold">300K+ daily transactions</span> across India's core identity and banking infrastructure.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
+                    <a href="#projects" class="px-6 py-3.5 rounded-full font-bold text-sm bg-gradient-to-r from-sky-500 to-emerald-500 text-slate-950 hover:brightness-110 shadow-lg shadow-sky-500/25 hover:scale-105 transition-all flex items-center gap-2">
+                        <span>Explore War Stories</span>
+                        <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="/lab" class="px-6 py-3.5 rounded-full font-bold text-sm bg-sky-500/20 text-sky-300 border border-sky-400/40 hover:bg-sky-500/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 shadow-lg shadow-sky-500/15 font-mono">
+                        <i data-lucide="cpu" class="w-4 h-4 text-sky-400 animate-pulse"></i>
+                        <span>Systems Lab ➔</span>
+                    </a>
+                    
+                    <!-- Download Resume Dropdown (Hero) -->
+                    <div class="relative group">
+                        <button class="px-5 py-3.5 rounded-full font-bold text-sm bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 hover:border-emerald-400 hover:scale-105 transition-all flex items-center gap-2 cursor-pointer shadow-sm font-mono">
+                            <i data-lucide="download" class="w-4 h-4 text-emerald-400"></i>
+                            <span>Resume</span>
+                            <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 rounded-2xl apple-glass border border-white/15 p-1.5 shadow-2xl hidden group-hover:block z-50">
+                            <a href="/downloads/Akshat_Jaiswal_Senior_Software_Engineer.pdf" download class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-mono hover:bg-sky-500/20 text-slate-200 hover:text-white transition-colors">
+                                <i data-lucide="file-text" class="w-4 h-4 text-rose-400"></i>
+                                <span>PDF Format</span>
+                            </a>
+                            <a href="/downloads/Akshat_Jaiswal_Senior_Software_Engineer.docx" download class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-mono hover:bg-sky-500/20 text-slate-200 hover:text-white transition-colors">
+                                <i data-lucide="file-code" class="w-4 h-4 text-sky-400"></i>
+                                <span>Word (.docx)</span>
+                            </a>
+                            <a href="/downloads/Akshat_Jaiswal_Senior_Software_Engineer.doc" download class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-mono hover:bg-sky-500/20 text-slate-200 hover:text-white transition-colors">
+                                <i data-lucide="file" class="w-4 h-4 text-amber-400"></i>
+                                <span>Word (.doc)</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <button id="open-tech-chat-modal-btn" class="px-5 py-3.5 rounded-full font-bold text-sm bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 hover:border-sky-400 hover:scale-105 transition-all flex items-center gap-2 cursor-pointer shadow-sm">
+                        <i data-lucide="calendar" class="w-4 h-4 text-sky-400"></i>
+                        <span>Book Tech Chat</span>
+                    </button>
+                    <button class="open-arcade-btn px-5 py-3.5 rounded-full font-bold text-sm bg-purple-500/15 hover:bg-purple-500/25 text-purple-300 border border-purple-500/35 hover:border-purple-400 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer shadow-lg shadow-purple-500/10 font-mono" title="Play 60-second Retro Arcade Game: Kill The Monolith">
+                        <i data-lucide="gamepad-2" class="w-4 h-4 text-purple-400 animate-bounce"></i>
+                        <span>Kill The Monolith 👾</span>
+                    </button>
+                    <button class="copy-email-btn px-4 py-3.5 rounded-full font-semibold text-sm savage-pill hover:text-sky-400 flex items-center gap-2 transition-all">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span>Copy Email</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hero Right: Live FinTech Engine Terminal Widget -->
+            <div class="w-full lg:w-[480px] xl:w-[520px] shrink-0">
+                <div class="terminal-window p-5 text-left transition-all duration-300 hover:shadow-sky-500/20">
+                    <!-- Terminal Window Header -->
+                    <div class="flex items-center justify-between pb-3 border-b border-white/10 text-xs text-slate-400">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                            <span class="ml-2 font-mono text-[11px] text-slate-400">akshat@fintech-core ~ (java-25)</span>
+                        </div>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-400 font-bold">VIRTUAL THREADS ON</span>
+                    </div>
+
+                    <!-- Live Hardware / Cluster Stats (Reactive to Slider) -->
+                    <div class="grid grid-cols-3 gap-2 py-3 border-b border-white/10 text-center font-mono text-[11px]">
+                        <div class="p-2 rounded-lg bg-white/[0.02]">
+                            <span class="text-slate-500 block text-[9px]">CLUSTER STATE</span>
+                            <span id="cluster-state-display" class="text-emerald-400 font-bold">OPTIMAL 100%</span>
+                        </div>
+                        <div class="p-2 rounded-lg bg-white/[0.02]">
+                            <span class="text-slate-500 block text-[9px]">ACTIVE TPS</span>
+                            <span id="active-tps-display" class="text-sky-400 font-bold">150.0 tx/s</span>
+                        </div>
+                        <div class="p-2 rounded-lg bg-white/[0.02]">
+                            <span class="text-slate-500 block text-[9px]">VIRTUAL THREADS</span>
+                            <span id="active-threads-display" class="text-emerald-400 font-bold">150 fibers</span>
+                        </div>
+                    </div>
+
+                    <!-- Streaming Logs Container -->
+                    <div id="terminal-logs" class="pt-3 h-44 overflow-y-auto space-y-2 font-mono text-xs select-text">
+                        <!-- Filled dynamically by portfolio.js -->
+                    </div>
+
+                    <!-- Interactive TPS Load Slider Control Panel (Prominent) -->
+                    <div class="mt-4 pt-3 border-t border-sky-500/20 space-y-2.5 bg-sky-500/[0.05] -mx-5 -mb-5 p-4 rounded-b-2xl border-b border-x border-sky-500/15">
+                        <div class="flex items-center justify-between text-[11px] font-mono">
+                            <span class="text-sky-300 flex items-center gap-2 font-bold tracking-wide">
+                                <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+                                <i data-lucide="gauge" class="w-4 h-4 text-sky-400"></i>
+                                <span>TRAFFIC STRESS TESTER:</span>
+                            </span>
+                            <div class="flex items-center gap-2">
+                                <button id="hero-rocket-btn" class="px-2.5 py-0.5 rounded-full bg-rose-500/15 hover:bg-rose-500/25 text-rose-400 border border-rose-500/30 text-[10px] font-bold font-mono flex items-center gap-1 cursor-pointer hover:scale-105 active:scale-95 transition-all shadow-sm shadow-rose-500/20" title="Launch Celebration Rocket & Patakhe!">
+                                    <span>🚀 Patakha</span>
+                                </button>
+                                <button onclick="window.Avengers && window.Avengers.thor()" class="px-2.5 py-0.5 rounded-full bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/30 text-[10px] font-bold font-mono flex items-center gap-1 cursor-pointer hover:scale-105 active:scale-95 transition-all shadow-sm shadow-sky-500/20" title="Thor's Mjolnir Thunder Strike">
+                                    <span>⚡ Thor</span>
+                                </button>
+                                <span id="tps-slider-val" class="font-extrabold text-xs text-sky-300 bg-sky-500/20 px-2.5 py-0.5 rounded-full border border-sky-400/40 font-mono shadow-sm shadow-sky-500/30">150 TPS</span>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-1">
+                            <input id="tps-range-slider" type="range" min="100" max="10000" step="100" value="150" 
+                                   class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400 hover:accent-emerald-400 transition-all">
+                            <div class="flex items-center justify-between text-[9px] font-mono text-slate-400 px-0.5 select-none">
+                                <span>100 TPS (Normal)</span>
+                                <span class="text-rose-400 font-bold">2.5k TPS (S3 Purge Engine)</span>
+                                <span class="text-purple-400">10k TPS (Max)</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Dynamic Sarcastic / Technical Load Status Bar -->
+                        <div id="tps-stress-status" class="text-[10.5px] font-mono text-slate-300 py-2 px-3 rounded-xl bg-black/50 border border-white/10 flex items-center justify-between gap-2 shadow-inner">
+                            <span id="tps-status-msg" class="truncate text-sky-200">Baseline traffic: Virtual Threads cruising without sweat (~32MB Heap).</span>
+                            <span id="tps-cpu-stat" class="text-emerald-400 font-bold shrink-0">CPU: 4%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ====================================================================
+             KEY METRICS & WAR STATS
+             ==================================================================== -->
+        <section id="stats" class="space-y-6">
+            <div class="text-center max-w-2xl mx-auto space-y-2 pt-2">
+                <span class="text-xs font-mono font-bold tracking-widest text-sky-400 uppercase">PROVABLE METRICS</span>
+                <h2 class="text-3xl font-extrabold text-white tracking-tight">Numbers Don't Lie. Neither Do Execution Plans.</h2>
+                <p class="text-sm text-slate-400">Real production metrics achieved in high-volume banking &amp; identity environments.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div th:each="stat : ${stats}" class="apple-glass-card mac-dock-card p-6 flex flex-col justify-between space-y-4 cursor-pointer">
+                    <div class="flex items-start justify-between">
+                        <div class="text-3xl sm:text-4xl font-black tracking-tight text-white font-mono bg-gradient-to-r from-sky-400 to-emerald-400 bg-clip-text text-transparent" th:text="${stat.value}">
+                            45 TPS
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 mac-dock-icon">
+                            <i th:attr="data-lucide=${stat.icon}" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-white tracking-tight" th:text="${stat.label}">Peak Data Migration Throughput</h3>
+                        <p class="text-xs text-slate-400 mt-1.5 leading-relaxed" th:text="${stat.subtext}">Millions of records migrated with zero downtime &amp; zero data loss.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ====================================================================
+             FLAGSHIP PROJECTS SHOWCASE (THE WAR STORIES)
+             ==================================================================== -->
+        <section id="projects" class="space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase">FLAGSHIP SYSTEMS</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">The War Stories</h2>
+                <p class="text-sm sm:text-base text-slate-300">
+                    Because building another generic todo app or clone is an insult to engineering. Here is real distributed plumbing that moves money and verifies millions of identities.
+                </p>
+            </div>
+
+            <div class="space-y-10">
+                <div th:each="project, iter : ${projects}" th:id="${project.id}" class="apple-glass-card p-8 lg:p-10 space-y-8">
+                    
+                    <!-- Card Top Header -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-3">
+                                <span class="text-[11px] font-mono font-bold tracking-wider px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 uppercase" th:text="${project.tag}">FINTECH</span>
+                                <span class="text-[11px] font-mono font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase" th:text="${project.statusBadge}">MISSION CRITICAL</span>
+                            </div>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight pt-2" th:text="${project.title}">Digitap eSign Gateway</h3>
+                            <p class="text-sm font-medium text-slate-400" th:text="${project.subtitle}">Aadhaar eSign & Digital Contract Execution Engine</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 text-sky-400 self-start sm:self-center shadow-inner mac-dock-icon cursor-pointer">
+                            <i th:attr="data-lucide=${project.icon}" class="w-8 h-8"></i>
+                        </div>
+                    </div>
+
+                    <!-- Savage Quote Box -->
+                    <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-rose-500/10 via-purple-500/10 to-sky-500/10 border border-rose-500/20 text-slate-200 font-mono text-xs sm:text-sm italic flex items-center gap-3">
+                        <i data-lucide="quote" class="w-5 h-5 text-rose-400 shrink-0"></i>
+                        <span th:text="${project.savageQuote}">"Because forcing a user to enter 5 separate OTPs just to sign a 5-page agreement is a human rights violation."</span>
+                    </div>
+
+                    <!-- Problem vs Solution Breakdown -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="p-6 rounded-2xl bg-rose-500/[0.03] border border-rose-500/20 space-y-3">
+                            <div class="flex items-center gap-2 text-rose-400 font-bold text-xs uppercase tracking-wider font-mono">
+                                <i data-lucide="alert-octagon" class="w-4 h-4"></i>
+                                <span th:text="${project.problemHeading}">The Problem</span>
+                            </div>
+                            <ul th:if="${project.problemBullets != null && !project.problemBullets.isEmpty()}" class="space-y-2.5 text-xs sm:text-sm text-slate-300">
+                                <li th:each="pBullet : ${project.problemBullets}" class="flex items-start gap-2.5">
+                                    <i data-lucide="x-circle" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i>
+                                    <span th:text="${pBullet}">Problem point</span>
+                                </li>
+                            </ul>
+                            <p th:if="${project.problemBullets == null || project.problemBullets.isEmpty()}" class="text-sm text-slate-300 leading-relaxed" th:text="${project.problemStatement}">Problem statement details here.</p>
+                        </div>
+
+                        <div class="p-6 rounded-2xl bg-emerald-500/[0.03] border border-emerald-500/20 space-y-3">
+                            <div class="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase tracking-wider font-mono">
+                                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                <span th:text="${project.solutionHeading}">The Solution</span>
+                            </div>
+                            <ul th:if="${project.solutionBullets != null && !project.solutionBullets.isEmpty()}" class="space-y-2.5 text-xs sm:text-sm text-slate-300">
+                                <li th:each="sBullet : ${project.solutionBullets}" class="flex items-start gap-2.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                                    <span th:text="${sBullet}">Solution point</span>
+                                </li>
+                            </ul>
+                            <p th:if="${project.solutionBullets == null || project.solutionBullets.isEmpty()}" class="text-sm text-slate-300 leading-relaxed" th:text="${project.solutionAndImpact}">Solution and impact details here.</p>
+                        </div>
+                    </div>
+
+                    <!-- Architectural Highlights List -->
+                    <div class="space-y-3">
+                        <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">Architectural Innovations & Engineering Depth:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div th:each="highlight : ${project.architectureHighlights}" class="flex items-start gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-slate-300">
+                                <i data-lucide="shield-check" class="w-4 h-4 text-sky-400 shrink-0 mt-0.5"></i>
+                                <span th:text="${highlight}">Architecture highlight detail.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Metrics Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                        <div th:each="entry : ${project.metrics}" class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-center">
+                            <span class="block text-[10px] font-mono text-slate-400 uppercase tracking-tight" th:text="${entry.key}">METRIC</span>
+                            <span class="block text-sm font-bold text-white font-mono mt-1" th:text="${entry.value}">VALUE</span>
+                        </div>
+                    </div>
+
+                    <!-- Expandable Architectural Code Diff -->
+                    <div class="pt-1">
+                        <button class="code-diff-toggle-btn w-full sm:w-auto px-4 py-2 rounded-xl bg-white/[0.03] hover:bg-sky-500/10 border border-white/10 hover:border-sky-500/30 text-xs font-mono font-bold text-slate-300 hover:text-sky-300 flex items-center justify-between sm:justify-start gap-3 transition-all cursor-pointer">
+                            <span class="flex items-center gap-2">
+                                <i data-lucide="file-diff" class="w-4 h-4 text-sky-400"></i>
+                                <span>View Architectural Code Diff (Legacy vs Modern)</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform duration-300 diff-chevron"></i>
+                        </button>
+
+                        <div class="code-diff-drawer hidden mt-3 terminal-window p-4 sm:p-5 text-xs font-mono select-text border border-white/10 space-y-3">
+                            <div class="flex items-center justify-between text-[11px] text-slate-400 pb-2 border-b border-white/10">
+                                <span class="font-bold text-slate-300 flex items-center gap-1.5">
+                                    <i data-lucide="git-commit" class="w-3.5 h-3.5 text-sky-400"></i>
+                                    <span>CODE COMPARISON &bull; <span th:text="${project.title}">Project</span></span>
+                                </span>
+                                <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/15 text-emerald-400 font-bold">JAVA 25 &bull; ZERO TECH DEBT</span>
+                            </div>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                <!-- Legacy Code (Red) -->
+                                <div class="p-3.5 rounded-xl bg-rose-500/[0.04] border border-rose-500/20 space-y-2 overflow-x-auto">
+                                    <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
+                                        <i data-lucide="x-circle" class="w-3.5 h-3.5"></i>
+                                        <span>The Legacy Horror (Archaic Core Java)</span>
+                                    </div>
+                                    <pre class="text-[11px] text-rose-200/80 leading-relaxed font-mono whitespace-pre"><code><span class="text-slate-500">// Zero pre-flight check, crashes mid-flow</span>
+if (pdfBytes.length == 0 || pages &lt; required) {
+    throw new RuntimeException("Crash! User already started");
+}
+<span class="text-slate-500">// Sequential downloads &amp; 4 chained SNS hops</span>
+for (String fileId : documentIds) {
+    byte[] data = downloadFromS3(fileId); <span class="text-rose-400">// 30s user wait!</span>
+    publishToSnsHop1(data);
+    publishToSnsHop2(data);
+}</code></pre>
+                                </div>
+                                <!-- Modern Code (Green) -->
+                                <div class="p-3.5 rounded-xl bg-emerald-500/[0.04] border border-emerald-500/20 space-y-2 overflow-x-auto">
+                                    <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                                        <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                                        <span>Modern Resilient Architecture (Java 25)</span>
+                                    </div>
+                                    <pre class="text-[11px] text-emerald-200/90 leading-relaxed font-mono whitespace-pre"><code><span class="text-slate-500">// In-memory upload validation via PDFBox 3.x</span>
+pdfValidator.validatePreFlight(pdfStream, bounds);
+
+<span class="text-slate-500">// Virtual Threads concurrent download in 7s</span>
+try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
+    var tasks = docs.stream()
+        .map(d -&gt; scope.fork(() -&gt; fetchAndStampAsync(d)))
+        .toList();
+    scope.join().throwIfFailed(); <span class="text-emerald-400">// sub-50ms callbacks</span>
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Stack Badges -->
+                    <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-white/10">
+                        <span class="text-[11px] font-mono text-slate-400 mr-2">TECH STACK:</span>
+                        <span th:each="tech : ${project.techStack}" class="px-3 py-1 rounded-full text-xs font-semibold savage-pill font-mono" th:text="${tech}">Java 25</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive War Room Teaser Banner -->
+            <div class="apple-glass-card p-6 sm:p-8 space-y-4 border border-rose-500/30 relative overflow-hidden mt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div class="space-y-1.5 max-w-xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 text-xs font-mono font-bold tracking-wider uppercase">
+                        <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+                        <span>INTERACTIVE SRE WAR ROOM CHALLENGE</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight">Friday 7:30 PM: The Production Crisis</h3>
+                    <p class="text-xs sm:text-sm text-slate-300">
+                        A partner triggers a 5x spike, third-party bank gateways stall at 4,500ms, and thread pools hit 98%. Step into the hotseat and triage the live crisis in the Systems Lab.
+                    </p>
+                </div>
+                <a href="/lab#incident-war-room" class="px-6 py-3.5 rounded-full font-bold text-xs bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 shrink-0 cursor-pointer font-mono">
+                    <i data-lucide="shield-alert" class="w-4 h-4 text-rose-400"></i>
+                    <span>Enter P0 War Room ➔</span>
+                </a>
+            </div>
+        </section>
+
+
+        <!-- ====================================================================
+             SUPERPOWERS & SKILLS (THE ROAST EDITION)
+             ==================================================================== -->
+        <section id="skills" class="space-y-10">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="text-xs font-mono font-bold tracking-widest text-purple-400 uppercase">WEAPONS OF CHOICE</span>
+                <h2 class="text-3xl font-extrabold text-white tracking-tight">Superpowers (Minus The Buzzwords)</h2>
+                <p class="text-sm text-slate-400">I don't just "know" these technologies — I have argued with their garbage collectors and won.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div th:each="category : ${skillCategories}" class="apple-glass-card p-6 space-y-5">
+                    <!-- Category Header -->
+                    <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 rounded-xl bg-purple-500/10 text-purple-400">
+                                <i th:attr="data-lucide=${category.icon}" class="w-5 h-5"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white" th:text="${category.categoryName}">Core Backend</h3>
+                        </div>
+                    </div>
+
+                    <!-- Savage Roast for Category -->
+                    <div class="p-3.5 rounded-xl bg-purple-500/5 border border-purple-500/20 text-xs text-purple-300 font-mono italic">
+                        <span th:text="${category.savageRoast}">Roast text here.</span>
+                    </div>
+
+                    <!-- Skills Pills Grid -->
+                    <div class="space-y-2.5">
+                        <div th:each="skill : ${category.skills}" class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.02] border border-white/5 text-xs">
+                            <span class="font-bold text-white font-mono" th:text="${skill.name}">Java 25</span>
+                            <div class="flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-500/10 text-sky-400 border border-sky-500/20 font-semibold" th:text="${skill.badge}">Badge</span>
+                                <span class="text-[11px] font-mono text-emerald-400 font-semibold" th:text="${skill.level}">Level</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ====================================================================
+             BATTLEFIELD EXPERIENCE (CAREER TIMELINE)
+             ==================================================================== -->
+        <section id="experience" class="space-y-10">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="text-xs font-mono font-bold tracking-widest text-sky-400 uppercase">CAREER TRACK RECORD</span>
+                <h2 class="text-3xl font-extrabold text-white tracking-tight">Battlefield Experience</h2>
+                <p class="text-sm text-slate-400">Where the code was forged under real high-concurrency fire.</p>
+            </div>
+
+            <div class="space-y-8">
+                <div th:each="exp : ${experiences}" class="apple-glass-card p-8 space-y-6">
+                    <!-- Experience Top -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/10">
+                        <div>
+                            <div class="flex items-center gap-3">
+                                <h3 class="text-xl sm:text-2xl font-extrabold text-white" th:text="${exp.company}">Digitap.AI</h3>
+                                <span class="text-xs font-mono px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 font-bold" th:text="${exp.awardBadge}">🏆 RISING STAR AWARD</span>
+                            </div>
+                            <p class="text-sm text-sky-400 font-mono mt-1" th:text="${exp.role} + ' &bull; ' + ${exp.location}">Software Engineer &bull; Bengaluru</p>
+                        </div>
+                        <span class="text-xs font-mono font-bold text-slate-400 px-3 py-1 rounded-full bg-white/5 border border-white/10 self-start sm:self-auto" th:text="${exp.period}">Aug 2023 – Present</span>
+                    </div>
+
+                    <!-- Savage Summary -->
+                    <p class="text-sm text-slate-300 italic font-mono" th:text="${exp.savageSummary}">Summary</p>
+
+                    <!-- Bullet Points -->
+                    <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300">
+                        <li th:each="bullet : ${exp.bulletPoints}" class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                            <span th:text="${bullet}">Bullet point</span>
+                        </li>
+                    </ul>
+
+                    <!-- Technologies used -->
+                    <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-white/10">
+                        <span class="text-[11px] font-mono text-slate-400 mr-2">TECH:</span>
+                        <span th:each="t : ${exp.technologies}" class="px-2.5 py-1 rounded-full text-[11px] font-mono savage-pill text-slate-300" th:text="${t}">Java</span>
+                    </div>
+                </div>
+
+                <!-- Education Card -->
+                <div class="apple-glass-card p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">ACADEMIC FOUNDATION</span>
+                        <h4 class="text-lg font-bold text-white">Bachelor of Technology in Information Technology (B.Tech IT)</h4>
+                        <p class="text-xs text-slate-300">Dr. A.P.J. Abdul Kalam Technical University (AKTU) &bull; Buddha Institute of Technology</p>
+                    </div>
+                    <span class="text-xs font-mono font-bold text-sky-400 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 self-start sm:self-auto">Graduated 2022</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ====================================================================
+             AWARDS & HONORS (RAPID CAREER TRAJECTORY)
+             ==================================================================== -->
+        <section id="awards" class="space-y-10">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="text-xs font-mono font-bold tracking-widest text-amber-400 uppercase">PROVABLE RECOGNITION</span>
+                <h2 class="text-3xl font-extrabold text-white tracking-tight">Awards &amp; Career Milestones</h2>
+                <p class="text-sm text-slate-400">Fast-tracked promotions and corporate honors earned under high-concurrency fire — not annual HR politics.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div th:each="award : ${awards}" class="apple-glass-card p-7 space-y-5 transition-all hover:border-amber-500/30 hover:shadow-lg hover:shadow-amber-500/5">
+                    <!-- Top Info Header -->
+                    <div class="flex items-start justify-between gap-4 pb-4 border-b border-white/10">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 rounded-2xl bg-amber-500/10 text-amber-400 border border-amber-500/20 shrink-0">
+                                <i th:attr="data-lucide=${award.icon}" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs font-mono text-slate-400" th:text="${award.organization} + ' &bull; ' + ${award.year}">Digitap.AI &bull; 2025</span>
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-tight mt-0.5" th:text="${award.title}">Award Title</h3>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30 whitespace-nowrap uppercase tracking-wider shrink-0" th:text="${award.badge}">BADGE</span>
+                    </div>
+
+                    <!-- Highlight Metric Pill -->
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-white/[0.02] border border-white/5 text-xs font-mono">
+                        <span class="text-slate-400">KEY METRIC / CRITERIA:</span>
+                        <span class="text-emerald-400 font-bold" th:text="${award.highlightMetric}">Metric</span>
+                    </div>
+
+                    <!-- Savage Reason Quote -->
+                    <div class="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20 text-xs text-amber-200/90 font-mono leading-relaxed italic">
+                        <span th:text="${award.savageReason}">Savage reason quote goes here.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ====================================================================
+             SYSTEMS ARCHITECTURE & BENCHMARK LAB (DEDICATED LAB GATEWAY)
+             ==================================================================== -->
+        <section id="architecture" class="space-y-6">
+            <div class="apple-glass-card p-8 sm:p-10 border border-sky-400/30 relative overflow-hidden space-y-6">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-white/10">
+                    <div class="space-y-2 max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-500/15 text-sky-400 border border-sky-500/30 text-xs font-mono font-bold tracking-wider uppercase">
+                            <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+                            <span>INTERACTIVE DEEP DIVE</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-black text-white tracking-tight">Systems Architecture &amp; Benchmark Lab</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                            Want to see the distributed systems plumbing in action? Launch the dedicated engineering playground to test live race conditions, analyze query execution plans, benchmark Virtual Threads vs WebFlux, profile JVM garbage collectors, simulate bank jitter, and run production crises.
+                        </p>
+                    </div>
+                    <a href="/lab" class="px-8 py-4 rounded-full font-bold text-sm bg-gradient-to-r from-sky-400 to-emerald-400 text-slate-950 hover:brightness-110 shadow-xl shadow-sky-500/30 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 shrink-0 cursor-pointer font-mono">
+                        <i data-lucide="flask-conical" class="w-5 h-5"></i>
+                        <span>Launch Systems Lab ➔</span>
+                    </a>
+                </div>
+
+                <!-- 6 Interactive Feature Preview Cards -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 font-mono text-center text-xs">
+                    <a href="/lab#payment-switch" class="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-sky-500/15 border border-white/10 hover:border-sky-400/40 transition-all space-y-1 block group">
+                        <span class="text-[10px] text-slate-400 block uppercase">SYSTEM DESIGN</span>
+                        <span class="font-bold text-white text-[11px] group-hover:text-sky-300">100k TPS Switch</span>
+                        <span class="text-[9.5px] text-emerald-400 block font-semibold">99.999% SLA</span>
+                    </a>
+                    <a href="/lab#concurrency-arena" class="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-amber-500/15 border border-white/10 hover:border-amber-400/40 transition-all space-y-1 block group">
+                        <span class="text-[10px] text-slate-400 block uppercase">RACE CONDITION</span>
+                        <span class="font-bold text-white text-[11px] group-hover:text-amber-300">Redis Mutex Arena</span>
+                        <span class="text-[9.5px] text-amber-400 block font-semibold">0 Double-Spends</span>
+                    </a>
+                    <a href="/lab#sql-lab" class="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-rose-500/15 border border-white/10 hover:border-rose-400/40 transition-all space-y-1 block group">
+                        <span class="text-[10px] text-slate-400 block uppercase">DB OPTIMIZER</span>
+                        <span class="font-bold text-white text-[11px] group-hover:text-rose-300">SQL EXPLAIN Lab</span>
+                        <span class="text-[9.5px] text-rose-400 block font-semibold">4,820ms ➔ 1.2ms</span>
+                    </a>
+                    <a href="/lab#jvm-profiler" class="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-purple-500/15 border border-white/10 hover:border-purple-400/40 transition-all space-y-1 block group">
+                        <span class="text-[10px] text-slate-400 block uppercase">JAVA RUNTIME</span>
+                        <span class="font-bold text-white text-[11px] group-hover:text-purple-300">JVM Heap &amp; ZGC</span>
+                        <span class="text-[9.5px] text-purple-400 block font-semibold">&lt;1ms STW Pause</span>
+                    </a>
+                    <a href="/lab#latency-benchmarks" class="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-emerald-500/15 border border-white/10 hover:border-emerald-400/40 transition-all space-y-1 block group">
+                        <span class="text-[10px] text-slate-400 block uppercase">BENCHMARKS</span>
+                        <span class="font-bold text-white text-[11px] group-hover:text-emerald-300">Java 25 vs Monolith</span>
+                        <span class="text-[9.5px] text-emerald-400 block font-semibold">13x Speedup</span>
+                    </a>
+                    <a href="/lab#incident-war-room" class="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-rose-500/15 border border-white/10 hover:border-rose-400/40 transition-all space-y-1 block group">
+                        <span class="text-[10px] text-slate-400 block uppercase">SRE WAR ROOM</span>
+                        <span class="font-bold text-white text-[11px] group-hover:text-rose-300">P0 Incident Triage</span>
+                        <span class="text-[9.5px] text-rose-400 block font-semibold">Active Escalation</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ====================================================================
+             THE CYNICAL ENGINEER'S CONFESSIONAL (ROASTING TECH & MYSELF)
+             ==================================================================== -->
+        <section id="roasts" class="apple-glass-card p-8 lg:p-12 text-center space-y-6 relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-48 h-48 bg-rose-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-3xl mx-auto space-y-3">
+                <div class="flex items-center justify-center gap-3">
+                    <span class="text-xs font-mono font-bold tracking-widest text-rose-400 uppercase">DARK HUMOR &bull; SELF-ROASTS &bull; REALITY CHECKS</span>
+                    <span id="roast-counter-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-rose-500/15 text-rose-400 border border-rose-500/30">1 / 22</span>
+                </div>
+                <h2 class="text-3xl font-extrabold text-white tracking-tight">The Cynical Engineer’s Confessional</h2>
+                <p class="text-sm text-slate-300">Because if you can’t roast yourself for getting kicked out of Merck for playing office hide-and-seek, you have no right to roast frontend developers.</p>
+            </div>
+
+            <div id="roast-card-container" class="p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/10 max-w-3xl mx-auto min-h-[120px] flex flex-col items-center justify-center relative overflow-hidden group cursor-pointer hover:border-white/20 transition-all" title="Click or hover to pause / advance">
+                <!-- Subtle auto-loop progress line -->
+                <div class="absolute top-0 left-0 right-0 h-1 bg-white/5">
+                    <div id="roast-progress-bar" class="h-full bg-gradient-to-r from-rose-500 via-purple-500 to-sky-400 w-0"></div>
+                </div>
+
+                <blockquote class="text-sm sm:text-base font-mono text-slate-200 italic leading-relaxed select-text" id="active-roast-display">
+                    "Merck let me go after a 1-year internship. Not because my Java code had bugs (it had 98% test coverage), but because the moment tickets were done, I was the undisputed office foosball champion and playing extreme luka chhipi (hide-and-seek) behind the server racks."
+                </blockquote>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-1">
+                <button id="generate-roast-btn" class="px-6 py-3 rounded-full font-bold text-sm bg-gradient-to-r from-rose-500 to-purple-600 text-white hover:brightness-110 shadow-lg shadow-rose-500/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer">
+                    <span>Next Reality Check 🔥</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+                <div class="text-[11px] font-mono text-slate-400 flex items-center gap-2">
+                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Auto-looping every 6s (hover card to pause)</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ====================================================================
+             CONTACT & HIRE ME (IF BUDGET PERMITS)
+             ==================================================================== -->
+        <section id="contact" class="apple-glass-card p-8 lg:p-12 space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase">GET IN TOUCH</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Have A Distributed Problem? Let’s Talk Scale.</h2>
+                <p class="text-sm text-slate-300">
+                    Looking for a backend engineer who takes pride in zero-downtime, sub-second latency, and ruthless code quality? Let’s build something incredible.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+                <!-- Email Card -->
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col justify-between space-y-4 text-center">
+                    <div class="mx-auto p-3 rounded-2xl bg-sky-500/10 text-sky-400">
+                        <i data-lucide="mail" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-slate-400 block">DIRECT EMAIL</span>
+                        <span class="text-sm font-bold text-white font-mono break-all" th:text="${email}">akshathrx6393@gmail.com</span>
+                    </div>
+                    <button class="copy-email-btn w-full py-2.5 rounded-xl savage-pill text-xs font-semibold hover:text-sky-400 transition-colors">
+                        Copy Email
+                    </button>
+                </div>
+
+                <!-- LinkedIn Card -->
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col justify-between space-y-4 text-center">
+                    <div class="mx-auto p-3 rounded-2xl bg-blue-500/10 text-blue-400">
+                        <i data-lucide="linkedin" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-slate-400 block">LINKEDIN PROFILE</span>
+                        <span class="text-sm font-bold text-white font-mono">/in/ialexjx</span>
+                    </div>
+                    <a th:href="${linkedin}" target="_blank" class="w-full py-2.5 rounded-xl savage-pill text-xs font-semibold hover:text-blue-400 transition-colors inline-block">
+                        Connect on LinkedIn
+                    </a>
+                </div>
+
+                <!-- Location / Phone -->
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col justify-between space-y-4 text-center">
+                    <div class="mx-auto p-3 rounded-2xl bg-emerald-500/10 text-emerald-400">
+                        <i data-lucide="map-pin" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-slate-400 block">BASE LOCATION</span>
+                        <span class="text-sm font-bold text-white">Bengaluru, India</span>
+                    </div>
+                    <a th:href="'tel:' + ${phone}" class="w-full py-2.5 rounded-xl savage-pill text-xs font-semibold hover:text-emerald-400 transition-colors inline-block" th:text="${phone}">
+                        +91 9839783219
+                    </a>
+                </div>
+            </div>
+
+            <!-- Official Resume Download Cards -->
+            <div class="apple-glass-card p-6 rounded-2xl border border-emerald-500/25 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3 text-center sm:text-left">
+                    <div class="p-3 rounded-2xl bg-emerald-500/10 text-emerald-400 shrink-0">
+                        <i data-lucide="file-check" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">Official Executive Resume (ATS-Optimized)</h4>
+                        <p class="text-xs text-slate-400">Battle-tested metrics from 2.5 years of high-throughput FinTech engineering at Digitap.AI.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 font-mono text-xs shrink-0">
+                    <a href="/downloads/Akshat_Jaiswal_Senior_Software_Engineer.pdf" download class="px-4 py-2.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 font-bold">
+                        <i data-lucide="file-text" class="w-3.5 h-3.5 text-rose-400"></i>
+                        <span>Download PDF</span>
+                    </a>
+                    <a href="/downloads/Akshat_Jaiswal_Senior_Software_Engineer.docx" download class="px-4 py-2.5 rounded-full bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/30 flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 font-bold">
+                        <i data-lucide="file-code" class="w-3.5 h-3.5 text-sky-400"></i>
+                        <span>Download Word</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Connect / Schedule Tech Chat Banner -->
+            <div class="p-6 rounded-2xl bg-gradient-to-r from-sky-500/10 via-emerald-500/10 to-purple-500/10 border border-sky-500/25 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="space-y-1 text-center sm:text-left">
+                    <span class="text-[11px] font-mono font-bold text-sky-400 uppercase tracking-wider flex items-center justify-center sm:justify-start gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>Direct Engineer-to-Engineer Access</span>
+                    </span>
+                    <h3 class="text-base sm:text-lg font-bold text-white">Prefer a fast, zero-fluff architectural discussion?</h3>
+                    <p class="text-xs text-slate-400">Skip the 5-round recruiter screenings. Let's discuss system design, indexing, and thread models directly.</p>
+                </div>
+                <button id="contact-book-chat-btn" class="px-6 py-3 rounded-full font-bold text-xs bg-gradient-to-r from-sky-400 to-emerald-400 text-slate-950 hover:brightness-110 shadow-lg shadow-sky-500/25 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer shrink-0">
+                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                    <span>Schedule Tech Chat</span>
+                </button>
+            </div>
+
+            <!-- ================================================================
+                 SPOTIFY-STYLE FINTECH PRODUCTION WRAPPED 2026
+                 ================================================================ -->
+            <div class="apple-glass-card wrapped-sheen p-6 sm:p-8 space-y-6 border border-sky-400/30 relative overflow-hidden mt-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+                    <div class="space-y-1">
+                        <span class="text-xs font-mono font-black text-sky-400 uppercase tracking-widest flex items-center gap-2">
+                            <i data-lucide="sparkles" class="w-4 h-4"></i>
+                            <span>FINTECH PRODUCTION WRAPPED &bull; 2026</span>
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl font-black text-white tracking-tight">Battle Record at a Glance</h3>
+                        <p class="text-xs sm:text-sm text-slate-300">
+                            The cold, hard production telemetry achieved across mission-critical banking and identity services.
+                        </p>
+                    </div>
+                    <button id="copy-wrapped-btn" class="px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-mono font-bold flex items-center gap-2 cursor-pointer transition-all hover:scale-105 active:scale-95 shrink-0 border border-white/15">
+                        <i data-lucide="copy" class="w-3.5 h-3.5 text-sky-400"></i>
+                        <span>Copy Summary Card</span>
+                    </button>
+                </div>
+
+                <!-- 4 Highlight Tiles -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-center">
+                    <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1">
+                        <span class="text-[10px] text-slate-400 uppercase">Daily DigiLocker Surge</span>
+                        <span class="block text-xl sm:text-2xl font-black text-emerald-400">90,000</span>
+                        <span class="text-[10px] text-slate-400">Scaled from 28k</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1">
+                        <span class="text-[10px] text-slate-400 uppercase">Async Purge Velocity</span>
+                        <span class="block text-xl sm:text-2xl font-black text-sky-400">2,500 TPS</span>
+                        <span class="text-[10px] text-slate-400">Zero Table Locks</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1">
+                        <span class="text-[10px] text-slate-400 uppercase">Database Migration</span>
+                        <span class="block text-xl sm:text-2xl font-black text-amber-400">150 TPS</span>
+                        <span class="text-[10px] text-slate-400">Zero Downtime</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1">
+                        <span class="text-[10px] text-slate-400 uppercase">Deadlocks in Prod</span>
+                        <span class="block text-xl sm:text-2xl font-black text-emerald-400">0</span>
+                        <span class="text-[10px] text-slate-400">14M+ Rows Purged</span>
+                    </div>
+                </div>
+
+                <!-- Bottom Metadata Line -->
+                <div class="flex flex-wrap items-center justify-between gap-3 pt-2 text-xs font-mono text-slate-400 border-t border-white/5">
+                    <div>
+                        <span class="text-slate-500">Weapon of Choice:</span>
+                        <span class="text-white font-bold ml-1">Java 25 (Virtual Threads) &bull; Spring Boot 3</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-500">Staging Safety Net:</span>
+                        <span class="text-rose-400 font-bold ml-1">0% (Straight to Production)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ====================================================================
+         FOOTER
+         ==================================================================== -->
+    <footer class="border-t border-white/10 py-8 px-4 text-center text-xs font-mono text-slate-500 space-y-2">
+        <p>&copy; 2026 Akshat Jaiswal. Engineered with Java 25, Spring Boot, & Thymeleaf.</p>
+        <p class="text-[11px] text-slate-600">No frontend frameworks were harmed in the making of this ultra-fast, server-rendered masterpiece.</p>
+    </footer>
+
+
+    <!-- ====================================================================
+         FLOATING "LO-FI CODING BEATS" AMBIENT PLAYER (APPLE STYLE)
+         ==================================================================== -->
+    <div class="fixed bottom-6 left-6 z-40">
+        <button id="lofi-player-btn" class="px-3.5 py-2.5 rounded-full bg-slate-950/90 text-slate-300 border border-purple-500/30 shadow-2xl backdrop-blur-xl flex items-center gap-3 text-xs font-mono font-semibold hover:border-purple-400 hover:scale-105 active:scale-95 transition-all group cursor-pointer" title="Toggle Lo-Fi Coding Beats">
+            <div id="lofi-equalizer" class="flex items-end gap-0.5 h-3.5 w-3.5 shrink-0">
+                <span class="lofi-bar w-0.5 bg-purple-400 rounded-full h-1.5 transition-all"></span>
+                <span class="lofi-bar w-0.5 bg-sky-400 rounded-full h-3 transition-all"></span>
+                <span class="lofi-bar w-0.5 bg-emerald-400 rounded-full h-2 transition-all"></span>
+                <span class="lofi-bar w-0.5 bg-rose-400 rounded-full h-1 transition-all"></span>
+            </div>
+            <div class="flex flex-col text-left">
+                <span class="text-[11px] font-bold text-white group-hover:text-purple-300 flex items-center gap-1.5 leading-none">
+                    <span>Lo-Fi Beats</span>
+                    <span id="lofi-status-tag" class="text-[8.5px] px-1 py-0.2 rounded bg-purple-500/20 text-purple-300 font-bold">OFF</span>
+                </span>
+                <span class="text-[9px] text-slate-400 truncate max-w-[110px] sm:max-w-[140px] pt-0.5">2.5k TPS Purge Vibe</span>
+            </div>
+            <i data-lucide="play" id="lofi-play-icon" class="w-3.5 h-3.5 text-purple-400 ml-0.5"></i>
+            <i data-lucide="pause" id="lofi-pause-icon" class="w-3.5 h-3.5 text-purple-400 ml-0.5 hidden"></i>
+        </button>
+    </div>
+
+
+    <!-- ====================================================================
+         FLOATING "ASK AKSHAT'S CLI" ACTION BUTTON
+         ==================================================================== -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <button id="open-cli-qa-btn" class="px-4 py-3 rounded-full bg-slate-950/90 text-sky-400 border border-sky-500/40 shadow-2xl backdrop-blur-xl flex items-center gap-2.5 text-xs font-mono font-bold hover:scale-105 active:scale-95 transition-all group cursor-pointer hover:border-sky-400 hover:shadow-sky-500/20" title="Ask Akshat's CLI Alter-Ego">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <i data-lucide="terminal" class="w-4 h-4 text-sky-400 group-hover:rotate-12 transition-transform"></i>
+            <span class="text-white group-hover:text-sky-300">Ask Akshat's CLI</span>
+            <span class="px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300 text-[10px] font-bold">LIVE</span>
+        </button>
+    </div>
+
+
+    <!-- ====================================================================
+         "ASK AKSHAT'S CLI" TERMINAL Q&A MODAL
+         ==================================================================== -->
+    <div id="cli-qa-modal" class="fixed inset-0 z-50 savage-modal-backdrop flex items-center justify-center p-4 hidden">
+        <div class="apple-glass-card max-w-2xl w-full p-6 sm:p-8 space-y-5 relative shadow-2xl border border-sky-500/40 animate-in fade-in zoom-in duration-200">
+            <!-- Modal Header with macOS traffic dots -->
+            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                <div class="flex items-center gap-2.5">
+                    <button id="cli-qa-close-dot" class="w-3.5 h-3.5 rounded-full bg-rose-500/90 hover:opacity-80 transition-opacity cursor-pointer" title="Close"></button>
+                    <span class="w-3.5 h-3.5 rounded-full bg-amber-500/90 inline-block"></span>
+                    <span class="w-3.5 h-3.5 rounded-full bg-emerald-500/90 inline-block"></span>
+                    <span class="ml-2 font-mono text-xs text-slate-300 font-bold">akshat-alter-ego@digitap-core: ~/faq</span>
+                </div>
+                <button id="cli-qa-close" class="p-1.5 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-all cursor-pointer">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Pre-set Prompt Chips (Click to ask) -->
+            <div class="space-y-2">
+                <div class="text-[11px] font-mono text-slate-400 font-semibold uppercase tracking-wider flex items-center gap-1.5">
+                    <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400"></i>
+                    <span>Quick Architectural Queries (Click To Execute):</span>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-sky-500/15 border border-white/10 hover:border-sky-500/40 text-slate-300 hover:text-sky-300 font-mono text-xs transition-all cursor-pointer" data-question="virtual-threads">
+                        1. Why Java 25 Virtual Threads over Go/Node?
+                    </button>
+                    <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-sky-500/15 border border-white/10 hover:border-sky-500/40 text-slate-300 hover:text-sky-300 font-mono text-xs transition-all cursor-pointer" data-question="digilocker-hell">
+                        2. The 4-Repo DigiLocker Hell & DB Civil War
+                    </button>
+                    <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-rose-500/15 border border-white/10 hover:border-rose-500/40 text-slate-300 hover:text-rose-300 font-mono text-xs transition-all cursor-pointer" data-question="merck-foosball">
+                        3. Merck Foosball & Hide-and-Seek Story
+                    </button>
+                    <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-amber-500/15 border border-white/10 hover:border-amber-500/40 text-slate-300 hover:text-amber-300 font-mono text-xs transition-all cursor-pointer" data-question="zero-staging">
+                        4. Why 0 Staging at Digitap?
+                    </button>
+                    <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-emerald-500/15 border border-white/10 hover:border-emerald-500/40 text-slate-300 hover:text-emerald-300 font-mono text-xs transition-all cursor-pointer" data-question="purge-engine">
+                        5. 2,500 TPS S3 Purge (How AWS Throttled Me)
+                    </button>
+                </div>
+
+                <!-- Marvel Avengers Heroes Chips -->
+                <div class="pt-1 border-t border-white/5">
+                    <div class="text-[10px] font-mono text-amber-400/90 font-bold uppercase tracking-wider flex items-center gap-1.5 mb-1.5">
+                        <span>🅰️ MARVEL AVENGERS POWERS (CLICK TO TRIGGER SOUND &amp; FX):</span>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button class="cli-prompt-chip px-2.5 py-1 rounded-lg bg-sky-500/10 hover:bg-sky-500/25 border border-sky-500/30 text-sky-300 font-mono text-[11px] transition-all cursor-pointer hover:scale-105 active:scale-95" data-command="thor">
+                            ⚡ Thor Strike
+                        </button>
+                        <button class="cli-prompt-chip px-2.5 py-1 rounded-lg bg-red-500/10 hover:bg-red-500/25 border border-red-500/30 text-red-300 font-mono text-[11px] transition-all cursor-pointer hover:scale-105 active:scale-95" data-command="ironman">
+                            🤖 Iron Man Jarvis
+                        </button>
+                        <button class="cli-prompt-chip px-2.5 py-1 rounded-lg bg-purple-500/10 hover:bg-purple-500/25 border border-purple-500/30 text-purple-300 font-mono text-[11px] transition-all cursor-pointer hover:scale-105 active:scale-95" data-command="thanos">
+                            🫰 Thanos Snap
+                        </button>
+                        <button class="cli-prompt-chip px-2.5 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-300 font-mono text-[11px] transition-all cursor-pointer hover:scale-105 active:scale-95" data-command="hulk">
+                            🟢 Hulk Smash
+                        </button>
+                        <button class="cli-prompt-chip px-2.5 py-1 rounded-lg bg-blue-500/10 hover:bg-blue-500/25 border border-blue-500/30 text-blue-300 font-mono text-[11px] transition-all cursor-pointer hover:scale-105 active:scale-95" data-command="cap">
+                            🛡️ Cap Shield
+                        </button>
+                        <button class="cli-prompt-chip px-2.5 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/25 border border-rose-500/30 text-rose-300 font-mono text-[11px] transition-all cursor-pointer hover:scale-105 active:scale-95" data-command="spidey">
+                            🕷️ Spidey Web
+                        </button>
+                        <button class="cli-prompt-chip px-3 py-1 rounded-lg bg-gradient-to-r from-red-500/20 to-amber-500/20 hover:from-red-500/30 hover:to-amber-500/30 border border-amber-500/40 text-amber-300 font-mono text-[11px] font-bold transition-all cursor-pointer hover:scale-105 active:scale-95" data-command="assemble">
+                            🅰️ ASSEMBLE ALL
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terminal Screen Output Container -->
+            <div id="cli-terminal-screen" class="terminal-window p-4 sm:p-5 h-64 overflow-y-auto space-y-3 font-mono text-xs select-text">
+                <div class="text-slate-500">// Akshat's Interactive Alter-Ego CLI v2.5 (Java 25 Corretto)</div>
+                <div class="text-slate-400">Click any query chip above or type a command below (<span class="text-sky-400 font-bold">help</span>, <span class="text-amber-400 font-bold">thor</span>, <span class="text-purple-400 font-bold">thanos</span>, <span class="text-emerald-400 font-bold">projects</span>, <span class="text-rose-400 font-bold">roast</span>, <span class="text-amber-400 font-bold">clear</span>).</div>
+                <div id="cli-output-stream" class="space-y-3">
+                    <!-- Dynamic Q&A typewriter content goes here -->
+                </div>
+            </div>
+
+            <!-- Terminal Command Input Line -->
+            <form id="cli-terminal-form" class="flex items-center gap-2 font-mono text-xs border border-white/10 rounded-xl px-3 py-2 bg-white/[0.02]">
+                <span class="text-emerald-400 font-bold">&gt;</span>
+                <input id="cli-input-field" type="text" placeholder="Type a command (help, roasts, tps, projects, clear)..." 
+                       class="bg-transparent border-none outline-none text-slate-200 placeholder-slate-600 flex-1 font-mono text-xs">
+                <button type="submit" class="px-3 py-1 rounded-lg bg-sky-500/20 text-sky-400 hover:bg-sky-500/30 text-[11px] font-bold cursor-pointer transition-colors">
+                    EXEC
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- ====================================================================
+         "BREAK PROD" PANIC MODAL (INTERACTIVE TROLL)
+         ==================================================================== -->
+    <div id="break-prod-modal" class="fixed inset-0 z-50 savage-modal-backdrop flex items-center justify-center p-4 hidden">
+        <div class="apple-glass max-w-xl w-full rounded-3xl p-6 sm:p-8 space-y-6 border border-rose-500/40 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between pb-3 border-b border-rose-500/20">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-xl bg-rose-500/20 text-rose-400 animate-pulse">
+                        <i data-lucide="alert-octagon" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white tracking-tight">PRODUCTION INCIDENT SIMULATOR</h3>
+                        <span class="text-[11px] font-mono text-rose-400">Severity: P0 Blocker &bull; Friday 7:30 PM</span>
+                    </div>
+                </div>
+                <button id="break-prod-close" class="p-2 rounded-full savage-pill text-slate-400 hover:text-white">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Terminal Output for Incident -->
+            <div id="panic-terminal" class="terminal-window p-4 h-64 overflow-y-auto space-y-2.5 font-mono text-xs select-text">
+                <!-- Panic text rendered by JS -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="flex items-center justify-between pt-2">
+                <span class="text-xs font-mono text-slate-400">Unit Tests: 98% Passing</span>
+                <button onclick="document.getElementById('break-prod-modal').classList.add('hidden')" class="px-5 py-2.5 rounded-full text-xs font-bold bg-emerald-500 text-slate-950 hover:brightness-110 transition-all">
+                    Thank God For Good Architecture
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ====================================================================
+         "SCHEDULE A ZERO-BS TECH CHAT" MODAL
+         ==================================================================== -->
+    <div id="tech-chat-modal" class="fixed inset-0 z-50 savage-modal-backdrop flex items-center justify-center p-4 hidden">
+        <div class="apple-glass-card max-w-xl w-full p-6 sm:p-8 space-y-6 relative shadow-2xl border border-sky-500/40 animate-in fade-in zoom-in duration-200">
+            <!-- Header with macOS traffic dots -->
+            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                <div class="flex items-center gap-2.5">
+                    <button id="tech-chat-close-dot" class="w-3.5 h-3.5 rounded-full bg-rose-500/90 hover:opacity-80 transition-opacity cursor-pointer" title="Close"></button>
+                    <span class="w-3.5 h-3.5 rounded-full bg-amber-500/90 inline-block"></span>
+                    <span class="w-3.5 h-3.5 rounded-full bg-emerald-500/90 inline-block"></span>
+                    <span class="ml-2 font-mono text-xs text-slate-300 font-bold">akshat@fintech-core: ~/quick-connect</span>
+                </div>
+                <button id="tech-chat-close" class="p-1.5 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-all cursor-pointer">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Intro Badge & Title -->
+            <div class="space-y-2">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-mono font-semibold">
+                    <span class="pulsing-dot"></span>
+                    <span>Bengaluru, India (IST) &bull; Available for Backend Architect & SSE Roles</span>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Zero BS. Direct Engineering Discussion.</h3>
+                <p class="text-xs sm:text-sm text-slate-300">
+                    No HR aptitude tests. No asking if Java is JavaScript. Let's talk high-throughput distributed systems, 2,500 TPS purge architectures, Virtual Threads, and zero-downtime database migrations.
+                </p>
+            </div>
+
+            <!-- Quick Action Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <a href="mailto:akshatrawat9211@gmail.com?subject=Tech%20Chat%20with%20Akshat%20(FinTech%20%2F%20Distributed%20Systems)&body=Hi%20Akshat,%0A%0ASaw%20your%20portfolio%20and%20the%202,500%20TPS%20purge%20architecture.%20Would%20love%20to%20chat%20about..." class="p-4 rounded-xl bg-sky-500/10 border border-sky-500/20 hover:bg-sky-500/20 hover:border-sky-500/40 transition-all flex items-center gap-3 text-left group">
+                    <div class="p-2.5 rounded-lg bg-sky-500/20 text-sky-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="block text-[11px] font-mono text-slate-400 uppercase">Pre-filled Draft</span>
+                        <span class="block text-xs font-bold text-white group-hover:text-sky-300">Send Direct Email</span>
+                    </div>
+                </a>
+
+                <button class="copy-email-btn p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all flex items-center gap-3 text-left group cursor-pointer">
+                    <div class="p-2.5 rounded-lg bg-emerald-500/20 text-emerald-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="copy" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="block text-[11px] font-mono text-slate-400 uppercase">Instant Copy</span>
+                        <span class="block text-xs font-bold text-white group-hover:text-emerald-300">Copy Address</span>
+                    </div>
+                </button>
+
+                <a th:href="${linkedin}" target="_blank" class="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 hover:border-blue-500/40 transition-all flex items-center gap-3 text-left group">
+                    <div class="p-2.5 rounded-lg bg-blue-500/20 text-blue-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="block text-[11px] font-mono text-slate-400 uppercase">LinkedIn Profile</span>
+                        <span class="block text-xs font-bold text-white group-hover:text-blue-300">Message on LinkedIn</span>
+                    </div>
+                </a>
+
+                <a th:href="'tel:' + ${phone}" class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-all flex items-center gap-3 text-left group">
+                    <div class="p-2.5 rounded-lg bg-emerald-500/20 text-emerald-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="phone-call" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="block text-[11px] font-mono text-slate-400 uppercase">Direct Phone</span>
+                        <span class="block text-xs font-bold text-white group-hover:text-emerald-300">+91 9839783219</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Footer note -->
+            <div class="pt-2 text-center text-[11px] font-mono text-slate-500">
+                Primary Stack: Java 25 &bull; Spring Boot 3 &bull; Kafka &bull; Redis &bull; MySQL &bull; AWS Distributed Systems
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ====================================================================
+         "KILL THE MONOLITH" RETRO CYBERPUNK ARCADE MODAL
+         ==================================================================== -->
+    <div id="arcade-game-modal" class="fixed inset-0 z-50 savage-modal-backdrop flex items-center justify-center p-3 sm:p-4 hidden">
+        <div class="apple-glass-card max-w-2xl w-full p-4 sm:p-6 space-y-4 relative shadow-2xl border border-purple-500/40 animate-in fade-in zoom-in duration-200">
+            <!-- Header bar with retro badge & close button -->
+            <div class="flex items-center justify-between border-b border-white/10 pb-3 font-mono">
+                <div class="flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 text-xs font-bold flex items-center gap-1.5">
+                        <i data-lucide="gamepad-2" class="w-3.5 h-3.5"></i>
+                        <span>ARCADE ENGINE v1.0</span>
+                    </span>
+                    <span class="text-xs font-bold text-white hidden sm:inline">KILL THE MONOLITH (Java 25 vs The Legacy)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="arcade-sound-toggle" class="px-2 py-1 rounded bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-xs cursor-pointer" title="Toggle 8-bit Sound Effects">
+                        <i data-lucide="volume-2" class="w-3.5 h-3.5 text-emerald-400" id="arcade-sound-icon"></i>
+                    </button>
+                    <button id="arcade-modal-close" class="p-1 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-all cursor-pointer">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Arcade HUD Bar -->
+            <div class="grid grid-cols-4 gap-2 text-center font-mono text-xs">
+                <div class="p-2 rounded-xl bg-white/[0.03] border border-white/10">
+                    <span class="text-[9px] text-slate-500 block">SCORE</span>
+                    <span id="arcade-score" class="font-bold text-emerald-400 text-sm">0</span>
+                </div>
+                <div class="p-2 rounded-xl bg-white/[0.03] border border-white/10">
+                    <span class="text-[9px] text-slate-500 block">TPS PURGED</span>
+                    <span id="arcade-tps" class="font-bold text-sky-400 text-sm">0 / 2,500</span>
+                </div>
+                <div class="p-2 rounded-xl bg-white/[0.03] border border-white/10">
+                    <span class="text-[9px] text-slate-500 block">JVM HEALTH</span>
+                    <span id="arcade-health" class="font-bold text-emerald-400 text-sm">100%</span>
+                </div>
+                <div class="p-2 rounded-xl bg-white/[0.03] border border-white/10">
+                    <span class="text-[9px] text-slate-500 block">HIGH SCORE</span>
+                    <span id="arcade-high-score" class="font-bold text-amber-400 text-sm">0</span>
+                </div>
+            </div>
+
+            <!-- Game Canvas Container -->
+            <div class="relative w-full aspect-[16/10] max-h-[360px] bg-slate-950 rounded-2xl overflow-hidden border border-purple-500/30 shadow-inner flex items-center justify-center">
+                <canvas id="arcade-canvas" width="640" height="400" class="w-full h-full block select-none touch-none"></canvas>
+
+                <!-- Overlay Screens (Start / Game Over / Victory) -->
+                <div id="arcade-overlay" class="absolute inset-0 bg-slate-950/85 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center font-mono space-y-4">
+                    <div id="arcade-overlay-badge" class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-bold border border-purple-500/40">
+                        SPACE INVADERS &bull; FINTECH DEFENDER
+                    </div>
+                    <h3 id="arcade-overlay-title" class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                        KILL THE MONOLITH
+                    </h3>
+                    <p id="arcade-overlay-desc" class="text-xs text-slate-300 max-w-md leading-relaxed">
+                        Production is getting bombarded by <span class="text-rose-400 font-bold">OutOfMemoryErrors</span>, <span class="text-amber-400 font-bold">Deadlocks</span>, and <span class="text-sky-400 font-bold">Full Table Scans</span>! Blast them with Java 25 Virtual Threads before the JVM crashes.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                        <button id="arcade-start-btn" class="px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-sky-400 text-slate-950 font-bold text-xs hover:brightness-110 shadow-lg shadow-purple-500/30 hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center gap-2">
+                            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                            <span>START PURGE MISSION (60s)</span>
+                        </button>
+                    </div>
+                    <div class="text-[10px] text-slate-400 flex items-center gap-4 pt-1">
+                        <span>Desktop: <kbd class="px-1.5 py-0.5 bg-white/10 rounded text-slate-200">←</kbd> <kbd class="px-1.5 py-0.5 bg-white/10 rounded text-slate-200">→</kbd> to move, <kbd class="px-1.5 py-0.5 bg-white/10 rounded text-slate-200">Space</kbd> to shoot</span>
+                        <span class="hidden sm:inline">&bull;</span>
+                        <span>Mobile: Touch left/right / tap to fire</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Controls Bar -->
+            <div class="flex sm:hidden items-center justify-between gap-2 pt-1 font-mono text-xs">
+                <button id="arcade-left-btn" class="flex-1 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold active:bg-sky-500/30">◀ LEFT</button>
+                <button id="arcade-fire-btn" class="flex-2 py-2.5 rounded-xl bg-gradient-to-r from-purple-500 to-sky-400 text-slate-950 font-black active:scale-95">⚡ FIRE (VIRTUAL THREAD)</button>
+                <button id="arcade-right-btn" class="flex-1 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold active:bg-sky-500/30">RIGHT ▶</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Data & Interactive Logic -->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        window.PORTFOLIO_ROASTS = /*[[${roasts}]]*/ [];
+        /*]]>*/
+    </script>
+    <script th:src="@{/js/avengers.js}"></script>
+    <script th:src="@{/js/portfolio.js}"></script>
+    <script th:src="@{/js/arcade-game.js}"></script>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

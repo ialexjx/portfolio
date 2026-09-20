@@ -1,0 +1,342 @@
+/* ==========================================================================
+   Avengers Theme & Interactive Marvel Animations
+   Engineered for Akshat Jaiswal's High-Scale FinTech Portfolio
+   ========================================================================== */
+
+/* Spider-Man Hanging Spider & Spider-Sense */
+.spidey-container {
+    position: fixed;
+    top: 0;
+    right: 20px;
+    z-index: 35;
+    pointer-events: none;
+    transform-origin: top center;
+    animation: spideyPendulum 4s ease-in-out infinite alternate;
+    transition: transform 0.3s ease;
+}
+
+.spidey-container:hover {
+    animation-play-state: paused;
+    transform: scale(1.15);
+}
+
+.spidey-web-line {
+    width: 1.5px;
+    height: 70px;
+    margin: 0 auto;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(200, 220, 255, 0.85));
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+.spidey-body {
+    position: relative;
+    width: 32px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* Spider-Sense Wavy Glow Arcs */
+.spider-sense-waves {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 20px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.spidey-container:hover .spider-sense-waves,
+.spidey-container.sense-active .spider-sense-waves {
+    opacity: 1;
+    animation: spideySensePulse 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes spideyPendulum {
+    0% { transform: rotate(-8deg); }
+    100% { transform: rotate(8deg); }
+}
+
+@keyframes spideySensePulse {
+    0% { transform: translateX(-50%) scale(0.9); opacity: 0.6; }
+    100% { transform: translateX(-50%) scale(1.2); opacity: 1; filter: drop-shadow(0 0 6px #f59e0b); }
+}
+
+/* Iron Man Arc Reactor Badge */
+.arc-reactor-widget {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #0ea5e9 0%, #0369a1 40%, #07101f 70%);
+    border: 1.5px solid rgba(56, 189, 248, 0.7);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.6), inset 0 0 6px rgba(56, 189, 248, 0.8);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arc-reactor-widget:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 22px rgba(56, 189, 248, 0.9), inset 0 0 10px #38bdf8;
+}
+
+.arc-reactor-ring {
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 255, 255, 0.6);
+    animation: arcSpin 6s linear infinite;
+}
+
+.arc-reactor-core {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 8px #ffffff, 0 0 16px #38bdf8;
+    animation: corePulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes arcSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes corePulse {
+    0% { transform: scale(0.85); opacity: 0.8; }
+    100% { transform: scale(1.15); opacity: 1; }
+}
+
+/* Thor's Mjolnir Trigger Button */
+.mjolnir-btn {
+    position: relative;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+
+.mjolnir-btn:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+    border-color: #38bdf8 !important;
+}
+
+.mjolnir-btn:active {
+    transform: scale(0.95);
+}
+
+/* Screen Shake Effect for Thunder & Hulk */
+.avengers-screen-shake {
+    animation: screenShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes screenShake {
+    10%, 90% { transform: translate3d(-3px, 0, 0); }
+    20%, 80% { transform: translate3d(4px, 2px, 0); }
+    30%, 50%, 70% { transform: translate3d(-6px, -4px, 0); }
+    40%, 60% { transform: translate3d(6px, 4px, 0); }
+}
+
+/* Hulk Smash Violent Rumble */
+.hulk-screen-shake {
+    animation: hulkRumble 0.65s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes hulkRumble {
+    0% { transform: translate3d(0, 0, 0); filter: drop-shadow(0 0 25px rgba(34, 197, 94, 0.7)); }
+    15% { transform: translate3d(-8px, 12px, 0); }
+    30% { transform: translate3d(10px, -8px, 0); }
+    45% { transform: translate3d(-12px, 8px, 0); }
+    60% { transform: translate3d(8px, -6px, 0); }
+    75% { transform: translate3d(-4px, 4px, 0); }
+    100% { transform: translate3d(0, 0, 0); filter: none; }
+}
+
+/* Thanos Infinity Gauntlet Button */
+.thanos-gauntlet-btn {
+    position: relative;
+    transition: all 0.25s ease;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(168, 85, 247, 0.15));
+    border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.thanos-gauntlet-btn:hover {
+    border-color: #f59e0b;
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.4), 0 0 40px rgba(168, 85, 247, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Floating Avengers Assemble Master Dock */
+#avengers-assemble-dock {
+    position: fixed;
+    bottom: 80px;
+    right: 24px;
+    z-index: 45;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.avengers-main-trigger {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ef4444, #7f1d1d 70%, #1e1b4b);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.5), 0 0 20px rgba(56, 189, 248, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.avengers-main-trigger:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 15px 35px -5px rgba(239, 68, 68, 0.7), 0 0 30px rgba(56, 189, 248, 0.6);
+}
+
+.avengers-main-trigger:active {
+    transform: scale(0.92);
+}
+
+.avengers-assemble-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(15px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#avengers-assemble-dock.dock-open .avengers-assemble-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.avenger-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 9999px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #f8fafc;
+    font-size: 11.5px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.6);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.avenger-pill-btn:hover {
+    transform: translateX(-4px) scale(1.05);
+}
+
+.avenger-pill-btn.thor:hover {
+    border-color: #38bdf8;
+    color: #38bdf8;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.avenger-pill-btn.ironman:hover {
+    border-color: #ef4444;
+    color: #f87171;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+}
+
+.avenger-pill-btn.thanos:hover {
+    border-color: #a855f7;
+    color: #c084fc;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+.avenger-pill-btn.spidey:hover {
+    border-color: #f43f5e;
+    color: #fb7185;
+    box-shadow: 0 0 20px rgba(244, 63, 94, 0.4);
+}
+
+.avenger-pill-btn.hulk:hover {
+    border-color: #22c55e;
+    color: #4ade80;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+}
+
+.avenger-pill-btn.cap:hover {
+    border-color: #3b82f6;
+    color: #60a5fa;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+.avenger-pill-btn.assemble-all {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(56, 189, 248, 0.3));
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.avenger-pill-btn.assemble-all:hover {
+    border-color: #ffffff;
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.6), 0 0 25px rgba(56, 189, 248, 0.6);
+}
+
+/* Jarvis Hologram Overlay */
+#jarvis-hud-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.06) 0%, transparent 80%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+}
+
+#jarvis-hud-overlay.active {
+    opacity: 1;
+}
+
+/* Fullscreen Lightning Canvas */
+#avengers-fx-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 55;
+}
+
+/* Avengers Quote Banner Notification */
+#avengers-toast-banner {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    z-index: 70;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#avengers-toast-banner.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
