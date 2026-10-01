@@ -27,9 +27,9 @@ public class PortfolioDataService {
                         .icon("shield-check")
                         .build(),
                 StatItem.builder()
-                        .value("90k / Day")
+                        .value("1.5 Lakh / Day")
                         .label("DigiLocker Daily Success Surge")
-                        .subtext("Scaled production success count from 25k-28k up to 85k-90k daily successful transactions post-revamp.")
+                        .subtext("Orchestrated 12+ micro-APIs across 1.5M+ daily hits, scaling successful verifications from 28k to 1.5 Lakh/day.")
                         .icon("trending-up")
                         .build(),
                 StatItem.builder()
@@ -107,7 +107,7 @@ public class PortfolioDataService {
                         .statusBadge("BUILT FROM SCRATCH")
                         .savageQuote("\"The legacy DigiLocker was splintered across 4 repos, took 4 chained SNS hops just to fire 1 client webhook, and downloaded files sequentially like it was 1998 — taking 30+ seconds per user. You had to log into production AWS and search across 4 separate CloudWatch groups just to see if a user dropped off. I rebuilt the entire platform in Spring Boot with Virtual Threads, slashed journey latency to 7-10s, and engineered a 2,500 TPS purge engine so fast that AWS S3 literally told me 'Slow Down'.\"")
                         .problemStatement("The legacy DigiLocker was an operational nightmare: splintered across 4 fragmented repositories, requiring 4 chained AWS SNS hops just to trigger a single client webhook. It had zero user tracking — developers had to log into AWS production and manually search across 4 different CloudWatch log groups just to diagnose basic issues. There was zero visibility into user consent, approved files, or drop-offs. When the upstream DigiLocker source went down, the team was completely blind. To make matters worse, files were downloaded sequentially one-by-one (causing 30+ second user wait times), enterprise configs did not exist, and failed transactions were never marked as FAILED.")
-                        .solutionAndImpact("Re-architected and rebuilt the entire platform from scratch in Spring Boot. Consolidated 4 repos into a single modular codebase with dynamic enterprise configs (EID support, client fallback, and runtime URL overrides). Built a strict state machine with complete DB-level journey logging — developers never need to touch AWS CloudWatch again. Implemented upstream DigiLocker API logging to capture raw error payloads during source outages. Slashed user journey latency from 30s down to 7-10s using Java Virtual Threads for concurrent multi-file downloads. Engineered a legendary 2,500 TPS purge engine (so fast it triggered S3 'SlowDown' rate limits), and scaled production success count from 28k to 90k daily successful transactions with zero bugs.")
+                        .solutionAndImpact("Re-architected and rebuilt the entire platform from scratch in Spring Boot. Consolidated 4 repos into a single modular codebase with dynamic enterprise configs (EID support, client fallback, and runtime URL overrides). Built a strict state machine with complete DB-level journey logging — developers never need to touch AWS CloudWatch again. Implemented upstream DigiLocker API logging to capture raw error payloads during source outages. Slashed user journey latency from 30s down to 7-10s using Java Virtual Threads for concurrent multi-file downloads. Engineered a legendary 2,500 TPS purge engine (so fast it triggered S3 'SlowDown' rate limits), and scaled production throughput to 1.5M+ daily API hits across 12+ orchestrated endpoints per journey, sustaining 1.5 Lakh daily successful transactions with zero bugs.")
                         .problemBullets(List.of(
                                 "4 Fragmented Repositories: Codebase splintered across 4 repos; minor changes required 4 separate deployments.",
                                 "4 Chained SNS Topics: A single client webhook had to navigate 4 SNS hops and 4 CloudWatch groups.",
@@ -119,10 +119,11 @@ public class PortfolioDataService {
                                 "Virtual Threads Parallel Downloads: Slashed end-to-end journey latency from 30s down to 7–10 seconds.",
                                 "100% DB Journey Observability: Logged every user step, consent event, and upstream DigiLocker response in DB.",
                                 "150 TPS Migration & 2,500 TPS Purge: High-speed multi-threaded DB migration and AWS S3 purge engine.",
-                                "Scaled Success Count to 90k/Day: Boosted daily successful transactions from 25k–28k to 85k–90k."
+                                "1.5M+ Daily API Hits & 1.5L Transactions: Orchestrated 12+ micro-APIs per journey, boosting daily success from 28k to 1.5 Lakh."
                         ))
                         .techStack(List.of("Spring Boot", "Java Virtual Threads", "Parallel S3 Downloader", "Multi-DB Boundary Routing", "2,500 TPS Purge Engine", "150 TPS Batch Migration", "Observability DB Layer", "Dynamic EID Configs"))
                         .architectureHighlights(List.of(
+                                "12-Step Chained API Orchestration: Seamlessly coordinated 7 public ingress endpoints and 6 upstream government micro-calls (token exchange, Aadhaar XML extraction, signed PDF streams) per journey, sustaining 1.5M+ daily API hits without thread starvation.",
                                 "Parallel Multi-File Downloads via Virtual Threads: Replaced sequential file fetching with concurrent Java Virtual Threads, slashing end-to-end journey latency from 30s+ down to 7-10s.",
                                 "God-Level 2,500 TPS Purge Engine: Asynchronous bulk cleanup engine running at 2,500 records/sec — so aggressive that AWS S3 returned '503 SlowDown' throttling during bulk object deletions.",
                                 "Zero CloudWatch Debugging (100% DB Observability): Every user interaction, document consent metadata, drop-off point, and webhook payload is persisted in DB tables. No AWS prod logins needed.",
@@ -130,13 +131,13 @@ public class PortfolioDataService {
                                 "Consolidated Architecture (4 Repos ➔ 1 System): Replaced 4 chained SNS hops with direct event dispatching, cutting out unnecessary cloud hops and network latency.",
                                 "Dynamic Enterprise Configs & URL Overrides: Built flexible tenant configuration supporting custom EIDs, client fallback behaviors, and runtime config overrides during URL minting.",
                                 "Dual-DB Pagination Engine ('Civil War Solution'): Boundary-based routing dynamically querying both legacy and new databases with seamless unified pagination.",
-                                "Production Success Count Surge: Scaled daily throughput from 25k-28k up to 85k-90k daily successful transactions with zero client-reported issues on rollout."
+                                "Production Success Count Surge: Scaled daily throughput from 25k-28k up to 1.5 Lakh daily successful transactions with zero client-reported issues on rollout."
                         ))
                         .metrics(Map.of(
-                                "Daily Success Surge", "28k ➔ 90k successful/day",
-                                "Flow Latency", "30s ➔ 7-10s (Virtual Threads)",
-                                "Purge Velocity", "2,500 TPS (S3 Throttling)",
-                                "Observability", "100% DB Logged (Zero CloudWatch)"
+                                "Daily Ingress Traffic", "1.5M+ Requests/Day",
+                                "Daily Success Surge", "28k ➔ 1.5 Lakh/day",
+                                "Orchestration Depth", "12+ Micro-APIs / Tx",
+                                "Flow Latency", "30s ➔ 7-10s (Virtual Threads)"
                         ))
                         .problemHeading("The Legacy Horror (Before Revamp)")
                         .solutionHeading("The Ground-Up Architecture (What I Built)")
@@ -317,7 +318,7 @@ public class PortfolioDataService {
                                 "Architected and delivered 4 mission-critical enterprise products from scratch end-to-end as solo engineer.",
                                 "Scaled OKYC (Offline KYC / Aadhaar XML) verification pipeline processing 200,000 – 300,000 daily successful transactions at sub-40ms latency.",
                                 "Architected eSign Gateway v2 with Java 25 & Virtual Threads, introducing in-memory PDF merging and Single Aadhaar OTP Multi-Stamp capability.",
-                                "Led end-to-end revamp of DigiLocker platform: unified 3 repositories into 1, created 150 TPS batch migration framework, 2,500 TPS purge engine, and scaled daily success count from 28k to 90k successful transactions with zero downtime.",
+                                "Led end-to-end revamp of DigiLocker platform: unified 3 repositories into 1, orchestrated 12+ micro-APIs across 1.5M+ daily API requests, created 150 TPS batch migration framework, 2,500 TPS purge engine, and scaled daily success count from 28k to 1.5 Lakh successful transactions with zero downtime.",
                                 "Built VKYC V2 and Video-PD security & auth architecture from scratch; developed sub-3s month-wide analytics engine driving client revenue uplift, and migrated agent accounts with preserved password hashes.",
                                 "Eliminated 100% of agent allocation bottlenecks for marquee enterprise clients like BharatPe and Mpokket.",
                                 "Engineered UIDAI-compliant OVSE (Offline Verification Seeking Entity) Aadhaar app in just 7 days with 99% test coverage.",

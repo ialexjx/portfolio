@@ -127,7 +127,7 @@ function initTerminalStream() {
         { tag: "ESIGN", color: "text-emerald-400", msg: "Single OTP Multi-Stamp: 4 PDFs merged in-memory via PDFBox 3.x in 14ms" },
         { tag: "MIGRATE", color: "text-emerald-400", msg: "DigiLocker Batch: 150 TPS sustained throughput with auto-retry active" },
         { tag: "PURGE", color: "text-rose-400", msg: "PurgeEngine: 2,500 TPS async table purge - 0 deadlocks, zero lock contention" },
-        { tag: "SCALE", color: "text-sky-300", msg: "DigiLocker Surge: Scaled from 28k to 90,000 daily successful transactions post-revamp" },
+        { tag: "SCALE", color: "text-sky-300", msg: "DigiLocker Surge: 1.5M+ daily API hits across 12-hop pipeline; scaled to 1.5 Lakh successful tx/day" },
         { tag: "CIVIL-WAR", color: "text-purple-400", msg: "Dual-DB Query: Boundary routing executed across Legacy + Revamp DB seamlessly" },
         { tag: "ENACH", color: "text-sky-400", msg: "eNACH Mandate Engine: Automated webhook bank clearance with Kotak & Yes Bank" },
         { tag: "REDIS", color: "text-amber-400", msg: "DistributedLock acquired: 'SET NX EX 30s' - eMudhra token cached cluster-wide" },
@@ -759,13 +759,13 @@ function initCliQaModal() {
                 streamResponse('projects --list', {
                     tag: 'WAR-STORIES',
                     color: 'text-emerald-400',
-                    text: '1. OKYC Aadhaar Pipeline (2L-3L daily successes, sub-40ms verification)\n2. Digitap eSign Gateway v2 (Java 25, Virtual Threads, In-Memory PDF Merge)\n3. DigiLocker Revamp & DB Civil War (4 repos -> 1, 90k/day success)\n4. VKYC v2 & Video-PD (Solo security, sub-3s analytics, 0 deadlocks)\n5. eNACH Mandate Engine (Kotak & Yes Bank auto-clearing, 0 Excel)\n6. Clickwrap Digital Contract Rail (Instant legal consent, SHA-256 audit)\n7. OVSE Aadhaar XML Verification (7-day greenfield delivery, 99% tests)'
+                    text: '1. OKYC Aadhaar Pipeline (2L-3L daily successes, sub-40ms verification)\n2. Digitap eSign Gateway v2 (Java 25, Virtual Threads, In-Memory PDF Merge)\n3. DigiLocker Revamp & DB Civil War (4 repos -> 1, 1.5L/day success)\n4. VKYC v2 & Video-PD (Solo security, sub-3s analytics, 0 deadlocks)\n5. eNACH Mandate Engine (Kotak & Yes Bank auto-clearing, 0 Excel)\n6. Clickwrap Digital Contract Rail (Instant legal consent, SHA-256 audit)\n7. OVSE Aadhaar XML Verification (7-day greenfield delivery, 99% tests)'
                 });
             } else if (val === 'metrics') {
                 streamResponse('system --metrics', {
                     tag: 'STATS',
                     color: 'text-sky-400',
-                    text: '- 4 Enterprise Products Architected Solo From Scratch\n- 250,000+ Daily OKYC Successful Verifications\n- 90,000 Daily DigiLocker Successful Transactions (Scaled from 28k)\n- 150 TPS Sustained Database Migration Throughput\n- 2,500 TPS Asynchronous Table Purge Engine\n- 7 Days Zero-to-Prod Turnaround on UIDAI OVSE\n- 0 Production Bugs on Revamp Go-Live'
+                    text: '- 4 Enterprise Products Architected Solo From Scratch\n- 250,000+ Daily OKYC Successful Verifications\n- 1.5M+ Daily DigiLocker API Hits (12+ Micro-APIs / Journey)\n- 1.5 Lakh Daily DigiLocker Successful Transactions (Scaled from 28k)\n- 150 TPS Sustained Database Migration Throughput\n- 2,500 TPS Asynchronous Table Purge Engine\n- 7 Days Zero-to-Prod Turnaround on UIDAI OVSE\n- 0 Production Bugs on Revamp Go-Live'
                 });
             } else if (val === 'roast') {
                 const roasts = window.PORTFOLIO_ROASTS || ["Frontend devs spend 3 days picking a CSS framework. I migrate 200k daily transactions while drinking chai."];
@@ -1363,26 +1363,26 @@ function initArchitectureVisualizer() {
         },
         digilocker: {
             tag: 'HIGH-SPEED SURGE RESILIENCE & COLD STORAGE',
-            title: 'DigiLocker 28k to 90k Daily Surge Ingestion',
-            desc: 'Ingests fluctuating government DigiLocker payloads, routes across dual-database boundaries, and streams byte arrays straight to S3 with zero disk write latency.',
+            title: 'DigiLocker 1.5M+ Daily Hits & 12-Hop Orchestration',
+            desc: 'Orchestrates 7 public ingress endpoints and 6 upstream government micro-calls (1.5M+ daily hits), routes across dual-database boundaries, and streams byte arrays straight to S3 with zero disk write latency.',
             defense: 'Token-bucket rate limiter smooths upstream spike bursts; dual-DB partition routing ensures zero data collisions between legacy and revamp schemas.',
             safety: 'ZERO PACKET LOSS',
             duration: '60ms',
             nodes: [
-                { step: 1, title: 'Surge Webhook', sub: 'Govt DigiLocker Ingress', badge: '0ms' },
+                { step: 1, title: 'Public Ingress (7 APIs)', sub: '1.5M+ Daily Volume', badge: '0ms' },
                 { step: 2, title: 'Token Bucket', sub: 'Burst Rate Limiter', badge: '+3ms' },
                 { step: 3, title: 'Boundary Router', sub: 'Dual-DB Partition', badge: '+9ms' },
-                { step: 4, title: 'In-Memory Stream', sub: 'Zero-Disk Transfer', badge: '+16ms' },
+                { step: 4, title: 'Upstream Fetch (6 APIs)', sub: 'Parallel V-Threads', badge: '+16ms' },
                 { step: 5, title: 'AWS S3 Cold', sub: 'Glacier Archival', badge: '+32ms' },
-                { step: 6, title: 'Partner Callback', sub: '90k Daily Sustained', badge: 'Roundtrip: 60ms' }
+                { step: 6, title: 'Partner Callback', sub: '1.5L Daily Sustained', badge: 'Roundtrip: 60ms' }
             ],
             logs: [
-                '[T+0ms] DigiLocker webhook ingress received under surge traffic (150 TPS burst).',
+                '[T+0ms] DigiLocker ingress: 7-endpoint pipeline active under surge (1.5M+ daily volume).',
                 '[T+3ms] Token bucket rate limiter smooths queue: 0 packets dropped, 0 throttled.',
                 '[T+12ms] Boundary routing filter applied: ID mapped to Revamp DB partition.',
-                '[T+28ms] PDF payload streamed entirely in-memory: Bypassed local disk I/O completely.',
+                '[T+28ms] Virtual Threads orchestrate 6 upstream calls in-memory (Aadhaar XML, PDF streams, tokens).',
                 '[T+60ms] S3 multipart chunk stream uploaded with AES-256 server-side encryption.',
-                '[T+68ms] Partner webhook acknowledged with 200 OK. Daily counter updated: 89,420 tx.'
+                '[T+68ms] Partner webhook acknowledged with 200 OK. Daily counter updated: 148,920 tx.'
             ]
         }
     };
@@ -2062,7 +2062,7 @@ function initProductionWrapped() {
 
     const wrappedText = `🚀 FINTECH PRODUCTION WRAPPED (2026)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⚡ Daily Surge Scale:    90,000 Tx/Day (Scaled from 28k)
+⚡ Daily Surge Scale:    1.5M+ Hits / 1.5L Tx/Day (12+ APIs/Journey)
 🔥 Async Purge Velocity:  2,500 TPS (0 Table Locks, 14M+ Purged)
 🔄 Database Migration:    150 TPS Sustained (Zero Downtime)
 🛡️ Deadlocks in Prod:     0 (Strict PK-Chunking & Redis Mutex)

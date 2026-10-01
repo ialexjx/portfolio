@@ -1146,7 +1146,7 @@ function initLabTerminalRepl() {
                     appendRepl("Available Commands: <br>&bull; <span class='text-sky-300'>whoami</span> - Displays Senior Architect profile JSON<br>&bull; <span class='text-emerald-300'>matrix</span> - Trigger falling digital rain<br>&bull; <span class='text-amber-300'>bench</span> - Execute 100k TPS payment switch test<br>&bull; <span class='text-rose-300'>patakha</span> / <span class='text-purple-300'>fireworks</span> - Launch celebration rockets<br>&bull; <span class='text-slate-400'>clear</span> - Clear terminal output");
                     break;
                 case 'whoami':
-                    appendRepl(`{<br>&nbsp;&nbsp;"name": "Akshat Jaiswal",<br>&nbsp;&nbsp;"title": "Senior Software Engineer (SSE)",<br>&nbsp;&nbsp;"company": "Digitap.AI",<br>&nbsp;&nbsp;"productsBuiltSolo": 4,<br>&nbsp;&nbsp;"scale": ["OKYC (300k/day)", "DigiLocker (90k/day)", "eSign v2", "eNACH", "VKYC", "Video-PD", "Clickwrap"],<br>&nbsp;&nbsp;"specialties": ["Distributed Systems", "Java 25 Virtual Threads", "150 TPS DB Migrations", "2,500 TPS Purge"],<br>&nbsp;&nbsp;"location": "Bengaluru, India"<br>}`, "text-emerald-400");
+                    appendRepl(`{<br>&nbsp;&nbsp;"name": "Akshat Jaiswal",<br>&nbsp;&nbsp;"title": "Senior Software Engineer (SSE)",<br>&nbsp;&nbsp;"company": "Digitap.AI",<br>&nbsp;&nbsp;"productsBuiltSolo": 4,<br>&nbsp;&nbsp;"scale": ["OKYC (300k/day)", "DigiLocker (1.5L/day)", "eSign v2", "eNACH", "VKYC", "Video-PD", "Clickwrap"],<br>&nbsp;&nbsp;"specialties": ["Distributed Systems", "Java 25 Virtual Threads", "150 TPS DB Migrations", "2,500 TPS Purge"],<br>&nbsp;&nbsp;"location": "Bengaluru, India"<br>}`, "text-emerald-400");
                     break;
                 case 'matrix':
                     appendRepl("Wake up, Neo... The Matrix has you. Follow the white rabbit.", "text-emerald-400 font-bold");
@@ -1326,26 +1326,26 @@ function initArchitectureVisualizer() {
         },
         digilocker: {
             tag: 'HIGH-SPEED SURGE RESILIENCE & COLD STORAGE',
-            title: 'DigiLocker 28k to 90k Daily Surge Ingestion',
-            desc: 'Ingests fluctuating government DigiLocker payloads, routes across dual-database boundaries, and streams byte arrays straight to S3 with zero disk write latency.',
+            title: 'DigiLocker 1.5M+ Daily Hits & 12-Hop Orchestration',
+            desc: 'Orchestrates 7 public ingress endpoints and 6 upstream government micro-calls (1.5M+ daily hits), routes across dual-database boundaries, and streams byte arrays straight to S3 with zero disk write latency.',
             defense: 'Token-bucket rate limiter smooths upstream spike bursts; dual-DB partition routing ensures zero data collisions between legacy and revamp schemas.',
             safety: 'ZERO PACKET LOSS',
             duration: '60ms',
             nodes: [
-                { step: 1, title: 'Surge Webhook', sub: 'Govt DigiLocker Ingress', badge: '0ms' },
+                { step: 1, title: 'Public Ingress (7 APIs)', sub: '1.5M+ Daily Volume', badge: '0ms' },
                 { step: 2, title: 'Token Bucket', sub: 'Burst Rate Limiter', badge: '+3ms' },
                 { step: 3, title: 'Boundary Router', sub: 'Dual-DB Partition', badge: '+9ms' },
-                { step: 4, title: 'In-Memory Stream', sub: 'Zero-Disk Transfer', badge: '+16ms' },
+                { step: 4, title: 'Upstream Fetch (6 APIs)', sub: 'Parallel V-Threads', badge: '+16ms' },
                 { step: 5, title: 'AWS S3 Cold', sub: 'Glacier Archival', badge: '+32ms' },
-                { step: 6, title: 'Partner Callback', sub: '90k Daily Sustained', badge: 'Roundtrip: 60ms' }
+                { step: 6, title: 'Partner Callback', sub: '1.5L Daily Sustained', badge: 'Roundtrip: 60ms' }
             ],
             logs: [
-                '[T+0ms] DigiLocker webhook ingress received under surge traffic (150 TPS burst).',
+                '[T+0ms] DigiLocker ingress: 7-endpoint pipeline active under surge (1.5M+ daily volume).',
                 '[T+3ms] Token bucket rate limiter smooths queue: 0 packets dropped, 0 throttled.',
                 '[T+12ms] Boundary routing filter applied: ID mapped to Revamp DB partition.',
-                '[T+28ms] PDF payload streamed entirely in-memory: Bypassed local disk I/O completely.',
+                '[T+28ms] Virtual Threads orchestrate 6 upstream calls in-memory (Aadhaar XML, PDF streams, tokens).',
                 '[T+60ms] S3 multipart chunk stream uploaded with AES-256 server-side encryption.',
-                '[T+68ms] Partner webhook acknowledged with 200 OK. Daily counter updated: 89,420 tx.'
+                '[T+68ms] Partner webhook acknowledged with 200 OK. Daily counter updated: 148,920 tx.'
             ]
         }
     };
