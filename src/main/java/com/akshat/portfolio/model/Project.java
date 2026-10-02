@@ -29,4 +29,11 @@ public class Project {
     private String statusBadge;
     private String problemHeading;
     private String solutionHeading;
+    private String liveUrl;
+    private String adminUrl;
+    private String githubUrl;
+    private String legacyCodeTitle;
+    private String legacyCodeSnippet;
+    private String modernCodeTitle;
+    private String modernCodeSnippet;
 }

@@ -364,16 +364,42 @@
                 <div th:each="project, iter : ${projects}" th:id="${project.id}" class="apple-glass-card p-8 lg:p-10 space-y-8">
                     
                     <!-- Card Top Header -->
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
-                        <div class="space-y-1">
-                            <div class="flex items-center gap-3">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-white/10">
+                        <div class="space-y-2 flex-1">
+                            <div class="flex flex-wrap items-center gap-2.5">
                                 <span class="text-[11px] font-mono font-bold tracking-wider px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 uppercase" th:text="${project.tag}">FINTECH</span>
                                 <span class="text-[11px] font-mono font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase" th:text="${project.statusBadge}">MISSION CRITICAL</span>
+                                
+                                <!-- Live System Glowing Badge -->
+                                <span th:if="${project.liveUrl != null}" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[11px] font-mono font-extrabold uppercase shadow-sm shadow-emerald-500/20">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                    <span>LIVE IN PRODUCTION</span>
+                                </span>
                             </div>
-                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight pt-2" th:text="${project.title}">Digitap eSign Gateway</h3>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight pt-1" th:text="${project.title}">Digitap eSign Gateway</h3>
                             <p class="text-sm font-medium text-slate-400" th:text="${project.subtitle}">Aadhaar eSign & Digital Contract Execution Engine</p>
+
+                            <!-- Sexy Live Action Buttons for Projects with liveUrl -->
+                            <div th:if="${project.liveUrl != null}" class="flex flex-wrap items-center gap-2.5 pt-2">
+                                <a th:href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-extrabold bg-gradient-to-r from-sky-400 via-teal-300 to-emerald-400 text-slate-950 hover:brightness-110 shadow-lg shadow-sky-500/25 hover:scale-105 active:scale-95 transition-all">
+                                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                                    <span>LAUNCH LIVE APP</span>
+                                </a>
+                                <button type="button" class="preview-live-modal-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-bold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/15 hover:border-sky-400/50 hover:scale-105 active:scale-95 transition-all cursor-pointer" th:attr="data-preview-url=${project.liveUrl}, data-preview-title=${project.title}">
+                                    <i data-lucide="eye" class="w-3.5 h-3.5 text-sky-400"></i>
+                                    <span>Live Preview Modal</span>
+                                </button>
+                                <a th:if="${project.adminUrl != null}" th:href="${project.adminUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-bold bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 border border-rose-500/30 hover:scale-105 active:scale-95 transition-all">
+                                    <i data-lucide="terminal" class="w-3.5 h-3.5 text-rose-400"></i>
+                                    <span>Dictator Console</span>
+                                </a>
+                                <a th:if="${project.githubUrl != null}" th:href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono font-bold bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 hover:text-white transition-all">
+                                    <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                                    <span>Source</span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 text-sky-400 self-start sm:self-center shadow-inner mac-dock-icon cursor-pointer">
+                        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 text-sky-400 self-start lg:self-center shadow-inner mac-dock-icon cursor-pointer shrink-0">
                             <i th:attr="data-lucide=${project.icon}" class="w-8 h-8"></i>
                         </div>
                     </div>
@@ -382,6 +408,75 @@
                     <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-rose-500/10 via-purple-500/10 to-sky-500/10 border border-rose-500/20 text-slate-200 font-mono text-xs sm:text-sm italic flex items-center gap-3">
                         <i data-lucide="quote" class="w-5 h-5 text-rose-400 shrink-0"></i>
                         <span th:text="${project.savageQuote}">"Because forcing a user to enter 5 separate OTPs just to sign a 5-page agreement is a human rights violation."</span>
+                    </div>
+
+                    <!-- Live Interactive Telemetry & Quick Link Shortener for ShortAF -->
+                    <div th:if="${project.id == 'shortaf-url-shortener'}" class="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-900/90 via-slate-950/90 to-sky-950/40 border border-sky-500/30 space-y-4 shadow-xl relative overflow-hidden backdrop-blur-md">
+                        <!-- Top status line -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span class="text-xs font-mono font-black text-white uppercase tracking-wider">LIVE TELEMETRY STREAM &bull; SHORTAF ENGINE</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-[11px] font-mono">
+                                <span class="text-slate-400">Target: <a href="https://scalelink-url-shortener.onrender.com" target="_blank" class="text-sky-400 hover:underline">scalelink-url-shortener.onrender.com</a></span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-bold" id="shortaf-live-status-pill">CONNECTING...</span>
+                            </div>
+                        </div>
+
+                        <!-- 4 Stat Capsules -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-xs font-mono">
+                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-sky-500/30 transition-all">
+                                <span class="block text-[10px] text-slate-400 uppercase tracking-tight">Engine Runtime</span>
+                                <span class="block text-sm font-black text-sky-400 mt-1" id="shortaf-stat-engine">Java 21 Loom</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/30 transition-all">
+                                <span class="block text-[10px] text-slate-400 uppercase tracking-tight">JVM Heap Footprint</span>
+                                <span class="block text-sm font-black text-emerald-400 mt-1" id="shortaf-stat-heap">~56 MB</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-purple-500/30 transition-all">
+                                <span class="block text-[10px] text-slate-400 uppercase tracking-tight">Guava Bloom Filter</span>
+                                <span class="block text-sm font-black text-purple-400 mt-1" id="shortaf-stat-bloom">1M Keys (1% FPP)</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-amber-500/30 transition-all">
+                                <span class="block text-[10px] text-slate-400 uppercase tracking-tight">Hot Cache Latency</span>
+                                <span class="block text-sm font-black text-amber-400 mt-1" id="shortaf-stat-cache">Caffeine (&lt; 2ms)</span>
+                            </div>
+                        </div>
+
+                        <!-- Quick Test Interactive Form -->
+                        <div class="pt-2 border-t border-white/10 space-y-2.5">
+                            <div class="flex items-center justify-between text-[11px] font-mono">
+                                <span class="text-slate-200 font-bold flex items-center gap-1.5">
+                                    <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400 animate-pulse"></i>
+                                    <span>Test Drive The Engine (Live API Dispatch):</span>
+                                </span>
+                                <span class="text-slate-400 hidden sm:inline text-[10px]">Zero DB Bloat &bull; Atomic Range KGS</span>
+                            </div>
+                            <form id="shortaf-quick-form" class="flex flex-col sm:flex-row gap-2">
+                                <input type="url" id="shortaf-test-url" value="https://github.com/ialexjx" placeholder="Enter long URL to butcher (e.g. https://github.com/ialexjx)" required class="flex-1 px-4 py-2.5 rounded-xl bg-black/50 border border-white/15 text-xs font-mono text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-sky-400 transition">
+                                <button type="submit" id="shortaf-shorten-submit-btn" class="px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 active:scale-95 text-slate-950 font-mono font-black text-xs transition cursor-pointer flex items-center justify-center gap-2 shrink-0 shadow-lg shadow-sky-500/20">
+                                    <i data-lucide="scissors" class="w-3.5 h-3.5"></i>
+                                    <span>Butcher Link</span>
+                                </button>
+                            </form>
+                            <div id="shortaf-quick-result" class="hidden p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-emerald-300">
+                                <div class="flex items-center gap-2 truncate">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                                    <span class="text-slate-300">Shortened:</span>
+                                    <a href="#" id="shortaf-result-link" target="_blank" class="font-bold text-sky-300 underline truncate"></a>
+                                </div>
+                                <div class="flex items-center gap-2 shrink-0">
+                                    <button type="button" id="shortaf-copy-result-btn" class="px-3 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-mono cursor-pointer transition">
+                                        Copy Link
+                                    </button>
+                                    <a href="#" id="shortaf-open-result-btn" target="_blank" class="px-3 py-1 rounded-lg bg-sky-500/20 text-sky-300 hover:bg-sky-500/30 text-[11px] font-mono transition flex items-center gap-1">
+                                        <span>Test Redirect</span>
+                                        <i data-lucide="external-link" class="w-3 h-3"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Problem vs Solution Breakdown -->
@@ -450,16 +545,17 @@
                                     <i data-lucide="git-commit" class="w-3.5 h-3.5 text-sky-400"></i>
                                     <span>CODE COMPARISON &bull; <span th:text="${project.title}">Project</span></span>
                                 </span>
-                                <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/15 text-emerald-400 font-bold">JAVA 25 &bull; ZERO TECH DEBT</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/15 text-emerald-400 font-bold font-mono">JAVA &bull; ZERO TECH DEBT</span>
                             </div>
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                                 <!-- Legacy Code (Red) -->
                                 <div class="p-3.5 rounded-xl bg-rose-500/[0.04] border border-rose-500/20 space-y-2 overflow-x-auto">
                                     <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
                                         <i data-lucide="x-circle" class="w-3.5 h-3.5"></i>
-                                        <span>The Legacy Horror (Archaic Core Java)</span>
+                                        <span th:text="${project.legacyCodeTitle != null ? project.legacyCodeTitle : 'The Legacy Horror (Archaic Core Java)'}">The Legacy Horror (Archaic Core Java)</span>
                                     </div>
-                                    <pre class="text-[11px] text-rose-200/80 leading-relaxed font-mono whitespace-pre"><code><span class="text-slate-500">// Zero pre-flight check, crashes mid-flow</span>
+                                    <pre th:if="${project.legacyCodeSnippet != null}" class="text-[11px] text-rose-200/80 leading-relaxed font-mono whitespace-pre"><code th:text="${project.legacyCodeSnippet}"></code></pre>
+                                    <pre th:if="${project.legacyCodeSnippet == null}" class="text-[11px] text-rose-200/80 leading-relaxed font-mono whitespace-pre"><code><span class="text-slate-500">// Zero pre-flight check, crashes mid-flow</span>
 if (pdfBytes.length == 0 || pages &lt; required) {
     throw new RuntimeException("Crash! User already started");
 }
@@ -474,9 +570,10 @@ for (String fileId : documentIds) {
                                 <div class="p-3.5 rounded-xl bg-emerald-500/[0.04] border border-emerald-500/20 space-y-2 overflow-x-auto">
                                     <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
                                         <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
-                                        <span>Modern Resilient Architecture (Java 25)</span>
+                                        <span th:text="${project.modernCodeTitle != null ? project.modernCodeTitle : 'Modern Resilient Architecture (Java 25)'}">Modern Resilient Architecture (Java 25)</span>
                                     </div>
-                                    <pre class="text-[11px] text-emerald-200/90 leading-relaxed font-mono whitespace-pre"><code><span class="text-slate-500">// In-memory upload validation via PDFBox 3.x</span>
+                                    <pre th:if="${project.modernCodeSnippet != null}" class="text-[11px] text-emerald-200/90 leading-relaxed font-mono whitespace-pre"><code th:text="${project.modernCodeSnippet}"></code></pre>
+                                    <pre th:if="${project.modernCodeSnippet == null}" class="text-[11px] text-emerald-200/90 leading-relaxed font-mono whitespace-pre"><code><span class="text-slate-500">// In-memory upload validation via PDFBox 3.x</span>
 pdfValidator.validatePreFlight(pdfStream, bounds);
 
 <span class="text-slate-500">// Virtual Threads concurrent download in 7s</span>
@@ -1250,6 +1347,46 @@ try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
                 <button id="arcade-left-btn" class="flex-1 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold active:bg-sky-500/30">◀ LEFT</button>
                 <button id="arcade-fire-btn" class="flex-2 py-2.5 rounded-xl bg-gradient-to-r from-purple-500 to-sky-400 text-slate-950 font-black active:scale-95">⚡ FIRE (VIRTUAL THREAD)</button>
                 <button id="arcade-right-btn" class="flex-1 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold active:bg-sky-500/30">RIGHT ▶</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         LIVE SYSTEM INTERACTIVE PREVIEW MODAL (ShortAF & External Demos)
+         ==================================================================== -->
+    <div id="live-system-preview-modal" class="fixed inset-0 z-50 savage-modal-backdrop flex items-center justify-center p-3 sm:p-6 hidden">
+        <div class="apple-glass rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col border border-white/20 shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+            <!-- Modal Top Bar -->
+            <div class="px-5 py-3.5 border-b border-white/10 flex items-center justify-between bg-black/40">
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block cursor-pointer close-preview-modal-btn" title="Close"></span>
+                        <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-mono text-slate-300 border-l border-white/10 pl-3">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span id="preview-modal-title" class="font-bold text-white">ShortAF — Live System Preview</span>
+                        <span class="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] bg-sky-500/20 text-sky-300 font-mono">LIVE ONRENDER CONTAINER</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a id="preview-modal-external-link" href="https://scalelink-url-shortener.onrender.com/" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/30 text-xs font-mono font-bold flex items-center gap-1.5 transition">
+                        <span>Open in Tab</span>
+                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                    <button type="button" class="close-preview-modal-btn p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition cursor-pointer">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Modal Content: Embedded Iframe -->
+            <div class="flex-1 relative bg-slate-950">
+                <div id="preview-loading-spinner" class="absolute inset-0 flex flex-col items-center justify-center gap-3 text-slate-400 font-mono text-xs z-10 bg-slate-950/70">
+                    <div class="w-8 h-8 border-2 border-sky-400 border-t-transparent rounded-full animate-spin"></div>
+                    <span>Connecting to Live Container (https://scalelink-url-shortener.onrender.com)...</span>
+                </div>
+                <iframe id="preview-modal-iframe" src="" class="w-full h-full border-0" sandbox="allow-scripts allow-forms allow-same-origin allow-popups" loading="lazy"></iframe>
             </div>
         </div>
     </div>

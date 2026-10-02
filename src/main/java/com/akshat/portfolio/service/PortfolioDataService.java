@@ -144,6 +144,79 @@ public class PortfolioDataService {
                         .build(),
 
                 Project.builder()
+                        .id("shortaf-url-shortener")
+                        .title("ShortAF (ScaleLink) — Distributed High-Concurrency URL Shortener")
+                        .tag("SYSTEM DESIGN MASTERCLASS • JAVA 21 LOOM")
+                        .subtitle("Over-Engineered Distributed URL Shortener Engine with Guava Bloom Filters, KGS Atomic Range Allocator & Caffeine L1 Cache")
+                        .icon("link-2")
+                        .statusBadge("LIVE IN PRODUCTION • LOOM VIRTUAL THREADS")
+                        .savageQuote("\"Could this have been a 10-line Python script on a $5 potato server? Yes. Did I build a distributed Java 21 Loom engine with dual-tier Caffeine caching, Guava Bloom Filter bouncers, and async ring buffer batch ingestion just to flex in System Design interviews? ABSOLUTELY.\"")
+                        .problemStatement("Standard URL shorteners are naive CRUD apps that hammer the relational database on every single redirect and write. When scraper bots spam millions of non-existent URLs, Postgres connections get choked with useless disk I/O. Auto-increment IDs cause severe write locks under concurrent load, and writing click telemetry synchronously adds a painful 100ms+ latency penalty to every single redirect.")
+                        .solutionAndImpact("Architected and deployed ShortAF (ScaleLink) from scratch on Java 21 and Spring Boot. Implemented a Distributed KGS Range Allocator that atomically reserves blocks of 10,000 IDs from PostgreSQL with SELECT FOR UPDATE, allocating in-memory via AtomicLong — ghosting the DB for 9,999 out of 10,000 links. Deployed an in-memory Guava Bloom Filter negative caching barrier (1M keys @ 1% FPP in ~1.2MB) that rejects bot spam with 0 DB queries ('Tu jaa re'). Layered sub-millisecond L1 Caffeine in-memory caching (<2ms redirects), orchestrated high-concurrency spikes using Java Virtual Threads (<60MB heap), and decoupled click telemetry into an asynchronous bounded ring buffer with batch DB flushing.")
+                        .problemBullets(List.of(
+                                "Single DB Write Bottleneck: Standard auto-increment locks DB rows; distributed Snowflake requires complex clock sync.",
+                                "Bot Scraping Denial-of-Service: Scrapers querying random 6-character shortcodes force expensive DB disk lookups for non-existent records.",
+                                "Synchronous Telemetry Latency: Writing geolocation, device, and click telemetry synchronously adds 100ms+ penalty to redirects.",
+                                "Memory Bloat & OS Carrier Thread Exhaustion: Heavy thread-per-request architectures consume hundreds of megabytes under burst traffic."
+                        ))
+                        .solutionBullets(List.of(
+                                "Distributed KGS Range Allocator: Atomically locks blocks of 10,000 IDs from DB; allocates in-memory via AtomicLong (99.99% DB bypass).",
+                                "Guava Bloom Filter Negative Cache: 100% negative guarantee in JVM RAM (~1.2MB). Bot scrapers get bounced with 0 DB hits ('Tu jaa re').",
+                                "Sub-Millisecond L1 Caffeine Cache: Hot redirects served in < 2ms directly from JVM memory without network I/O.",
+                                "Java 21 Loom & Virtual Threads: Dispatches thousands of concurrent requests effortlessly with <60MB heap footprint.",
+                                "Async Ring Buffer Batch Ingestion: Zero-latency redirects; clicks queued in bounded memory buffer and flushed in batches to DB.",
+                                "Stalker Mode Telemetry & Admin Console: Live victim analytics (device, browser, geo) plus /admin Dictator Console."
+                        ))
+                        .techStack(List.of("Java 21 (Loom)", "Spring Boot 3.x", "PostgreSQL", "Guava Bloom Filter", "Caffeine L1 Cache", "Distributed KGS Range Allocator", "Virtual Threads", "Async Ring Buffer", "Token Bucket Rate Limiter", "Base62 Bijective Encoding"))
+                        .architectureHighlights(List.of(
+                                "Distributed KGS Range Allocator: Hijacks blocks of 10,000 IDs from PostgreSQL with atomic synchronization. For the next 9,999 links, ID allocation is a lock-free in-memory AtomicLong operation.",
+                                "Guava Bloom Filter Bouncer: 1M keys configured at 1% False Positive Probability consuming only ~1.2MB RAM. If a key isn't in the Bloom Filter, the request is immediately rejected with 0 database queries.",
+                                "Dual-Tier Sub-Millisecond Caching: L1 Caffeine in-memory cache delivers <2ms hot redirects, backed by distributed L2 caching with graceful degradation.",
+                                "Loom Virtual Thread Scalability: Handles massive concurrency spikes with virtually zero carrier thread contention while sipping only ~56MB of JVM heap.",
+                                "Async Ring Buffer Telemetry Pipeline: Decoupled telemetry ingestion so redirect HTTP 302 responses never wait for disk or analytics persistence.",
+                                "Token Bucket DDoS Armor: Client-IP rate limiting prevents API abuse and scraper saturation."
+                        ))
+                        .metrics(Map.of(
+                                "Redirect Latency", "< 2ms (L1 Caffeine)",
+                                "Bot DB Hits", "0 (Guava Bloom Filter)",
+                                "KGS DB Bypass", "9,999 / 10,000 (99.99%)",
+                                "JVM Footprint", "< 60MB Heap (Loom)"
+                        ))
+                        .problemHeading("The Naive Shortener Horror (DB Contention & Bot Crashes)")
+                        .solutionHeading("The Distributed Loom Architecture (Bloom Filter, KGS & Caffeine)")
+                        .liveUrl("https://scalelink-url-shortener.onrender.com/")
+                        .adminUrl("https://scalelink-url-shortener.onrender.com/admin")
+                        .githubUrl("https://github.com/ialexjx")
+                        .legacyCodeTitle("Naive CRUD (DB Contention & Bot Crashes)")
+                        .legacyCodeSnippet(
+                                "// Naive CRUD: hits DB on every write & redirect\n" +
+                                "@GetMapping(\"/{code}\")\n" +
+                                "public RedirectView redirect(@PathVariable String code) {\n" +
+                                "    // Bot spamming 1M fake codes crashes Postgres!\n" +
+                                "    UrlEntity url = urlRepository.findByCode(code)\n" +
+                                "        .orElseThrow(() -> new NotFoundException());\n" +
+                                "    // Synchronous analytics write adds 120ms latency\n" +
+                                "    analyticsService.recordClickSynchronously(url, request);\n" +
+                                "    return new RedirectView(url.getOriginalUrl());\n" +
+                                "}"
+                        )
+                        .modernCodeTitle("Java 21 Loom + Guava Bloom Filter + KGS Allocator")
+                        .modernCodeSnippet(
+                                "// 1. Guava Bloom Filter bouncer: 0 DB hits for fake codes\n" +
+                                "if (!bloomFilter.mightContain(shortCode)) {\n" +
+                                "    return ResponseEntity.status(404).body(\"Tu jaa re\");\n" +
+                                "}\n" +
+                                "// 2. Sub-2ms L1 Caffeine Cache hit\n" +
+                                "String destination = caffeineCache.get(shortCode, k ->\n" +
+                                "    urlRepository.findByCode(k).map(Url::getOriginalUrl).orElse(null)\n" +
+                                ");\n" +
+                                "// 3. Async Ring Buffer: Zero-latency decoupled telemetry\n" +
+                                "analyticsRingBuffer.tryEmitNext(new ClickEvent(shortCode, req));\n" +
+                                "return ResponseEntity.status(302).location(URI.create(destination)).build();"
+                        )
+                        .build(),
+
+                Project.builder()
                         .id("ovse-aadhaar")
                         .title("OVSE: UIDAI Aadhaar Verification")
                         .tag("GREENFIELD ARCHITECTURE")
@@ -467,7 +540,9 @@ public class PortfolioDataService {
                 "If your daily Scrum standup takes longer than 15 minutes, you're not practicing Agile — you're hosting an unpaid group therapy session for developers who don't know how to write an SQL join.",
                 "Yes, I use Java. No, it doesn't consume 64GB of RAM. It's Java 25 with Virtual Threads — your single-threaded Node.js server is hyperventilating inside its single-core cage.",
                 "Why spend 6 months in quarterly roadmapping workshops when you can build, test, and ship a UIDAI-compliant OVSE engine in 7 calendar days flat?",
-                "Never deploy on a Friday evening... unless you're Akshat, you wrote 98% unit test coverage, and you have a high-stakes foosball rematch scheduled for Saturday morning."
+                "Never deploy on a Friday evening... unless you're Akshat, you wrote 98% unit test coverage, and you have a high-stakes foosball rematch scheduled for Saturday morning.",
+                "Why write a 10-line Python URL shortener when you can build ShortAF — a Java 21 Loom engine with Guava Bloom Filters that hits scraper bots with a cold 'Tu jaa re' directly in JVM memory?",
+                "Recruiters: 'Akshat, show me your system design skills.' Me: Here's ShortAF — 10,000 virtual threads, atomic block ID range allocation from Postgres, and a live Dictator Console so you can see every victim in real-time."
         );
     }
 }

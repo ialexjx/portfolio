@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initAdrAccordion();
     initIncidentSimulator();
     initProductionWrapped();
+    initLiveSystemPreviewModal();
+    initShortafQuickTester();
 });
 
 /* ==========================================================================
@@ -2088,6 +2090,191 @@ Architected for zero-downtime, sub-second latency, and maximum financial through
             showToast("⚠️ COPY FAILED", "Please allow clipboard permissions in your browser.");
         });
     });
+}
+
+/* ==========================================================================
+   24. Live System Interactive Preview Modal (ShortAF & External Demos)
+   ========================================================================== */
+function initLiveSystemPreviewModal() {
+    const modal = document.getElementById('live-system-preview-modal');
+    if (!modal) return;
+
+    const iframe = document.getElementById('preview-modal-iframe');
+    const titleEl = document.getElementById('preview-modal-title');
+    const extLink = document.getElementById('preview-modal-external-link');
+    const spinner = document.getElementById('preview-loading-spinner');
+    const closeBtns = modal.querySelectorAll('.close-preview-modal-btn');
+    const openBtns = document.querySelectorAll('.preview-live-modal-btn');
+
+    openBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            playHapticTick(1000, 0.03);
+            const targetUrl = btn.getAttribute('data-preview-url') || 'https://scalelink-url-shortener.onrender.com/';
+            const title = btn.getAttribute('data-preview-title') || 'ShortAF — Live System Preview';
+
+            if (titleEl) titleEl.textContent = title + ' — Live Preview';
+            if (extLink) extLink.href = targetUrl;
+            if (spinner) spinner.classList.remove('hidden');
+
+            if (iframe) {
+                iframe.src = targetUrl;
+                iframe.onload = () => {
+                    if (spinner) spinner.classList.add('hidden');
+                };
+            }
+
+            modal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        });
+    });
+
+    const closeModal = () => {
+        playHapticTick(600, 0.02);
+        modal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        if (iframe) iframe.src = '';
+    };
+
+    closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+            closeModal();
+        }
+    });
+}
+
+/* ==========================================================================
+   25. ShortAF Live Telemetry Poller & Quick Shorten Tester
+   ========================================================================== */
+function initShortafQuickTester() {
+    const quickForm = document.getElementById('shortaf-quick-form');
+    const testUrlInput = document.getElementById('shortaf-test-url');
+    const submitBtn = document.getElementById('shortaf-shorten-submit-btn');
+    const resultBox = document.getElementById('shortaf-quick-result');
+    const resultLink = document.getElementById('shortaf-result-link');
+    const openResultBtn = document.getElementById('shortaf-open-result-btn');
+    const copyResultBtn = document.getElementById('shortaf-copy-result-btn');
+
+    // Telemetry Elements
+    const statusPill = document.getElementById('shortaf-live-status-pill');
+    const statEngine = document.getElementById('shortaf-stat-engine');
+    const statHeap = document.getElementById('shortaf-stat-heap');
+    const statBloom = document.getElementById('shortaf-stat-bloom');
+    const statCache = document.getElementById('shortaf-stat-cache');
+
+    // Fetch live telemetry status from Render API
+    const fetchShortafTelemetry = async () => {
+        try {
+            const resp = await fetch('https://scalelink-url-shortener.onrender.com/api/v1/system/status', {
+                method: 'GET',
+                headers: { 'Accept': 'application/json' }
+            });
+            if (resp.ok) {
+                const data = await resp.json();
+                if (statusPill) {
+                    statusPill.textContent = 'ONLINE (' + (data.status || 'OPTIMAL') + ')';
+                    statusPill.className = 'px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold';
+                }
+                if (statEngine && data.architectureHighlights) {
+                    statEngine.textContent = 'Java ' + (data.architectureHighlights.javaVersion || '21') + ' Loom';
+                }
+                if (statHeap && data.jvmMemoryUsedMb) {
+                    statHeap.textContent = data.jvmMemoryUsedMb + ' MB / ' + (data.jvmMemoryMaxMb || 371) + ' MB';
+                }
+                if (statBloom) {
+                    statBloom.textContent = 'Guava (0 DB queries)';
+                }
+                if (statCache) {
+                    statCache.textContent = 'L1 Caffeine (<2ms)';
+                }
+            }
+        } catch (e) {
+            console.log('ShortAF telemetry check standby (cold start or sleep):', e);
+            if (statusPill) {
+                statusPill.textContent = 'STANDBY (CONTAINER SLEEPING)';
+                statusPill.className = 'px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold';
+            }
+        }
+    };
+
+    fetchShortafTelemetry();
+
+    if (!quickForm) return;
+
+    quickForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const originalUrl = testUrlInput ? testUrlInput.value.trim() : '';
+        if (!originalUrl) return;
+
+        playHapticTick(1000, 0.04);
+        const originalBtnContent = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+            <div class="w-3.5 h-3.5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></div>
+            <span>Butchering...</span>
+        `;
+
+        try {
+            const resp = await fetch('https://scalelink-url-shortener.onrender.com/api/v1/shorten', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ originalUrl: originalUrl })
+            });
+
+            if (!resp.ok) {
+                throw new Error('API returned ' + resp.status);
+            }
+
+            const data = await resp.json();
+            const shortUrl = data.shortUrl || `https://scalelink-url-shortener.onrender.com/${data.shortCode}`;
+
+            if (resultBox && resultLink) {
+                resultLink.textContent = shortUrl;
+                resultLink.href = shortUrl;
+                if (openResultBtn) openResultBtn.href = shortUrl;
+                resultBox.classList.remove('hidden');
+
+                if (window.triggerCelebration) {
+                    window.triggerCelebration();
+                }
+                showToast("⚡ LINK BUTCHERED SHORTAF!", "Generated Base62 link via Java 21 Loom engine.");
+            }
+        } catch (err) {
+            console.error('ShortAF shorten error:', err);
+            showToast("⚠️ CONTAINER WAKING UP", "Render free container is waking from sleep. Please try again in 10s or click 'Launch Live App'!");
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnContent;
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+    });
+
+    if (copyResultBtn && resultLink) {
+        copyResultBtn.addEventListener('click', () => {
+            const urlToCopy = resultLink.textContent;
+            if (!urlToCopy) return;
+            navigator.clipboard.writeText(urlToCopy).then(() => {
+                playHapticTick(1200, 0.03);
+                copyResultBtn.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyResultBtn.textContent = 'Copy Link';
+                }, 2000);
+                showToast("📋 LINK COPIED", "Short URL copied to clipboard!");
+            });
+        });
+    }
 }
 
 
