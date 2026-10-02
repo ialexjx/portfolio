@@ -2247,7 +2247,7 @@ function initShortafQuickTester() {
                 if (window.triggerCelebration) {
                     window.triggerCelebration();
                 }
-                showToast("⚡ LINK BUTCHERED SHORTAF!", "Generated Base62 link via Java 21 Loom engine.");
+                showToast("⚡ LINK BUTCHERED SHORTAF!", "Butchered the bloat so your chat doesn't look like a 300-char ransom note.");
             }
         } catch (err) {
             console.error('ShortAF shorten error:', err);

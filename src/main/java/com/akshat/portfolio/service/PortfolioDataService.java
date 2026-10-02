@@ -150,22 +150,22 @@ public class PortfolioDataService {
                         .subtitle("Over-Engineered Distributed URL Shortener Engine with Guava Bloom Filters, KGS Atomic Range Allocator & Caffeine L1 Cache")
                         .icon("link-2")
                         .statusBadge("LIVE IN PRODUCTION • LOOM VIRTUAL THREADS")
-                        .savageQuote("\"Could this have been a 10-line Python script on a $5 potato server? Yes. Did I build a distributed Java 21 Loom engine with dual-tier Caffeine caching, Guava Bloom Filter bouncers, and async ring buffer batch ingestion just to flex in System Design interviews? ABSOLUTELY.\"")
-                        .problemStatement("Standard URL shorteners are naive CRUD apps that hammer the relational database on every single redirect and write. When scraper bots spam millions of non-existent URLs, Postgres connections get choked with useless disk I/O. Auto-increment IDs cause severe write locks under concurrent load, and writing click telemetry synchronously adds a painful 100ms+ latency penalty to every single redirect.")
-                        .solutionAndImpact("Architected and deployed ShortAF (ScaleLink) from scratch on Java 21 and Spring Boot. Implemented a Distributed KGS Range Allocator that atomically reserves blocks of 10,000 IDs from PostgreSQL with SELECT FOR UPDATE, allocating in-memory via AtomicLong — ghosting the DB for 9,999 out of 10,000 links. Deployed an in-memory Guava Bloom Filter negative caching barrier (1M keys @ 1% FPP in ~1.2MB) that rejects bot spam with 0 DB queries ('Tu jaa re'). Layered sub-millisecond L1 Caffeine in-memory caching (<2ms redirects), orchestrated high-concurrency spikes using Java Virtual Threads (<60MB heap), and decoupled click telemetry into an asynchronous bounded ring buffer with batch DB flushing.")
+                        .savageQuote("\"Your marketing team gave you a 500-word tracking monstrosity. It looks like malware, your crush won’t open it, and your recruiter thinks they’re getting phished. Script-kiddie scraper bots spam millions of non-existent hashes to crash your database. I built ShortAF with Java 21 Loom, Guava Bloom Filters that hit scraper bots with a cold 'Tu jaa re' directly in JVM RAM, and a Dictator Console with Stalker-Mode telemetry to track every single victim who clicks. Butchering bloat so your chat doesn't look like a 300-char suicide note. If it breaks, skill issue.\"")
+                        .problemStatement("Naive URL shorteners are pathetic CRUD toys built by tutorial-watchers who think hitting PostgreSQL on every single redirect is architecture. When aggressive bot scrapers spam millions of fake 6-char URLs, the database connection pool chokes to death on useless disk reads. Naive auto-increment IDs lock table rows under concurrent writes, and waiting to write user telemetry synchronously adds an excruciating 100ms+ penalty to every redirect — making your service feel like it's running on a 2004 dial-up modem.")
+                        .solutionAndImpact("Engineered ShortAF (ScaleLink) from scratch on Java 21 and Spring Boot to butcher bloat with zero mercy. Built a Distributed KGS Range Allocator that hijacks blocks of 10,000 IDs from PostgreSQL with SELECT FOR UPDATE, dispensing them lock-free in-memory via AtomicLong — ghosting the database completely for 9,999 out of 10,000 links. Deployed an in-memory Guava Bloom Filter bouncer (1M keys @ 1% FPP in ~1.2MB) that rejects bot spam with 0 DB queries ('Tu jaa re'). Layered sub-millisecond L1 Caffeine in-memory caching (<2ms redirects), handled thousands of concurrent spikes on Java 21 Loom Virtual Threads (<60MB heap), and piped click telemetry into an asynchronous bounded ring buffer with batch flushes to fuel the /admin Dictator Console and Stalker-Mode victim logs without stealing a single millisecond from redirects.")
                         .problemBullets(List.of(
-                                "Single DB Write Bottleneck: Standard auto-increment locks DB rows; distributed Snowflake requires complex clock sync.",
-                                "Bot Scraping Denial-of-Service: Scrapers querying random 6-character shortcodes force expensive DB disk lookups for non-existent records.",
-                                "Synchronous Telemetry Latency: Writing geolocation, device, and click telemetry synchronously adds 100ms+ penalty to redirects.",
-                                "Memory Bloat & OS Carrier Thread Exhaustion: Heavy thread-per-request architectures consume hundreds of megabytes under burst traffic."
+                                "Marketing Dept's 500-Char Abominations: Links so bloated and disgusting they look like phishing ransomware payloads; nobody dares click them.",
+                                "Script-Kiddie Bot Scraping Circus: Bots spamming millions of random 6-character shortcodes force expensive DB disk lookups for non-existent records, starving connection pools.",
+                                "Naive Auto-Increment Row Locking: Relational database locks table rows on every single shortened URL; distributed Snowflake requires praying to clock synchronization gods.",
+                                "Synchronous Telemetry Sloth: Writing geolocation, device, and click telemetry synchronously adds a pathetic 100ms+ latency penalty to every redirect."
                         ))
                         .solutionBullets(List.of(
-                                "Distributed KGS Range Allocator: Atomically locks blocks of 10,000 IDs from DB; allocates in-memory via AtomicLong (99.99% DB bypass).",
-                                "Guava Bloom Filter Negative Cache: 100% negative guarantee in JVM RAM (~1.2MB). Bot scrapers get bounced with 0 DB hits ('Tu jaa re').",
-                                "Sub-Millisecond L1 Caffeine Cache: Hot redirects served in < 2ms directly from JVM memory without network I/O.",
-                                "Java 21 Loom & Virtual Threads: Dispatches thousands of concurrent requests effortlessly with <60MB heap footprint.",
-                                "Async Ring Buffer Batch Ingestion: Zero-latency redirects; clicks queued in bounded memory buffer and flushed in batches to DB.",
-                                "Stalker Mode Telemetry & Admin Console: Live victim analytics (device, browser, geo) plus /admin Dictator Console."
+                                "Distributed KGS Range Hijack: Robs 10,000 ID blocks from Postgres with atomic locks; ghosting the DB for the next 9,999 links via AtomicLong (99.99% DB bypass).",
+                                "Guava Bloom Filter 'Tu Jaa Re' Bouncer: 100% negative lookup guarantee in JVM RAM (~1.2MB). Scraper bots get cold-bounced in 0ms without Postgres lifting a finger.",
+                                "Sub-2ms Caffeine L1 Hot Cache: Hot redirects served directly from CPU L1 cache before the client's browser even realizes what happened.",
+                                "Java 21 Loom Virtual Threads: Dispatches 10,000+ virtual threads effortlessly while sipping under 60MB heap — running circles around bloated Node.js runtimes.",
+                                "Async Ring Buffer Telemetry: Zero-latency redirects; victims queued in bounded memory buffers and flushed in batches to DB asynchronously.",
+                                "Stalker Mode Telemetry & Dictator Console: Live victim analytics (device, browser hash, geo) and an /admin Dictator Console because democracy is overrated in production."
                         ))
                         .techStack(List.of("Java 21 (Loom)", "Spring Boot 3.x", "PostgreSQL", "Guava Bloom Filter", "Caffeine L1 Cache", "Distributed KGS Range Allocator", "Virtual Threads", "Async Ring Buffer", "Token Bucket Rate Limiter", "Base62 Bijective Encoding"))
                         .architectureHighlights(List.of(
@@ -182,8 +182,8 @@ public class PortfolioDataService {
                                 "KGS DB Bypass", "9,999 / 10,000 (99.99%)",
                                 "JVM Footprint", "< 60MB Heap (Loom)"
                         ))
-                        .problemHeading("The Naive Shortener Horror (DB Contention & Bot Crashes)")
-                        .solutionHeading("The Distributed Loom Architecture (Bloom Filter, KGS & Caffeine)")
+                        .problemHeading("The Naive CRUD Horror (Tutorial-Watcher Architecture & Scraper Bot Hell)")
+                        .solutionHeading("The ShortAF Loom Architecture (Guava 'Tu Jaa Re' Bouncer & Atomic KGS)")
                         .liveUrl("https://scalelink-url-shortener.onrender.com/")
                         .adminUrl("https://scalelink-url-shortener.onrender.com/admin")
                         .githubUrl("https://github.com/ialexjx")
@@ -542,7 +542,11 @@ public class PortfolioDataService {
                 "Why spend 6 months in quarterly roadmapping workshops when you can build, test, and ship a UIDAI-compliant OVSE engine in 7 calendar days flat?",
                 "Never deploy on a Friday evening... unless you're Akshat, you wrote 98% unit test coverage, and you have a high-stakes foosball rematch scheduled for Saturday morning.",
                 "Why write a 10-line Python URL shortener when you can build ShortAF — a Java 21 Loom engine with Guava Bloom Filters that hits scraper bots with a cold 'Tu jaa re' directly in JVM memory?",
-                "Recruiters: 'Akshat, show me your system design skills.' Me: Here's ShortAF — 10,000 virtual threads, atomic block ID range allocation from Postgres, and a live Dictator Console so you can see every victim in real-time."
+                "Recruiters: 'Akshat, show me your system design skills.' Me: Here's ShortAF — 10,000 virtual threads, atomic block ID range allocation from Postgres, and a live Dictator Console so you can see every victim in real-time.",
+                "Marketing teams generate 600-character UTM tracking URLs that look like North Korean cyber-warfare payloads. I built ShortAF so your chat doesn't look like a 300-character ransom note.",
+                "Most developers build URL shorteners in Node.js with 450 npm dependencies that crash when 50 bots ping it. ShortAF runs on Java 21 Loom with Guava Bloom Filters — it bounces scraper bots in 0ms while sipping less RAM than a single Google Chrome tab.",
+                "If you click your own shortened link 47 times from 3 different phones just to test if the analytics counter went up, don't worry bro, ShortAF's Stalker Mode logs you as 'Victim #1 (Extreme Copium)'.",
+                "Why did I put a Dictator Console in ShortAF? Because normal admin dashboards are for people who believe in corporate democracy. In high-concurrency distributed systems, I am the benevolent dictator."
         );
     }
 }
