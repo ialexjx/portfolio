@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${name} + ' | ' + ${titleRole}">Akshat Jaiswal | FinTech Backend Engineer</title>
 
+    <!-- Favicon & Browser Tab Icons -->
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <link rel="icon" type="image/png" sizes="64x64" th:href="@{/favicon.png}">
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/apple-touch-icon.png}">
+
+    <!-- Open Graph & Social Preview Cards (LinkedIn, Twitter, WhatsApp) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" th:content="${name} + ' | ' + ${titleRole}">
+    <meta property="og:description" content="Senior Software Engineer (SSE). High-throughput FinTech distributed systems, Java 25 & Virtual Threads, 1.5M+ daily hits, 2,500 TPS purge engine, and ShortAF URL shortener.">
+    <meta property="og:image" th:content="@{/images/og-preview.jpg}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" th:content="${name} + ' | ' + ${titleRole}">
+    <meta name="twitter:description" content="Senior Software Engineer (SSE). High-Throughput FinTech Rails & Java 25.">
+    <meta name="twitter:image" th:content="@{/images/og-preview.jpg}">
+    <meta name="theme-color" content="#020617">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
