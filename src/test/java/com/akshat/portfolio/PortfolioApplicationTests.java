@@ -23,12 +23,18 @@ class PortfolioApplicationTests {
     }
 
     @Test
-    void indexPageRendersSuccessfullyWithShortAF() throws Exception {
+    void indexPageRendersSuccessfully() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("ShortAF (ScaleLink)")))
-                .andExpect(content().string(containsString("scalelink-url-shortener.onrender.com")))
-                .andExpect(content().string(containsString("Guava Bloom Filter")));
+                .andExpect(content().string(containsString("Digitap eSign Gateway (v2)")))
+                .andExpect(content().string(containsString("DigiLocker Platform Revamp")))
+                .andExpect(content().string(containsString("Java 25")))
+                .andExpect(content().string(containsString("Architectural Principles")))
+                .andExpect(content().string(containsString("INTERACTIVE DISTRIBUTED TOPOLOGY")))
+                .andExpect(content().string(containsString("OpenTelemetry Trace Waterfall")))
+                .andExpect(content().string(containsString("ADR-001")))
+                .andExpect(content().string(containsString("RCA-001")))
+                .andExpect(content().string(org.hamcrest.Matchers.not(containsString("ShortAF"))));
     }
 
     @Test

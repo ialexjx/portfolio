@@ -15,6 +15,8 @@ import java.util.Map;
 public class Project {
     private String id;
     private String title;
+    private String shortTitle;
+    private String tabBadge;
     private String tag;
     private String subtitle;
     private String icon;

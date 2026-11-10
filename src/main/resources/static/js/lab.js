@@ -1146,7 +1146,7 @@ function initLabTerminalRepl() {
                     appendRepl("Available Commands: <br>&bull; <span class='text-sky-300'>whoami</span> - Displays Senior Architect profile JSON<br>&bull; <span class='text-emerald-300'>matrix</span> - Trigger falling digital rain<br>&bull; <span class='text-amber-300'>bench</span> - Execute 100k TPS payment switch test<br>&bull; <span class='text-rose-300'>patakha</span> / <span class='text-purple-300'>fireworks</span> - Launch celebration rockets<br>&bull; <span class='text-slate-400'>clear</span> - Clear terminal output");
                     break;
                 case 'whoami':
-                    appendRepl(`{<br>&nbsp;&nbsp;"name": "Akshat Jaiswal",<br>&nbsp;&nbsp;"title": "Senior Software Engineer (SSE)",<br>&nbsp;&nbsp;"company": "Digitap.AI",<br>&nbsp;&nbsp;"productsBuiltSolo": 4,<br>&nbsp;&nbsp;"scale": ["OKYC (300k/day)", "DigiLocker (1.5L/day)", "eSign v2", "eNACH", "VKYC", "Video-PD", "Clickwrap"],<br>&nbsp;&nbsp;"specialties": ["Distributed Systems", "Java 25 Virtual Threads", "150 TPS DB Migrations", "2,500 TPS Purge"],<br>&nbsp;&nbsp;"location": "Bengaluru, India"<br>}`, "text-emerald-400");
+                    appendRepl(`{<br>&nbsp;&nbsp;"name": "Akshat Jaiswal",<br>&nbsp;&nbsp;"title": "Senior Software Engineer (SSE)",<br>&nbsp;&nbsp;"company": "Digitap.AI",<br>&nbsp;&nbsp;"productsBuiltSolo": 4,<br>&nbsp;&nbsp;"scale": ["OKYC (300k/day)", "DigiLocker (2L/day, scaled from 30k-35k)", "eSign v2", "eNACH", "VKYC", "Video-PD", "Clickwrap"],<br>&nbsp;&nbsp;"specialties": ["Distributed Systems", "Java 25 Virtual Threads", "150 TPS DB Migrations", "2,500 TPS Purge"],<br>&nbsp;&nbsp;"location": "Bengaluru, India"<br>}`, "text-emerald-400");
                     break;
                 case 'matrix':
                     appendRepl("Wake up, Neo... The Matrix has you. Follow the white rabbit.", "text-emerald-400 font-bold");
@@ -1337,15 +1337,15 @@ function initArchitectureVisualizer() {
                 { step: 3, title: 'Boundary Router', sub: 'Dual-DB Partition', badge: '+9ms' },
                 { step: 4, title: 'Upstream Fetch (6 APIs)', sub: 'Parallel V-Threads', badge: '+16ms' },
                 { step: 5, title: 'AWS S3 Cold', sub: 'Glacier Archival', badge: '+32ms' },
-                { step: 6, title: 'Partner Callback', sub: '1.5L Daily Sustained', badge: 'Roundtrip: 60ms' }
+                { step: 6, title: 'Partner Callback', sub: '2L Daily Sustained (from 30k)', badge: 'Roundtrip: 60ms' }
             ],
             logs: [
-                '[T+0ms] DigiLocker ingress: 7-endpoint pipeline active under surge (1.5M+ daily volume).',
+                '[T+0ms] DigiLocker ingress: 7-endpoint pipeline active under surge (1.5M+ daily volume, 2L daily successes).',
                 '[T+3ms] Token bucket rate limiter smooths queue: 0 packets dropped, 0 throttled.',
                 '[T+12ms] Boundary routing filter applied: ID mapped to Revamp DB partition.',
                 '[T+28ms] Virtual Threads orchestrate 6 upstream calls in-memory (Aadhaar XML, PDF streams, tokens).',
                 '[T+60ms] S3 multipart chunk stream uploaded with AES-256 server-side encryption.',
-                '[T+68ms] Partner webhook acknowledged with 200 OK. Daily counter updated: 148,920 tx.'
+                '[T+68ms] Partner webhook acknowledged with 200 OK. Daily counter updated: 201,480 tx (scaled from 30k-35k).'
             ]
         }
     };

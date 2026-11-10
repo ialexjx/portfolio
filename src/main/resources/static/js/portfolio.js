@@ -11,32 +11,48 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    initThemeToggle();
-    initSpecularGlowAndTilt();
-    initTerminalStream();
-    initBreakProdModal();
-    initEmailCopy();
-    initRoastGenerator();
-    initMobileMenu();
-    initSoundEffects();
-    initTpsStressTester();
-    initClusterHealthHud();
-    initArchitectureVisualizer();
-    initArchitecturalBenchmarkLab();
-    initRaceConditionChallenge();
-    initTechChatModal();
-    initCliQaModal();
-    initFireworksEngine();
-    initLofiAmbientPlayer();
-    initCodeDiffDrawers();
-    initKonamiCodeEasterEgg();
-    initRoiCalculator();
-    initSqlIndexingLab();
-    initAdrAccordion();
-    initIncidentSimulator();
-    initProductionWrapped();
-    initLiveSystemPreviewModal();
-    initShortafQuickTester();
+    const safeInit = (fn, name) => {
+        try {
+            if (typeof fn === 'function') fn();
+        } catch (err) {
+            console.warn(`[Init Error in ${name}]:`, err);
+        }
+    };
+
+    safeInit(initThemeToggle, 'initThemeToggle');
+    safeInit(initProjectTabs, 'initProjectTabs');
+    safeInit(initSpecularGlowAndTilt, 'initSpecularGlowAndTilt');
+    safeInit(initTerminalStream, 'initTerminalStream');
+    safeInit(initBreakProdModal, 'initBreakProdModal');
+    safeInit(initEmailCopy, 'initEmailCopy');
+    safeInit(initRoastGenerator, 'initRoastGenerator');
+    safeInit(initMobileMenu, 'initMobileMenu');
+    safeInit(initSoundEffects, 'initSoundEffects');
+    safeInit(initTpsStressTester, 'initTpsStressTester');
+    safeInit(initClusterHealthHud, 'initClusterHealthHud');
+    safeInit(initArchitectureVisualizer, 'initArchitectureVisualizer');
+    safeInit(initArchitecturalBenchmarkLab, 'initArchitecturalBenchmarkLab');
+    safeInit(initRaceConditionChallenge, 'initRaceConditionChallenge');
+    safeInit(initTechChatModal, 'initTechChatModal');
+    safeInit(initCliQaModal, 'initCliQaModal');
+    safeInit(initFireworksEngine, 'initFireworksEngine');
+    safeInit(initLofiAmbientPlayer, 'initLofiAmbientPlayer');
+    safeInit(initCodeDiffDrawers, 'initCodeDiffDrawers');
+    safeInit(initKonamiCodeEasterEgg, 'initKonamiCodeEasterEgg');
+    safeInit(initRoiCalculator, 'initRoiCalculator');
+    safeInit(initSqlIndexingLab, 'initSqlIndexingLab');
+    safeInit(initAdrAccordion, 'initAdrAccordion');
+    safeInit(initIncidentSimulator, 'initIncidentSimulator');
+    safeInit(initProductionWrapped, 'initProductionWrapped');
+    safeInit(initLiveSystemPreviewModal, 'initLiveSystemPreviewModal');
+    safeInit(initShortafQuickTester, 'initShortafQuickTester');
+    safeInit(initCopyCodeButtons, 'initCopyCodeButtons');
+    safeInit(initAdrRcaToggle, 'initAdrRcaToggle');
+    safeInit(initScrollSpy, 'initScrollSpy');
+    safeInit(initCommandPalette, 'initCommandPalette');
+    safeInit(initChaosSimulator, 'initChaosSimulator');
+    safeInit(initTradeoffSimulator, 'initTradeoffSimulator');
+    safeInit(initSqlOptimizer, 'initSqlOptimizer');
 });
 
 /* ==========================================================================
@@ -129,7 +145,7 @@ function initTerminalStream() {
         { tag: "ESIGN", color: "text-emerald-400", msg: "Single OTP Multi-Stamp: 4 PDFs merged in-memory via PDFBox 3.x in 14ms" },
         { tag: "MIGRATE", color: "text-emerald-400", msg: "DigiLocker Batch: 150 TPS sustained throughput with auto-retry active" },
         { tag: "PURGE", color: "text-rose-400", msg: "PurgeEngine: 2,500 TPS async table purge - 0 deadlocks, zero lock contention" },
-        { tag: "SCALE", color: "text-sky-300", msg: "DigiLocker Surge: 1.5M+ daily API hits across 12-hop pipeline; scaled to 1.5 Lakh successful tx/day" },
+        { tag: "SCALE", color: "text-sky-300", msg: "DigiLocker Surge: 1.5M+ daily API hits across 12-hop pipeline; scaled from 30k-35k to 2 Lakh successful tx/day" },
         { tag: "CIVIL-WAR", color: "text-purple-400", msg: "Dual-DB Query: Boundary routing executed across Legacy + Revamp DB seamlessly" },
         { tag: "ENACH", color: "text-sky-400", msg: "eNACH Mandate Engine: Automated webhook bank clearance with Kotak & Yes Bank" },
         { tag: "REDIS", color: "text-amber-400", msg: "DistributedLock acquired: 'SET NX EX 30s' - eMudhra token cached cluster-wide" },
@@ -302,32 +318,20 @@ function initRoastGenerator() {
     const progressBar = document.getElementById('roast-progress-bar');
     if (!roastDisplay) return;
 
-    // Load roasts from window or fallback list
+    // Load principles from window or fallback list
     let roasts = (window.PORTFOLIO_ROASTS && Array.isArray(window.PORTFOLIO_ROASTS) && window.PORTFOLIO_ROASTS.length > 0)
         ? window.PORTFOLIO_ROASTS
         : [
-            "Merck let me go after a 1-year internship. Not because my Java code had bugs (it had 98% test coverage), but because the moment tickets were done, I was the undisputed office foosball champion and playing extreme luka chhipi (hide-and-seek) behind the server racks.",
-            "Merck HR exit interview: 'Akshat, your APIs are great, but this is a 350-year-old German healthcare conglomerate, not a summer camp for 6-hour foosball tournaments and indoor hide-and-seek.' Honestly? Fair enough.",
-            "Merck taught me two foundational skills: disciplined 98% JUnit code coverage, and the exact blind spots of every CCTV camera in the office during hide-and-seek.",
-            "At Digitap, we don't have a staging environment for eSign or OVSE. We test directly on live bank transactions. If it works, it's a feature. If it crashes, congratulations, you've just unlocked emergency character-building at 2 AM.",
-            "Digitap's legacy eSign had zero PDF validation. A client could literally upload a 1-page photo of their lunch, and the system would only crash at the final OTP step asking where the signature went.",
-            "Before my DigiLocker revamp, triggering one client webhook required jumping through 4 separate SNS topics and 4 AWS CloudWatch groups. It wasn't an event-driven architecture, it was a relay race through Dante's Inferno.",
-            "At Digitap, operations was preparing physical mandates on Excel sheets and manually verifying bank responses line-by-line. They weren't ops engineers, they were 18th-century scribes trapped inside an AWS account.",
-            "Promoted to SSE in 2.5 years not because I'm a 10x god, but because I broke so many things in dev during my first 6 months that I was the only human alive who understood how the duct tape held together.",
-            "Management gave me the Senior title purely so they could write an official name in incident post-mortems when the production database cries at 3 AM instead of blaming themselves.",
-            "Built APIs, survived production, earned promotion. Officially promoted from fixing other people's bugs to being personally blamed for the entire architecture.",
-            "My doctor told me to reduce my caffeine intake. I told him to reduce Digitap's third-party banking timeout from 30 seconds to 50ms, and we'll both live longer.",
-            "I don't have work-life balance. I have a heartbeat, a JVM process, and a terminal window running tail -f on production logs while normal people have hobbies.",
-            "Frontend colleagues spend 4 days debating whether a button should have an 8px or 10px border-radius. Meanwhile, I migrate 200,000 live banking transactions while sipping lukewarm chai.",
-            "My backend colleague: 'Hey Akshat, the query is taking 45 seconds.' Me: 'Did you index the column?' Him: 'What's an index?' This is why I have trust issues with humanity.",
-            "Product Managers: 'Can we schedule a quick 30-minute sync to align on the pre-meeting agenda for tomorrow's standup?' I swear corporate PMs would schedule a meeting to approve taking a breath.",
-            "Colleagues who commit code with messages like 'fixed stuff' or 'wip 2' belong in a special federal prison where the only text editor is nano with a broken backspace key.",
-            "QA teammate filed a P1 bug: 'System responded in 12ms, is this expected or did it skip the database?' No bro, the code is just fast. Not everything needs to take 5 business days like your test runs.",
-            "When DigiLocker or UIDAI goes down, colleagues immediately ping Slack: 'Is DigiLocker down?'. No bhai, government servers just went out to have Parle-G with chai.",
-            "If your daily Scrum standup takes longer than 15 minutes, you're not practicing Agile — you're hosting an unpaid group therapy session for developers who don't know how to write an SQL join.",
-            "Yes, I use Java. No, it doesn't consume 64GB of RAM. It's Java 25 with Virtual Threads — your single-threaded Node.js server is hyperventilating inside its single-core cage.",
-            "Why spend 6 months in quarterly roadmapping workshops when you can build, test, and ship a UIDAI-compliant OVSE engine in 7 calendar days flat?",
-            "Never deploy on a Friday evening... unless you're Akshat, you wrote 98% unit test coverage, and you have a high-stakes foosball rematch scheduled for Saturday morning."
+            "Virtual Threads Over Reactive Complexity: Blocking I/O code with Java 25 Virtual Threads scales to hundreds of thousands of concurrent requests with clean, readable synchronous stack traces, completely eliminating the cognitive tax of WebFlux and Mono/Flux debugging.",
+            "Zero Disk I/O Under Concurrency: Never write ephemeral payloads (PDFs, biometric hashes, XML signatures) to container disk. Direct streaming buffers via Apache PDFBox eliminate EBS I/O bottlenecks and keep container memory footprints predictable.",
+            "Deterministic Idempotency at Network Boundaries: Every banking and digital signature API call must derive an idempotent lock key from the request fingerprint. If an upstream payment rail times out at 29.9s, our gateway never double-executes.",
+            "Partitioned Batch Purging vs AWS S3 Throttling: Deleting millions of compliance documents at 2,500 TPS requires date-hash prefix partitioning. Without partitioned key spaces, AWS S3 throttles with 503 SlowDown and starves live ingestion.",
+            "Dual-DB Boundary Routing & Zero-Downtime Cutover: When migrating legacy monolithic databases to new schemas, never perform hard maintenance cutovers. Use application-level dual writes, cursor-based background backfills, and Redis feature gates to shift traffic with zero seconds of downtime.",
+            "Pre-Flight Validation Saves Upstream Circuit Breakers: Validate PDF dimensions, signature block bounds, and Aadhaar XML schemas in-memory before hitting upstream government or banking APIs. Catching bad payloads early protects your circuit breakers.",
+            "Fail-Fast Circuit Breakers for State-Run Upstreams: Government and banking APIs experience national peak latency surges. Implementing thread-isolated bulkheads and exponential backoff with jitter prevents upstream sluggishness from exhausting internal gateway connection pools.",
+            "Execution Plans Don't Lie: A query that looks fast in local staging with 50 rows will trigger catastrophic table locks on production at 1,000 TPS. Always profile EXPLAIN plans, eliminate filesorts, and leverage covering indexes.",
+            "Test Coverage as Production Armor: Writing 98%+ branch and integration test coverage is not academic pedantry; it is the reason you can deploy high-velocity code to live banking endpoints with absolute confidence.",
+            "Prune Architectural Complexity: If a problem can be solved with a clean distributed Redis lock and a virtual-threaded worker pool, don't introduce Kafka clusters or distributed event brokers until data volume genuinely mandates it."
         ];
 
     let currentIndex = 0;
@@ -618,6 +622,82 @@ function initTpsStressTester() {
             }
         }
     });
+
+    // Wire SRE preset load buttons
+    document.querySelectorAll('.tps-preset-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const presetVal = btn.getAttribute('data-preset-tps');
+            if (presetVal && slider) {
+                slider.value = presetVal;
+                slider.dispatchEvent(new Event('input'));
+            }
+        });
+    });
+}
+
+/* ==========================================================================
+   9B. Master-Detail Interactive System Architecture Tabs
+   ========================================================================== */
+function initProjectTabs() {
+    const tabButtons = document.querySelectorAll('.project-tab-btn');
+    const projectPanels = document.querySelectorAll('.project-card-panel');
+
+    if (!tabButtons.length || !projectPanels.length) return;
+
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-project-target');
+            if (!targetId) return;
+
+            // Update active tab buttons
+            tabButtons.forEach(b => {
+                b.classList.remove('active');
+                const dot = b.querySelector('.project-pulse-dot');
+                if (dot) dot.classList.add('hidden');
+            });
+
+            btn.classList.add('active');
+            const activeDot = btn.querySelector('.project-pulse-dot');
+            if (activeDot) activeDot.classList.remove('hidden');
+
+            // Switch active panel
+            projectPanels.forEach(panel => {
+                if (panel.id === targetId) {
+                    panel.classList.remove('hidden');
+                    panel.classList.add('block', 'animate-in', 'fade-in', 'duration-200');
+                } else {
+                    panel.classList.add('hidden');
+                    panel.classList.remove('block');
+                }
+            });
+
+            if (typeof playHapticTick === 'function') playHapticTick(900, 0.02);
+            if (window.lucide) window.lucide.createIcons();
+        });
+    });
+
+    // Subtab navigation inside project cards
+    projectPanels.forEach(panel => {
+        const subtabBtns = panel.querySelectorAll('.project-subtab-btn');
+        const archContent = panel.querySelector('.subtab-architecture');
+        const probContent = panel.querySelector('.subtab-problem-solution');
+        const diffContent = panel.querySelector('.subtab-code-diff');
+
+        subtabBtns.forEach(subBtn => {
+            subBtn.addEventListener('click', () => {
+                const subtabName = subBtn.getAttribute('data-subtab');
+                subtabBtns.forEach(b => b.classList.remove('active'));
+                subBtn.classList.add('active');
+
+                if (archContent) archContent.classList.toggle('hidden', subtabName !== 'architecture');
+                if (probContent) probContent.classList.toggle('hidden', subtabName !== 'problem-solution');
+                if (diffContent) diffContent.classList.toggle('hidden', subtabName !== 'code-diff');
+
+                if (typeof playHapticTick === 'function') playHapticTick(750, 0.015);
+                if (window.lucide) window.lucide.createIcons();
+            });
+        });
+    });
 }
 
 /* ==========================================================================
@@ -668,16 +748,16 @@ function initCliQaModal() {
             tag: 'DIGILOCKER',
             color: 'text-emerald-400'
         },
-        'merck-foosball': {
-            cmd: 'ask --topic "merck-internship-exit-interview"',
-            text: `Merck is a 350-year-old German healthcare conglomerate. I loved their engineering discipline — they taught me 98% JUnit test coverage. But here was the problem: I would finish my entire sprint's Jira tickets by Tuesday lunch.\n\nThe rest of the week? Undisputed champion of office foosball and master of office hide-and-seek (luka chhipi) behind the cold-aisle server racks. During my exit interview, HR politely told me this wasn't an Olympic training camp for table soccer. Fair enough. Best 1-year internship of my life.`,
-            tag: 'CONFESSION',
-            color: 'text-rose-400'
+        'aadhaar-okyc': {
+            cmd: 'ask --topic "aadhaar-okyc-300k-daily-pipeline"',
+            text: `Our OKYC (Offline KYC / Aadhaar XML) verification pipeline processes 200,000 to 300,000 daily successful transactions at sub-40ms latency.\n\nTo achieve this under strict UIDAI compliance, we decrypt and parse the signed XML envelope in-memory, validate tamper-evident SHA-256 digital certificates against UIDAI root authorities, and cache ephemeral verification tokens with a 60-second sliding window in Redis. Zero disk writes, zero garbage collector pauses.`,
+            tag: 'OKYC-SCALE',
+            color: 'text-sky-400'
         },
-        'zero-staging': {
-            cmd: 'ask --topic "digitap-zero-staging-policy"',
-            text: `At Digitap, third-party bank partners and UIDAI/eMudhra vendors have notoriously unstable or non-existent sandbox environments. In FinTech, mock servers lie to you; live banks tell you the brutal truth at 2:00 AM.\n\nWe architect for zero-downtime with distributed locks, idempotent retries, strict validation at the outer gateway boundary, and in-memory fallback. If you survive production here, everywhere else feels like a walk in Cubbon Park.`,
-            tag: 'FINTECH-REALITY',
+        'live-migration': {
+            cmd: 'ask --topic "zero-downtime-150-tps-db-migration"',
+            text: `Migrating millions of active banking records between disparate schemas cannot tolerate maintenance windows in a 24/7 FinTech environment.\n\nI architected a multi-threaded batch migration framework running at a sustained 150 TPS. We used cursor-based key-range slicing to avoid MySQL table-level locks, coupled with application-level dual-write verification. Over 14 million records were cut over to the revamp architecture with 0 seconds of downtime and 0 data divergence.`,
+            tag: 'MIGRATION',
             color: 'text-amber-400'
         },
         'purge-engine': {
@@ -685,6 +765,24 @@ function initCliQaModal() {
             text: `We had legacy tables accumulating millions of mandate and DigiLocker rows that needed cleanup. Normal DELETE queries with massive OFFSETs lock rows, bloat the InnoDB redo log, and bring live customer APIs to their knees.\n\nI built an asynchronous chunked purge engine pumping at 2,500 records/sec. It was so aggressive that AWS S3 literally returned 'SlowDown: 503 Service Unavailable' because we saturated their prefix request limit! We had to introduce exponential jitter backoffs just so Amazon could catch up with my JVM.`,
             tag: 'PURGE-ENGINE',
             color: 'text-purple-400'
+        },
+        'distributed-tx': {
+            cmd: 'ask --drill "distributed-transactions-without-2pc"',
+            text: `Two-Phase Commit (2PC) is a distributed death sentence in high-throughput FinTech: blocking coordinators hold database locks across network boundaries, tanking throughput under 50 TPS.\n\nInstead, I engineer distributed workflows using the Saga Pattern with Transactional Outbox:\n1. The initiating service mutates state and writes an outbox event in the same atomic local DB transaction.\n2. Debezium / CDC or a lightweight Virtual Thread poller tail the outbox and emit idempotent events.\n3. Downstream consumers maintain strict idempotency keys (SHA-256 fingerprint). If a step fails, backward compensating transactions automatically revert state with 0 inconsistent balances.`,
+            tag: 'SYSTEM-DESIGN',
+            color: 'text-sky-400'
+        },
+        'mysql-deadlocks': {
+            cmd: 'ask --drill "mysql-deadlock-concurrent-insert-update"',
+            text: `Under MySQL InnoDB Repeatable Read, concurrent INSERT ... ON DUPLICATE KEY UPDATE queries cause cyclic deadlocks due to Gap Locks & Next-Key Locks.\n\nWhen Thread-A encounters an existing secondary unique index key, InnoDB acquires a Shared (S) Next-Key Lock. When Thread-B does the same, it also gets an S lock. When both try to upgrade to an Exclusive (X) Insert-Intention Lock to update the row, they mutually block each other, triggering a 1213 Deadlock.\n\nSolution: Pre-allocate IDs via Redis or serialize writes using Redis distributed locks ('SET NX EX 30s') so only one thread modifies the index boundary at a time.`,
+            tag: 'DB-INTERNALS',
+            color: 'text-amber-400'
+        },
+        'vt-pinning': {
+            cmd: 'ask --drill "virtual-thread-pinning-synchronized"',
+            text: `In Java Virtual Threads (Project Loom), 'pinning' occurs when a virtual thread cannot unmount from its underlying OS carrier thread during a blocking I/O operation.\n\nThis happens when blocking code is executed inside a 'synchronized' block/method or a native method (JNI). When pinned, the OS carrier thread is frozen, starving the fork-join pool and bringing concurrency down to platform thread limits.\n\nSolution: Replace all legacy 'synchronized (lock)' blocks with 'java.util.concurrent.locks.ReentrantLock'. ReentrantLock allows virtual threads to yield continuations cleanly, maintaining massive concurrency with sub-1ms carrier thread handoffs.`,
+            tag: 'JVM-INTERNALS',
+            color: 'text-emerald-400'
         }
     };
 
@@ -755,26 +853,26 @@ function initCliQaModal() {
                 streamResponse('help', {
                     tag: 'SYSTEM',
                     color: 'text-sky-400',
-                    text: 'Available Commands:\n- ask [topic]: virtual-threads, digilocker, merck, staging, purge\n- projects: View summary of flagship war stories\n- metrics: View 150 TPS and 2,500 TPS production numbers\n- roast: Get a fresh reality check from Akshat\n- clear: Clear terminal output screen'
+                    text: 'Available Commands:\n- ask [topic]: virtual-threads, digilocker, aadhaar, migration, purge\n- projects: View summary of flagship architectural war stories\n- metrics: View 1.5M daily hits, 150 TPS and 2,500 TPS production numbers\n- principles: Read hard-earned distributed systems engineering convictions\n- clear: Clear terminal output screen'
                 });
             } else if (val === 'projects') {
                 streamResponse('projects --list', {
                     tag: 'WAR-STORIES',
                     color: 'text-emerald-400',
-                    text: '1. OKYC Aadhaar Pipeline (2L-3L daily successes, sub-40ms verification)\n2. Digitap eSign Gateway v2 (Java 25, Virtual Threads, In-Memory PDF Merge)\n3. DigiLocker Revamp & DB Civil War (4 repos -> 1, 1.5L/day success)\n4. VKYC v2 & Video-PD (Solo security, sub-3s analytics, 0 deadlocks)\n5. eNACH Mandate Engine (Kotak & Yes Bank auto-clearing, 0 Excel)\n6. Clickwrap Digital Contract Rail (Instant legal consent, SHA-256 audit)\n7. OVSE Aadhaar XML Verification (7-day greenfield delivery, 99% tests)'
+                    text: '1. OKYC Aadhaar Pipeline (2L-3L daily successes, sub-40ms verification)\n2. Digitap eSign Gateway v2 (Java 25, Virtual Threads, In-Memory PDF Merge)\n3. DigiLocker Revamp & DB Civil War (4 repos -> 1, 2L/day success, scaled from 30k-35k)\n4. VKYC v2 & Video-PD (Solo security, sub-3s analytics, 0 deadlocks)\n5. eNACH Mandate Engine (Kotak & Yes Bank auto-clearing, 0 Excel)\n6. Clickwrap Digital Contract Rail (Instant legal consent, SHA-256 audit)\n7. OVSE Aadhaar XML Verification (7-day greenfield delivery, 99% tests)'
                 });
             } else if (val === 'metrics') {
                 streamResponse('system --metrics', {
                     tag: 'STATS',
                     color: 'text-sky-400',
-                    text: '- 4 Enterprise Products Architected Solo From Scratch\n- 250,000+ Daily OKYC Successful Verifications\n- 1.5M+ Daily DigiLocker API Hits (12+ Micro-APIs / Journey)\n- 1.5 Lakh Daily DigiLocker Successful Transactions (Scaled from 28k)\n- 150 TPS Sustained Database Migration Throughput\n- 2,500 TPS Asynchronous Table Purge Engine\n- 7 Days Zero-to-Prod Turnaround on UIDAI OVSE\n- 0 Production Bugs on Revamp Go-Live'
+                    text: '- 4 Enterprise Products Architected Solo From Scratch\n- 250,000+ Daily OKYC Successful Verifications\n- 1.5M+ Daily DigiLocker API Hits (12+ Micro-APIs / Journey)\n- 2 Lakh Daily DigiLocker Successful Transactions (Scaled from 30k–35k)\n- 150 TPS Sustained Database Migration Throughput\n- 2,500 TPS Asynchronous Table Purge Engine\n- 7 Days Zero-to-Prod Turnaround on UIDAI OVSE\n- 0 Production Bugs on Revamp Go-Live'
                 });
-            } else if (val === 'roast') {
-                const roasts = window.PORTFOLIO_ROASTS || ["Frontend devs spend 3 days picking a CSS framework. I migrate 200k daily transactions while drinking chai."];
+            } else if (val === 'principles' || val === 'principle' || val === 'roast') {
+                const roasts = window.PORTFOLIO_ROASTS || ["Virtual Threads Over Reactive Complexity: Blocking I/O code with Java 25 Virtual Threads scales to hundreds of thousands of concurrent requests."];
                 const r = roasts[Math.floor(Math.random() * roasts.length)];
-                streamResponse('roast --target dev', {
-                    tag: 'SAVAGE',
-                    color: 'text-rose-400',
+                streamResponse('principles --read', {
+                    tag: 'CONVICTION',
+                    color: 'text-emerald-400',
                     text: `"${r.replace(/^["']|["']$/g, '')}"`
                 });
             } else if (val === 'rocket' || val === 'patakha' || val === 'fireworks' || val === 'godmode') {
@@ -1235,7 +1333,7 @@ function initKonamiCodeEasterEgg() {
         if (window.launchRocketBarrage) {
             window.launchRocketBarrage(14);
         }
-        showToast("⚡ GOD MODE ACTIVATED", "Root access granted to Akshat's 2,500 TPS Purge Engine & Merck Foosball Table!");
+        showToast("⚡ GOD MODE ACTIVATED", "Root access granted to Akshat's 2,500 TPS Purge Engine & Distributed FinTech Rails!");
     }
 }
 
@@ -1311,7 +1409,7 @@ function initClusterHealthHud() {
 }
 
 /* ==========================================================================
-   16. Interactive System Architecture Visualizer (Live Pipeline Simulator)
+   16. Interactive System Architecture Visualizer (Live Pipeline Simulator & OpenTelemetry Waterfall)
    ========================================================================== */
 function initArchitectureVisualizer() {
     const PIPELINES = {
@@ -1322,6 +1420,20 @@ function initArchitectureVisualizer() {
             defense: 'Uses Redis distributed lock (\'SET NX EX 30s\'). If the signer double-clicks or refreshes, twin requests are rejected instantly with 409 Conflict, preventing duplicate eMudhra charge fees.',
             safety: '100% IDEMPOTENT',
             duration: '72ms',
+            trace: {
+                traceId: 'trace_e82b7a94c1f20d88',
+                duration: '42.4ms',
+                spansCount: '7 Spans',
+                spans: [
+                    { id: 'span-1', name: 'POST /api/v2/esign/verify-otp', service: 'esign-gateway', duration: '42.4ms', offsetPct: 0, widthPct: 100, barColor: 'bg-gradient-to-r from-sky-500 to-emerald-400', tags: { 'http.method': 'POST', 'http.status_code': '200', 'thread.type': 'VirtualThread[#14829]', 'client.ip': '10.0.4.82', 'security.tls': 'TLSv1.3' } },
+                    { id: 'span-2', name: 'RedisTokenBucket.tryAcquire', service: 'redis-cluster', duration: '0.8ms', offsetPct: 2, widthPct: 4, barColor: 'bg-emerald-400', tags: { 'ratelimit.quota': '150 TPS', 'ratelimit.allowed': 'true', 'redis.host': 'redis-cluster-prod:6379' } },
+                    { id: 'span-3', name: 'RS256JwtValidator.verify', service: 'auth-security', duration: '1.4ms', offsetPct: 6, widthPct: 5, barColor: 'bg-purple-400', tags: { 'jwt.algo': 'RS256', 'jwt.issuer': 'digitap-auth', 'signature.valid': 'true' } },
+                    { id: 'span-4', name: 'RedissonMutex.acquire(doc:4092)', service: 'redis-lock', duration: '2.1ms', offsetPct: 11, widthPct: 7, barColor: 'bg-amber-400', tags: { 'lock.key': 'lock:contract:8294', 'lock.ttl_sec': '30', 'lock.acquired': 'true' } },
+                    { id: 'span-5', name: 'In-Memory PDFBox 3.x Multi-Stamp', service: 'pdf-engine', duration: '14.2ms', offsetPct: 18, widthPct: 33, barColor: 'bg-sky-400', tags: { 'pdf.pages': '4', 'memory.alloc': '6.4MB (in-memory buffer)', 'disk.io': '0 bytes (Zero Disk I/O)' } },
+                    { id: 'span-6', name: 'UIDAI / eMudhra TSP Gateway Hop', service: 'bank-tsp-outbound', duration: '18.6ms', offsetPct: 51, widthPct: 43, barColor: 'bg-rose-400', tags: { 'downstream.url': 'https://api.emudhra.com/v2/aadhaar/stamp', 'http.status_code': '200', 'tls.version': 'TLSv1.3' } },
+                    { id: 'span-7', name: 'VirtualThread -> MySQL Audit Persist', service: 'mysql-async', duration: '2.8ms', offsetPct: 94, widthPct: 6, barColor: 'bg-emerald-400', tags: { 'db.statement': 'INSERT INTO audit_log VALUES (?, ?)', 'thread.virtual': 'true', 'rows_affected': '1' } }
+                ]
+            },
             nodes: [
                 { step: 1, title: 'Client Ingress', sub: 'Signed Payload', badge: '0ms' },
                 { step: 2, title: 'API Gateway', sub: 'Spring Boot 3 + VT', badge: '+4ms' },
@@ -1346,6 +1458,18 @@ function initArchitectureVisualizer() {
             defense: 'Bounded primary key range partitions (500-row chunks) with 20ms yield pauses prevent lock escalation and table-level locks. DBA sleeps peacefully.',
             safety: 'ZERO DEADLOCKS',
             duration: '38ms (Batch)',
+            trace: {
+                traceId: 'trace_d14f9011a7c88b23',
+                duration: '18.5ms',
+                spansCount: '5 Spans',
+                spans: [
+                    { id: 'span-p1', name: 'POST /internal/v1/purge/batch', service: 'purge-engine', duration: '18.5ms', offsetPct: 0, widthPct: 100, barColor: 'bg-gradient-to-r from-rose-500 to-amber-400', tags: { 'cron.scheduler': 'high-velocity-cron', 'batch.size': '500', 'thread.type': 'VirtualThread[#8812]' } },
+                    { id: 'span-p2', name: 'PartitionCursor.fetchNextBatch', service: 'mysql-read', duration: '1.9ms', offsetPct: 2, widthPct: 11, barColor: 'bg-sky-400', tags: { 'db.statement': 'SELECT id, s3_key FROM tbl WHERE id > ? LIMIT 500', 'index.type': 'PRIMARY KEY RANGE' } },
+                    { id: 'span-p3', name: 'S3Client.deleteObjects(hash_prefix=bucket/p7)', service: 'aws-s3', duration: '8.4ms', offsetPct: 13, widthPct: 45, barColor: 'bg-purple-400', tags: { 's3.bucket': 'fintech-vault-prod', 'partition.hash': '0x7F2A', 'http.status_code': '200', 'aws.retries': '0' } },
+                    { id: 'span-p4', name: 'IngestionPurgeRepository.deleteByIdIn', service: 'mysql-write', duration: '5.8ms', offsetPct: 58, widthPct: 31, barColor: 'bg-rose-400', tags: { 'db.statement': 'DELETE FROM tbl WHERE id IN (?)', 'lock.wait_ms': '0', 'deadlocks': '0' } },
+                    { id: 'span-p5', name: 'PrometheusMicrometer.counterIncrement', service: 'telemetry-meter', duration: '0.4ms', offsetPct: 89, widthPct: 9, barColor: 'bg-emerald-400', tags: { 'metric.name': 'purge.records.deleted', 'counter.increment': '500', 'tps.current': '2500' } }
+                ]
+            },
             nodes: [
                 { step: 1, title: 'Partition Cron', sub: 'Scheduled Trigger', badge: '0ms' },
                 { step: 2, title: 'PK Chunker', sub: 'Bounded 500-Rows', badge: '+2ms' },
@@ -1370,13 +1494,26 @@ function initArchitectureVisualizer() {
             defense: 'Token-bucket rate limiter smooths upstream spike bursts; dual-DB partition routing ensures zero data collisions between legacy and revamp schemas.',
             safety: 'ZERO PACKET LOSS',
             duration: '60ms',
+            trace: {
+                traceId: 'trace_7a43f882e919dc04',
+                duration: '34.2ms',
+                spansCount: '6 Spans',
+                spans: [
+                    { id: 'span-d1', name: 'POST /api/v1/digilocker/fetch-doc', service: 'digilocker-gateway', duration: '34.2ms', offsetPct: 0, widthPct: 100, barColor: 'bg-gradient-to-r from-emerald-500 to-sky-400', tags: { 'http.method': 'POST', 'http.status_code': '200', 'daily.surge': '1.5M+ hits', 'thread.type': 'VirtualThread[#9103]' } },
+                    { id: 'span-d2', name: 'RateLimiter & Client IP Shaper', service: 'rate-shaper', duration: '0.6ms', offsetPct: 1.5, widthPct: 3, barColor: 'bg-sky-400', tags: { 'token_bucket.fill_rate': '150/s', 'status': 'ALLOWED' } },
+                    { id: 'span-d3', name: 'Read-Replica Route Resolver', service: 'db-boundary', duration: '1.1ms', offsetPct: 4.5, widthPct: 5, barColor: 'bg-amber-400', tags: { 'db.route': 'REVAMP_PARTITION_2', 'connection.pool': 'HikariCP-Read' } },
+                    { id: 'span-d4', name: 'Redis Document Metadata Cache Hit', service: 'redis-cache', duration: '1.8ms', offsetPct: 9.5, widthPct: 7, barColor: 'bg-purple-400', tags: { 'cache.status': 'HIT', 'key': 'doc:meta:9018', 'latency_us': '180' } },
+                    { id: 'span-d5', name: 'DigiLocker Auth & XML Parser Hop', service: 'upstream-gov', duration: '24.3ms', offsetPct: 16.5, widthPct: 69, barColor: 'bg-emerald-400', tags: { 'endpoint': 'https://api.digitallocker.gov.in/oauth/token', 'xml.signed': 'true', 'sha256': 'VALID' } },
+                    { id: 'span-d6', name: 'Primary DB Dual-Sync Virtual Task', service: 'async-sync', duration: '4.1ms', offsetPct: 85.5, widthPct: 14, barColor: 'bg-blue-400', tags: { 'sync.strategy': 'DUAL_WRITE_SHADOW_VERIFIED', 'divergence': '0.00%', 'thread.virtual': 'true' } }
+                ]
+            },
             nodes: [
                 { step: 1, title: 'Public Ingress (7 APIs)', sub: '1.5M+ Daily Volume', badge: '0ms' },
                 { step: 2, title: 'Token Bucket', sub: 'Burst Rate Limiter', badge: '+3ms' },
                 { step: 3, title: 'Boundary Router', sub: 'Dual-DB Partition', badge: '+9ms' },
                 { step: 4, title: 'Upstream Fetch (6 APIs)', sub: 'Parallel V-Threads', badge: '+16ms' },
                 { step: 5, title: 'AWS S3 Cold', sub: 'Glacier Archival', badge: '+32ms' },
-                { step: 6, title: 'Partner Callback', sub: '1.5L Daily Sustained', badge: 'Roundtrip: 60ms' }
+                { step: 6, title: 'Partner Callback', sub: '2L Daily Sustained (from 30k)', badge: 'Roundtrip: 60ms' }
             ],
             logs: [
                 '[T+0ms] DigiLocker ingress: 7-endpoint pipeline active under surge (1.5M+ daily volume).',
@@ -1384,7 +1521,7 @@ function initArchitectureVisualizer() {
                 '[T+12ms] Boundary routing filter applied: ID mapped to Revamp DB partition.',
                 '[T+28ms] Virtual Threads orchestrate 6 upstream calls in-memory (Aadhaar XML, PDF streams, tokens).',
                 '[T+60ms] S3 multipart chunk stream uploaded with AES-256 server-side encryption.',
-                '[T+68ms] Partner webhook acknowledged with 200 OK. Daily counter updated: 148,920 tx.'
+                '[T+68ms] Partner webhook acknowledged with 200 OK. Daily counter updated: 201,480 tx (scaled from 30k-35k).'
             ]
         }
     };
@@ -1402,6 +1539,109 @@ function initArchitectureVisualizer() {
     const execTime = document.getElementById('pipeline-execution-time');
     const telemetryLog = document.getElementById('pipeline-telemetry-log');
     const track = document.getElementById('pipeline-nodes-track');
+
+    // View Switcher Elements (Nodes vs Trace Waterfall)
+    const viewNodesBtn = document.getElementById('topo-view-nodes-btn');
+    const viewTraceBtn = document.getElementById('topo-view-trace-btn');
+    const nodesContainer = document.getElementById('pipeline-nodes-container');
+    const traceContainer = document.getElementById('pipeline-trace-container');
+    const traceIdDisplay = document.getElementById('trace-id-display');
+    const traceSpansBadge = document.getElementById('trace-spans-badge');
+    const traceTotalLatency = document.getElementById('trace-total-latency');
+    const traceWaterfallTrack = document.getElementById('trace-waterfall-track');
+    const inspectorSpanName = document.getElementById('inspector-span-name');
+    const inspectorSpanDuration = document.getElementById('inspector-span-duration');
+    const inspectorSpanTags = document.getElementById('inspector-span-tags');
+
+    function renderTraceWaterfall(key) {
+        const p = PIPELINES[key];
+        if (!p || !p.trace || !traceWaterfallTrack) return;
+
+        if (traceIdDisplay) traceIdDisplay.textContent = p.trace.traceId;
+        if (traceSpansBadge) traceSpansBadge.textContent = p.trace.spansCount;
+        if (traceTotalLatency) traceTotalLatency.textContent = p.trace.duration;
+
+        let html = '';
+        p.trace.spans.forEach((span, idx) => {
+            const isFirst = idx === 0;
+            html += `
+                <div class="trace-row ${isFirst ? 'active' : ''} p-2.5 rounded-xl border border-white/5 space-y-1.5 transition-all text-xs font-mono" data-span-id="${span.id}" data-idx="${idx}">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2 truncate">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-white/10 text-slate-300">${span.service}</span>
+                            <span class="font-bold text-white truncate">${span.name}</span>
+                        </div>
+                        <span class="text-emerald-400 font-bold shrink-0 ml-2">${span.duration}</span>
+                    </div>
+                    <div class="trace-bar-track">
+                        <div class="trace-bar-fill ${span.barColor}" style="margin-left: ${span.offsetPct}%; width: ${span.widthPct}%;"></div>
+                    </div>
+                </div>
+            `;
+        });
+        traceWaterfallTrack.innerHTML = html;
+
+        // Set default inspector to first span
+        if (p.trace.spans.length > 0) {
+            updateInspector(p.trace.spans[0]);
+        }
+
+        // Attach click listeners to rows
+        traceWaterfallTrack.querySelectorAll('.trace-row').forEach(row => {
+            row.addEventListener('click', () => {
+                traceWaterfallTrack.querySelectorAll('.trace-row').forEach(r => r.classList.remove('active'));
+                row.classList.add('active');
+                const idx = parseInt(row.getAttribute('data-idx'), 10);
+                if (p.trace.spans[idx]) {
+                    updateInspector(p.trace.spans[idx]);
+                    playHapticTick(900, 0.015);
+                }
+            });
+        });
+    }
+
+    function updateInspector(span) {
+        if (inspectorSpanName) inspectorSpanName.textContent = `${span.service} :: ${span.name}`;
+        if (inspectorSpanDuration) inspectorSpanDuration.textContent = `${span.duration} (${span.widthPct}% width)`;
+
+        if (inspectorSpanTags) {
+            let tagsHtml = '';
+            for (const [k, v] of Object.entries(span.tags)) {
+                tagsHtml += `
+                    <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex flex-col justify-between truncate">
+                        <span class="text-[9.5px] text-slate-500 uppercase truncate">${k}</span>
+                        <span class="text-slate-200 font-bold truncate mt-0.5">${v}</span>
+                    </div>
+                `;
+            }
+            inspectorSpanTags.innerHTML = tagsHtml;
+        }
+    }
+
+    if (viewNodesBtn && viewTraceBtn) {
+        viewNodesBtn.addEventListener('click', () => {
+            viewNodesBtn.classList.add('active', 'bg-sky-500/20', 'text-sky-300', 'border-sky-500/40');
+            viewNodesBtn.classList.remove('text-slate-400');
+            viewTraceBtn.classList.remove('active', 'bg-sky-500/20', 'text-sky-300', 'border-sky-500/40');
+            viewTraceBtn.classList.add('text-slate-400');
+
+            if (nodesContainer) nodesContainer.classList.remove('hidden');
+            if (traceContainer) traceContainer.classList.add('hidden');
+            playHapticTick(700, 0.02);
+        });
+
+        viewTraceBtn.addEventListener('click', () => {
+            viewTraceBtn.classList.add('active', 'bg-sky-500/20', 'text-sky-300', 'border-sky-500/40');
+            viewTraceBtn.classList.remove('text-slate-400');
+            viewNodesBtn.classList.remove('active', 'bg-sky-500/20', 'text-sky-300', 'border-sky-500/40');
+            viewNodesBtn.classList.add('text-slate-400');
+
+            if (nodesContainer) nodesContainer.classList.add('hidden');
+            if (traceContainer) traceContainer.classList.remove('hidden');
+            renderTraceWaterfall(activePipeline);
+            playHapticTick(850, 0.02);
+        });
+    }
 
     function renderPipeline(key) {
         const p = PIPELINES[key];
@@ -1435,6 +1675,8 @@ function initArchitectureVisualizer() {
             });
             track.innerHTML = html;
         }
+
+        renderTraceWaterfall(key);
     }
 
     tabBtns.forEach(btn => {
@@ -1462,6 +1704,7 @@ function initArchitectureVisualizer() {
 
             const p = PIPELINES[activePipeline];
             const nodes = track ? track.querySelectorAll('.arch-node') : [];
+            const traceRows = traceWaterfallTrack ? traceWaterfallTrack.querySelectorAll('.trace-row') : [];
             if (execTime) execTime.textContent = 'EXECUTING PIPELINE...';
             if (telemetryLog) telemetryLog.innerHTML = '';
 
@@ -1469,7 +1712,7 @@ function initArchitectureVisualizer() {
 
             function processStep() {
                 if (step < nodes.length) {
-                    // Remove active from all, activate current
+                    // Remove active from all, activate current node
                     nodes.forEach((n, idx) => {
                         if (idx < step) {
                             n.classList.remove('active-node');
@@ -1481,6 +1724,15 @@ function initArchitectureVisualizer() {
                             n.classList.remove('active-node', 'success-node');
                         }
                     });
+
+                    // Also animate matching trace waterfall row if present
+                    if (traceRows[step]) {
+                        traceRows.forEach(r => r.classList.remove('active'));
+                        traceRows[step].classList.add('active');
+                        if (p.trace && p.trace.spans[step]) {
+                            updateInspector(p.trace.spans[step]);
+                        }
+                    }
 
                     // Play frequency beep
                     playHapticTick(450 + step * 120, 0.03);
@@ -2064,7 +2316,7 @@ function initProductionWrapped() {
 
     const wrappedText = `🚀 FINTECH PRODUCTION WRAPPED (2026)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⚡ Daily Surge Scale:    1.5M+ Hits / 1.5L Tx/Day (12+ APIs/Journey)
+⚡ Daily Surge Scale:    1.5M+ Hits / 2L Tx/Day (Scaled from 30k-35k)
 🔥 Async Purge Velocity:  2,500 TPS (0 Table Locks, 14M+ Purged)
 🔄 Database Migration:    150 TPS Sustained (Zero Downtime)
 🛡️ Deadlocks in Prod:     0 (Strict PK-Chunking & Redis Mutex)
@@ -2156,6 +2408,7 @@ function initLiveSystemPreviewModal() {
    ========================================================================== */
 function initShortafQuickTester() {
     const quickForm = document.getElementById('shortaf-quick-form');
+    if (!quickForm) return;
     const testUrlInput = document.getElementById('shortaf-test-url');
     const submitBtn = document.getElementById('shortaf-shorten-submit-btn');
     const resultBox = document.getElementById('shortaf-quick-result');
@@ -2276,6 +2529,884 @@ function initShortafQuickTester() {
         });
     }
 }
+
+/* ==========================================================================
+   26. Copy Code Button with Checkmark Animation
+   ========================================================================== */
+function initCopyCodeButtons() {
+    const copyBtns = document.querySelectorAll('.copy-code-btn');
+    copyBtns.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const parentCard = btn.closest('div.space-y-2');
+            const preEl = parentCard ? parentCard.querySelector('pre') : null;
+            if (!preEl) return;
+
+            const codeText = preEl.textContent.trim();
+            try {
+                await navigator.clipboard.writeText(codeText);
+                btn.classList.add('copied');
+                btn.innerHTML = '<i data-lucide="check" class="w-3 h-3 text-emerald-400"></i><span class="text-emerald-400 font-bold">Copied!</span>';
+                if (window.lucide) window.lucide.createIcons();
+                playHapticTick(1100, 0.03);
+
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '<i data-lucide="copy" class="w-3 h-3"></i><span>Copy</span>';
+                    if (window.lucide) window.lucide.createIcons();
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy code snippet', err);
+            }
+        });
+    });
+}
+
+/* ==========================================================================
+   27. Architecture Decision Records (ADRs) vs Incident RCAs Tab Toggle
+   ========================================================================== */
+function initAdrRcaToggle() {
+    const adrsBtn = document.getElementById('toggle-view-adrs-btn');
+    const rcasBtn = document.getElementById('toggle-view-rcas-btn');
+    const adrsPanel = document.getElementById('adrs-panel');
+    const rcasPanel = document.getElementById('rcas-panel');
+
+    if (!adrsBtn || !rcasBtn || !adrsPanel || !rcasPanel) return;
+
+    adrsBtn.addEventListener('click', () => {
+        adrsBtn.classList.add('active', 'bg-sky-500/20', 'text-sky-300', 'border-sky-500/40', 'shadow-lg', 'shadow-sky-500/20');
+        adrsBtn.classList.remove('text-slate-400', 'border-transparent');
+        rcasBtn.classList.remove('active', 'bg-rose-500/20', 'text-rose-300', 'border-rose-500/40', 'shadow-lg', 'shadow-rose-500/20');
+        rcasBtn.classList.add('text-slate-400');
+
+        adrsPanel.classList.remove('hidden');
+        rcasPanel.classList.add('hidden');
+        playHapticTick(750, 0.02);
+    });
+
+    rcasBtn.addEventListener('click', () => {
+        rcasBtn.classList.add('active', 'bg-rose-500/20', 'text-rose-300', 'border-rose-500/40', 'shadow-lg', 'shadow-rose-500/20');
+        rcasBtn.classList.remove('text-slate-400');
+        adrsBtn.classList.remove('active', 'bg-sky-500/20', 'text-sky-300', 'border-sky-500/40', 'shadow-lg', 'shadow-sky-500/20');
+        adrsBtn.classList.add('text-slate-400');
+
+        rcasPanel.classList.remove('hidden');
+        adrsPanel.classList.add('hidden');
+        playHapticTick(850, 0.02);
+    });
+}
+
+/* ==========================================================================
+   28. Floating Apple Navbar Dynamic Scroll-Spy
+   ========================================================================== */
+function initScrollSpy() {
+    const sections = ['stats', 'architecture-visualizer', 'projects', 'tradeoff-simulator', 'sql-optimizer', 'skills', 'experience', 'adrs', 'principles', 'contact'];
+    const navLinks = document.querySelectorAll('.nav-link');
+    if (!navLinks.length) return;
+
+    window.addEventListener('scroll', () => {
+        let currentSectionId = '';
+        const scrollPosition = window.scrollY + 180;
+
+        sections.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                const top = el.offsetTop;
+                const height = el.offsetHeight;
+                if (scrollPosition >= top && scrollPosition < top + height) {
+                    currentSectionId = id;
+                }
+            }
+        });
+
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === `#${currentSectionId}`) {
+                link.classList.add('active-nav-link');
+            } else {
+                link.classList.remove('active-nav-link');
+            }
+        });
+    }, { passive: true });
+}
+
+/* ==========================================================================
+   29. Spotlight / Raycast Command Palette (Cmd + K / Ctrl + K)
+   ========================================================================== */
+function initCommandPalette() {
+    const modal = document.getElementById('cmd-palette-modal');
+    const input = document.getElementById('cmd-palette-input');
+    const resultsContainer = document.getElementById('cmd-palette-results');
+    const triggerBtn = document.getElementById('cmd-palette-trigger');
+    const mobileTriggerBtn = document.getElementById('mobile-cmd-palette-trigger');
+    const closeEsc = document.getElementById('cmd-palette-close-esc');
+
+    if (!modal || !input || !resultsContainer) return;
+
+    let selectedIndex = 0;
+    let filteredCommands = [];
+
+    const commands = [
+        // Navigation / Deep Dives
+        {
+            id: 'nav-topology',
+            title: 'Interactive Distributed Topology',
+            subtitle: 'Real-time packet hop animation, virtual threads, and Jaeger traces',
+            category: 'Navigation',
+            icon: 'network',
+            action: () => scrollToSection('architecture-visualizer')
+        },
+        {
+            id: 'nav-tradeoffs',
+            title: 'Architecture Trade-Off Live Scorecard',
+            subtitle: 'Interactive benchmark: Concurrency, Locking, and I/O pipeline',
+            category: 'Navigation',
+            icon: 'scale',
+            action: () => scrollToSection('tradeoff-simulator')
+        },
+        {
+            id: 'nav-sql-explain',
+            title: 'MySQL 8.0 EXPLAIN ANALYZE Optimizer',
+            subtitle: '15M row volume slider vs composite B-Tree index scan',
+            category: 'Navigation',
+            icon: 'database',
+            action: () => scrollToSection('sql-optimizer')
+        },
+        {
+            id: 'nav-projects',
+            title: 'The War Stories (Flagship Projects)',
+            subtitle: 'Digitap Single-OTP, 2,500 TPS Purge Engine, DigiLocker 1.5M+ hits',
+            category: 'Navigation',
+            icon: 'layers',
+            action: () => scrollToSection('projects')
+        },
+        {
+            id: 'nav-adrs',
+            title: 'Architecture Decision Records (ADRs) & Incident RCAs',
+            subtitle: 'Real production design choices and blameless post-mortems',
+            category: 'Navigation',
+            icon: 'book-open',
+            action: () => scrollToSection('adrs')
+        },
+        {
+            id: 'nav-skills',
+            title: 'Superpowers & Distributed Stack',
+            subtitle: 'Java 25, Virtual Threads, Spring Boot 3, Kafka, Redis, MySQL',
+            category: 'Navigation',
+            icon: 'cpu',
+            action: () => scrollToSection('skills')
+        },
+        {
+            id: 'nav-experience',
+            title: 'Battlefield Experience (Career History)',
+            subtitle: 'Digitap (FinTech SSE), Merck Group, and Cognizant',
+            category: 'Navigation',
+            icon: 'briefcase',
+            action: () => scrollToSection('experience')
+        },
+        {
+            id: 'nav-contact',
+            title: 'Contact & Zero-BS Tech Chat',
+            subtitle: 'Direct email, phone, and 15-min architectural chat',
+            category: 'Navigation',
+            icon: 'mail',
+            action: () => scrollToSection('contact')
+        },
+        {
+            id: 'nav-lab',
+            title: 'Systems Architecture Lab Portal',
+            subtitle: 'Head-to-head architectural benchmark lab & race condition simulator',
+            category: 'Deep Dive',
+            icon: 'cpu',
+            action: () => { window.location.href = '/lab'; }
+        },
+
+        // Chaos Monkey Injections
+        {
+            id: 'chaos-504',
+            title: 'Inject Chaos: Downstream TSP 504 Timeout',
+            subtitle: 'Simulate eMudhra gateway outage & Resilience4j circuit breaker trip',
+            category: 'Chaos Engine',
+            icon: 'flame',
+            action: () => {
+                scrollToSection('architecture-visualizer');
+                setTimeout(() => {
+                    const btn = document.getElementById('chaos-btn-tsp-504');
+                    if (btn) btn.click();
+                }, 300);
+            }
+        },
+        {
+            id: 'chaos-surge',
+            title: 'Inject Chaos: 10x Flash Crowd Burst (25k TPS)',
+            subtitle: 'Simulate sudden loan disbursement burst & token bucket rate limiter',
+            category: 'Chaos Engine',
+            icon: 'zap',
+            action: () => {
+                scrollToSection('architecture-visualizer');
+                setTimeout(() => {
+                    const btn = document.getElementById('chaos-btn-surge-burst');
+                    if (btn) btn.click();
+                }, 300);
+            }
+        },
+        {
+            id: 'chaos-race',
+            title: 'Inject Chaos: Twin Request Race Condition (2ms)',
+            subtitle: 'Double OTP submission handled by Redis Redisson distributed lock (409)',
+            category: 'Chaos Engine',
+            icon: 'shield-alert',
+            action: () => {
+                scrollToSection('architecture-visualizer');
+                setTimeout(() => {
+                    const btn = document.getElementById('chaos-btn-twin-race');
+                    if (btn) btn.click();
+                }, 300);
+            }
+        },
+
+        // Instant Production Actions
+        {
+            id: 'action-fire-packet',
+            title: 'Fire Packet in Topology Visualizer',
+            subtitle: 'Trace live virtual thread dispatch across microservices',
+            category: 'Actions',
+            icon: 'play',
+            action: () => {
+                scrollToSection('architecture-visualizer');
+                setTimeout(() => {
+                    const btn = document.getElementById('fire-packet-btn');
+                    if (btn) btn.click();
+                }, 300);
+            }
+        },
+        {
+            id: 'action-theme',
+            title: 'Toggle Light / Dark Theme',
+            subtitle: 'Switch between Apple Dark and High-Contrast White mode',
+            category: 'Actions',
+            icon: 'sun',
+            action: () => {
+                const btn = document.getElementById('theme-toggle-btn');
+                if (btn) btn.click();
+            }
+        },
+        {
+            id: 'action-sound',
+            title: 'Toggle Tactile Sound Effects',
+            subtitle: 'Enable or mute realistic haptic audio clicks',
+            category: 'Actions',
+            icon: 'volume-2',
+            action: () => {
+                const btn = document.getElementById('sound-toggle-btn');
+                if (btn) btn.click();
+            }
+        },
+        {
+            id: 'action-copy-email',
+            title: 'Copy Akshat\'s Direct Email',
+            subtitle: 'akshatrawat9211@gmail.com',
+            category: 'Actions',
+            icon: 'copy',
+            action: () => {
+                const copyBtn = document.querySelector('.copy-email-btn');
+                if (copyBtn) copyBtn.click();
+            }
+        },
+        {
+            id: 'action-resume-pdf',
+            title: 'Download Senior Software Engineer Resume (.PDF)',
+            subtitle: 'ATS-optimized executive format with verified production metrics',
+            category: 'Downloads',
+            icon: 'file-text',
+            action: () => {
+                window.location.href = '/downloads/Akshat_Jaiswal_Senior_Software_Engineer.pdf';
+            }
+        },
+        {
+            id: 'action-linkedin',
+            title: 'Open LinkedIn Profile',
+            subtitle: 'Connect with Akshat Jaiswal on LinkedIn',
+            category: 'External',
+            icon: 'external-link',
+            action: () => {
+                window.open('https://www.linkedin.com/in/akshat-jaiswal-9a0397193/', '_blank');
+            }
+        }
+    ];
+
+    function scrollToSection(id) {
+        const el = document.getElementById(id);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    function openPalette() {
+        modal.classList.remove('hidden');
+        input.value = '';
+        selectedIndex = 0;
+        filterCommands('');
+        setTimeout(() => input.focus(), 50);
+        playHapticTick(900, 0.03);
+    }
+
+    function closePalette() {
+        modal.classList.add('hidden');
+        playHapticTick(500, 0.02);
+    }
+
+    function renderResults() {
+        resultsContainer.innerHTML = '';
+        if (filteredCommands.length === 0) {
+            resultsContainer.innerHTML = `
+                <div class="p-6 text-center text-slate-500 text-xs font-mono">
+                    No matching commands or sections found for "${input.value.trim()}".
+                </div>
+            `;
+            return;
+        }
+
+        let currentCategory = '';
+        filteredCommands.forEach((cmd, idx) => {
+            if (cmd.category !== currentCategory) {
+                currentCategory = cmd.category;
+                const header = document.createElement('div');
+                header.className = 'px-3 pt-2.5 pb-1 text-[10px] font-mono font-bold tracking-wider uppercase text-slate-500';
+                header.textContent = currentCategory;
+                resultsContainer.appendChild(header);
+            }
+
+            const item = document.createElement('div');
+            item.className = `cmd-palette-item p-2.5 rounded-xl flex items-center justify-between transition-all cursor-pointer ${idx === selectedIndex ? 'selected bg-sky-500/20 text-white border-sky-500/40' : 'text-slate-300 hover:text-white'}`;
+            item.innerHTML = `
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="p-2 rounded-lg bg-white/[0.04] text-sky-400 shrink-0">
+                        <i data-lucide="${cmd.icon}" class="w-4 h-4"></i>
+                    </div>
+                    <div class="truncate">
+                        <div class="font-bold text-xs truncate">${cmd.title}</div>
+                        <div class="text-[10.5px] text-slate-400 truncate">${cmd.subtitle}</div>
+                    </div>
+                </div>
+                <div class="shrink-0 flex items-center gap-2 pl-2">
+                    <span class="text-[9.5px] px-1.5 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10 hidden sm:inline">${cmd.category}</span>
+                    <i data-lucide="corner-down-left" class="w-3.5 h-3.5 text-slate-500"></i>
+                </div>
+            `;
+
+            item.addEventListener('click', () => {
+                closePalette();
+                cmd.action();
+            });
+
+            item.addEventListener('mouseenter', () => {
+                selectedIndex = idx;
+                updateSelectionHighlight();
+            });
+
+            resultsContainer.appendChild(item);
+        });
+
+        if (window.lucide && typeof lucide.createIcons === 'function') {
+            lucide.createIcons();
+        }
+    }
+
+    function updateSelectionHighlight() {
+        const items = resultsContainer.querySelectorAll('.cmd-palette-item');
+        items.forEach((item, idx) => {
+            if (idx === selectedIndex) {
+                item.classList.add('selected', 'bg-sky-500/20', 'text-white', 'border-sky-500/40');
+            } else {
+                item.classList.remove('selected', 'bg-sky-500/20', 'text-white', 'border-sky-500/40');
+            }
+        });
+        const activeItem = items[selectedIndex];
+        if (activeItem) {
+            activeItem.scrollIntoView({ block: 'nearest' });
+        }
+    }
+
+    function filterCommands(query) {
+        const cleanQuery = query.toLowerCase().trim();
+        if (!cleanQuery) {
+            filteredCommands = [...commands];
+        } else {
+            filteredCommands = commands.filter(cmd =>
+                cmd.title.toLowerCase().includes(cleanQuery) ||
+                cmd.subtitle.toLowerCase().includes(cleanQuery) ||
+                cmd.category.toLowerCase().includes(cleanQuery)
+            );
+        }
+        selectedIndex = 0;
+        renderResults();
+    }
+
+    input.addEventListener('input', (e) => {
+        filterCommands(e.target.value);
+    });
+
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (filteredCommands.length > 0) {
+                selectedIndex = (selectedIndex + 1) % filteredCommands.length;
+                updateSelectionHighlight();
+                playHapticTick(450, 0.015);
+            }
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (filteredCommands.length > 0) {
+                selectedIndex = (selectedIndex - 1 + filteredCommands.length) % filteredCommands.length;
+                updateSelectionHighlight();
+                playHapticTick(450, 0.015);
+            }
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (filteredCommands[selectedIndex]) {
+                const action = filteredCommands[selectedIndex].action;
+                closePalette();
+                action();
+                playHapticTick(850, 0.02);
+            }
+        } else if (e.key === 'Escape') {
+            e.preventDefault();
+            closePalette();
+        }
+    });
+
+    if (triggerBtn) triggerBtn.addEventListener('click', openPalette);
+    if (mobileTriggerBtn) mobileTriggerBtn.addEventListener('click', openPalette);
+    if (closeEsc) closeEsc.addEventListener('click', closePalette);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closePalette();
+    });
+
+    // Global Cmd + K / Ctrl + K listener
+    document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            if (modal.classList.contains('hidden')) {
+                openPalette();
+            } else {
+                closePalette();
+            }
+        } else if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+            closePalette();
+        }
+    });
+}
+
+/* ==========================================================================
+   30. Chaos Monkey & Live Failure Mode Injection
+   ========================================================================== */
+function initChaosSimulator() {
+    const btnTsp = document.getElementById('chaos-btn-tsp-504');
+    const btnSurge = document.getElementById('chaos-btn-surge-burst');
+    const btnRace = document.getElementById('chaos-btn-twin-race');
+    const logBox = document.getElementById('pipeline-telemetry-log');
+    const execTimeDisplay = document.getElementById('pipeline-execution-time');
+
+    if (!btnTsp || !btnSurge || !btnRace) return;
+
+    function appendLog(text, colorClass = 'text-slate-300') {
+        if (!logBox) return;
+        const div = document.createElement('div');
+        div.className = `leading-relaxed font-mono ${colorClass}`;
+        div.innerHTML = text;
+        logBox.appendChild(div);
+        logBox.scrollTop = logBox.scrollHeight;
+    }
+
+    function resetLogBox(headerText) {
+        if (!logBox) return;
+        logBox.innerHTML = `<div class="text-sky-400 font-bold border-b border-white/10 pb-1">// ${headerText}</div>`;
+    }
+
+    // 1. Downstream TSP 504 Timeout
+    btnTsp.addEventListener('click', () => {
+        playHapticTick(300, 0.05);
+        resetLogBox('CHAOS INJECTION: DOWNSTREAM TSP 504 TIMEOUT (CIRCUIT BREAKER TEST)');
+        if (execTimeDisplay) {
+            execTimeDisplay.textContent = 'INJECTING 504 TIMEOUT...';
+            execTimeDisplay.className = 'text-rose-400 font-bold animate-pulse';
+        }
+
+        setTimeout(() => appendLog('[00:00:00.002] [VirtualThread#4821] POST /api/v2/esign/verify-otp dispatching to eMudhra TSP gateway...', 'text-slate-400'), 100);
+        setTimeout(() => appendLog('[00:00:01.004] [Resilience4j-Timer] Upstream gateway response timeout (>1000ms). HTTP 504 GATEWAY TIMEOUT.', 'text-rose-400 font-bold'), 350);
+        setTimeout(() => appendLog('[00:00:01.006] [CircuitBreaker] Failure rate threshold exceeded (60%). State transition: CLOSED -> OPEN.', 'text-amber-400 font-bold'), 600);
+        setTimeout(() => {
+            appendLog('[00:00:01.008] [FallbackExecutor] Fallback queue engaged: Document queued for async retry worker. Return graceful ACK to client.', 'text-emerald-400 font-bold');
+            if (execTimeDisplay) {
+                execTimeDisplay.textContent = 'CIRCUIT_BREAKER_OPEN: FALLBACK_SERVED (12ms)';
+                execTimeDisplay.className = 'text-amber-400 font-bold';
+            }
+            playHapticTick(900, 0.03);
+            showToast('⚡ CHAOS MONKEY: TSP 504 DEFENDED', 'Resilience4j Circuit Breaker tripped to OPEN. Fallback queue safely engaged; 0 customer requests dropped.');
+        }, 900);
+    });
+
+    // 2. 10x Flash Crowd Surge (25k TPS)
+    btnSurge.addEventListener('click', () => {
+        playHapticTick(400, 0.05);
+        resetLogBox('CHAOS INJECTION: 10x FLASH CROWD SURGE (RATE LIMITER & THREAD ELASTICITY)');
+        if (execTimeDisplay) {
+            execTimeDisplay.textContent = 'BURSTING 25,000 TPS...';
+            execTimeDisplay.className = 'text-amber-400 font-bold animate-pulse';
+        }
+
+        setTimeout(() => appendLog('[00:00:00.001] [Ingress-Gateway] Flash crowd surge detected: Inbound requests jumped from 2,500 TPS to 25,400 TPS!', 'text-amber-300 font-bold'), 100);
+        setTimeout(() => appendLog('[00:00:00.004] [JVM-CarrierPool] Java 21 Virtual Threads spawned: 25,000 threads mounted across 16 OS carrier cores.', 'text-sky-300'), 350);
+        setTimeout(() => appendLog('[00:00:00.007] [Redis-TokenBucket] Tenant quota exceeded (5,000 TPS limit). Token bucket depleted.', 'text-rose-400 font-bold'), 600);
+        setTimeout(() => {
+            appendLog('[00:00:00.009] [RateLimiter] 20,400 excess requests rejected with HTTP 429 Too Many Requests (Retry-After: 2s). Core DB CPU stays at 18%.', 'text-emerald-400 font-bold');
+            if (execTimeDisplay) {
+                execTimeDisplay.textContent = '429_TOO_MANY_REQUESTS: RATE_LIMIT_PROTECTED';
+                execTimeDisplay.className = 'text-emerald-400 font-bold';
+            }
+            playHapticTick(900, 0.03);
+            showToast('⚡ CHAOS MONKEY: 25k TPS SURGE SHIELDED', 'Virtual Thread pool expanded seamlessly; Redis token bucket throttled excess load with HTTP 429, shielding MySQL.');
+        }, 900);
+    });
+
+    // 3. Twin Request Race Condition (2ms)
+    btnRace.addEventListener('click', () => {
+        playHapticTick(500, 0.05);
+        resetLogBox('CHAOS INJECTION: TWIN REQUEST RACE CONDITION (REDIS REDISSON DISTRIBUTED LOCK)');
+        if (execTimeDisplay) {
+            execTimeDisplay.textContent = 'SIMULATING 2ms TWIN REQUESTS...';
+            execTimeDisplay.className = 'text-sky-400 font-bold animate-pulse';
+        }
+
+        setTimeout(() => appendLog('[00:00:00.001] [VirtualThread#7102] Req 1 (Sign OTP) -> Acquiring Redis lock: lock:esign:user_9839...', 'text-slate-300'), 100);
+        setTimeout(() => appendLog('[00:00:00.003] [VirtualThread#7103] Req 2 (Twin Duplicate, +2ms) -> Attempting acquire lock:esign:user_9839...', 'text-amber-300 font-bold'), 350);
+        setTimeout(() => appendLog('[00:00:00.004] [RedissonLock] Req 1 lock ACQUIRED (TTL: 30000ms, Watchdog lease active).', 'text-emerald-400 font-bold'), 600);
+        setTimeout(() => {
+            appendLog('[00:00:00.005] [RedissonLock] Req 2 lock REJECTED (tryLock failed). Idempotency collision intercepted.', 'text-rose-400 font-bold');
+            appendLog('[00:00:00.008] [Dispatcher] Req 2 aborted with HTTP 409 Conflict. Zero duplicate Aadhaar verification charges incurred!', 'text-emerald-400 font-bold');
+            if (execTimeDisplay) {
+                execTimeDisplay.textContent = '409_CONFLICT: 100% IDEMPOTENT';
+                execTimeDisplay.className = 'text-emerald-400 font-bold';
+            }
+            playHapticTick(900, 0.03);
+            showToast('⚡ CHAOS MONKEY: TWIN RACE INTERCEPTED', 'Redisson distributed lock granted exclusive execution to Req 1 and safely rejected twin Req 2 with HTTP 409 Conflict.');
+        }, 900);
+    });
+}
+
+/* ==========================================================================
+   31. Systems Architecture Trade-Off Live Scorecard
+   ========================================================================== */
+function initTradeoffSimulator() {
+    const buttons = document.querySelectorAll('.tradeoff-toggle-btn');
+    const tpsDisplay = document.getElementById('scorecard-tps');
+    const latencyDisplay = document.getElementById('scorecard-latency');
+    const memoryDisplay = document.getElementById('scorecard-memory');
+    const locksDisplay = document.getElementById('scorecard-locks');
+    const verdictTag = document.getElementById('scorecard-verdict-tag');
+    const verdictText = document.getElementById('scorecard-verdict-text');
+
+    if (!buttons.length || !tpsDisplay) return;
+
+    const state = {
+        concurrency: 'virtual',  // 'platform' | 'virtual'
+        locking: 'redis_lock',   // 'mysql_lock' | 'redis_lock'
+        io: 'direct_byte'        // 'disk_io' | 'direct_byte'
+    };
+
+    function recalculateScorecard() {
+        let tps = 4850;
+        let latency = 38;
+        let memory = '420 MB / 16 Carrier';
+        let contention = '0.0% Contention';
+        let tag = 'DIGITAP PRODUCTION STANDARD (TIER-1)';
+        let tagClass = 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
+        let explanation = '';
+
+        const isVirtual = state.concurrency === 'virtual';
+        const isRedis = state.locking === 'redis_lock';
+        const isDirect = state.io === 'direct_byte';
+
+        if (isVirtual && isRedis && isDirect) {
+            tps = 4850;
+            latency = 38;
+            memory = '420 MB / 16 Carrier';
+            contention = '0.0% Contention';
+            tag = 'DIGITAP PRODUCTION STANDARD (TIER-1)';
+            tagClass = 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
+            explanation = 'Optimal FinTech architecture: Java 21 Virtual Threads decouple request concurrency from kernel OS threads. Redis Redisson locks prevent database row lock escalations, while Direct ByteBuffer streams eliminate EBS disk write latency. Handles 4,800+ TPS with zero deadlocks.';
+        } else if (!isVirtual && !isRedis && !isDirect) {
+            tps = 320;
+            latency = 1840;
+            memory = '2.8 GB / 1,200 OS Threads';
+            contention = '89.4% (Deadlock Danger)';
+            tag = 'LEGACY DISASTER (FATAL BOTTLENECK)';
+            tagClass = 'bg-rose-500/20 text-rose-300 border-rose-500/30';
+            explanation = 'Worst-case legacy setup: OS platform threads pin carrier cores on I/O wait. MySQL row locks trigger deadlocks and Lock Wait Timeout Exceeded errors under 350 TPS. Disk spooling saturates AWS EBS IOPS, causing severe cascading 504 timeouts.';
+        } else {
+            // Mixed combinations
+            let penalties = [];
+
+            if (!isVirtual) {
+                tps = Math.min(tps, 650);
+                latency += 420;
+                memory = '1.8 GB / 800 OS Threads';
+                penalties.push('Platform thread exhaustion caps concurrency');
+            }
+
+            if (!isRedis) {
+                tps = Math.min(tps, 950);
+                latency += 280;
+                contention = '68.2% Contention (Row Locks)';
+                penalties.push('MySQL row locks create connection queue spikes');
+            }
+
+            if (!isDirect) {
+                latency += 340;
+                tps = Math.min(tps, 1800);
+                penalties.push('Disk spooling hits EBS burst IOPS limits');
+            }
+
+            tag = 'SUB-OPTIMAL COMPROMISE';
+            tagClass = 'bg-amber-500/20 text-amber-300 border-amber-500/30';
+            explanation = `Noticeable production bottlenecks detected: ${penalties.join(', ')}. While operational at low volume, this configuration degrades under spike traffic.`;
+        }
+
+        // DOM updates
+        tpsDisplay.textContent = `${tps.toLocaleString()} TPS`;
+        tpsDisplay.className = `text-xl sm:text-2xl font-black font-mono ${tps >= 3000 ? 'text-emerald-400' : tps >= 1000 ? 'text-amber-400' : 'text-rose-400'}`;
+
+        latencyDisplay.textContent = `${latency} ms`;
+        latencyDisplay.className = `text-xl sm:text-2xl font-black font-mono ${latency <= 50 ? 'text-emerald-400' : latency <= 300 ? 'text-sky-400' : 'text-rose-400'}`;
+
+        memoryDisplay.textContent = memory;
+        memoryDisplay.className = `text-xl sm:text-2xl font-black font-mono ${isVirtual ? 'text-purple-400' : 'text-rose-400'}`;
+
+        locksDisplay.textContent = contention;
+        locksDisplay.className = `text-xl sm:text-2xl font-black font-mono ${isRedis ? 'text-emerald-400' : 'text-rose-400'}`;
+
+        if (verdictTag) {
+            verdictTag.textContent = tag;
+            verdictTag.className = `px-2 py-0.5 rounded text-[10px] font-bold border ${tagClass}`;
+        }
+
+        if (verdictText) {
+            verdictText.textContent = explanation;
+        }
+    }
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const axis = btn.getAttribute('data-axis');
+            const choice = btn.getAttribute('data-choice');
+            if (!axis || !choice) return;
+
+            state[axis] = choice;
+
+            // Update button styles in this axis
+            const axisButtons = document.querySelectorAll(`.tradeoff-toggle-btn[data-axis="${axis}"]`);
+            axisButtons.forEach(b => {
+                if (b === btn) {
+                    b.classList.add('active');
+                    if (axis === 'concurrency') {
+                        b.className = 'tradeoff-toggle-btn active w-full text-left p-3 rounded-xl border border-sky-500/40 bg-sky-500/15 text-sky-300 transition-all text-xs font-mono cursor-pointer';
+                    } else if (axis === 'locking') {
+                        b.className = 'tradeoff-toggle-btn active w-full text-left p-3 rounded-xl border border-amber-500/40 bg-amber-500/15 text-amber-300 transition-all text-xs font-mono cursor-pointer';
+                    } else {
+                        b.className = 'tradeoff-toggle-btn active w-full text-left p-3 rounded-xl border border-emerald-500/40 bg-emerald-500/15 text-emerald-300 transition-all text-xs font-mono cursor-pointer';
+                    }
+                } else {
+                    b.classList.remove('active');
+                    b.className = 'tradeoff-toggle-btn w-full text-left p-3 rounded-xl border border-white/10 bg-white/[0.03] text-slate-400 hover:text-white transition-all text-xs font-mono cursor-pointer';
+                }
+            });
+
+            recalculateScorecard();
+            playHapticTick(750, 0.02);
+        });
+    });
+}
+
+/* ==========================================================================
+   32. Interactive MySQL 8.0 EXPLAIN ANALYZE & B-Tree Optimizer
+   ========================================================================== */
+function initSqlOptimizer() {
+    const slider = document.getElementById('sql-volume-slider');
+    const volumeDisplay = document.getElementById('sql-volume-display');
+    const btnNone = document.getElementById('sql-strategy-none-btn');
+    const btnIndexed = document.getElementById('sql-strategy-indexed-btn');
+    const metricLatency = document.getElementById('sql-metric-latency');
+    const metricSpeedup = document.getElementById('sql-metric-speedup');
+    const metricExamined = document.getElementById('sql-metric-examined');
+    const metricEfficiency = document.getElementById('sql-metric-efficiency');
+    const metricBuffer = document.getElementById('sql-metric-buffer');
+    const metricBufferNote = document.getElementById('sql-metric-buffer-note');
+    const metricStatus = document.getElementById('sql-metric-status');
+    const metricStatusNote = document.getElementById('sql-metric-status-note');
+    const appliedTag = document.getElementById('sql-index-applied-tag');
+    const explainTbody = document.getElementById('sql-explain-tbody');
+
+    if (!slider || !btnNone || !btnIndexed || !explainTbody) return;
+
+    let isIndexed = true;
+
+    const volumeMap = {
+        1: { count: 10000, label: '10,000 Rows', rawLatency: 8.5 },
+        2: { count: 100000, label: '100,000 Rows', rawLatency: 48.2 },
+        3: { count: 1000000, label: '1,000,000 Rows', rawLatency: 380.0 },
+        4: { count: 5000000, label: '5,000,000 Rows', rawLatency: 1650.0 },
+        5: { count: 15000000, label: '15,000,000 Rows', rawLatency: 4210.0 }
+    };
+
+    function renderOptimizer() {
+        const val = parseInt(slider.value, 10) || 5;
+        const vol = volumeMap[val] || volumeMap[5];
+
+        if (volumeDisplay) {
+            volumeDisplay.textContent = vol.label;
+        }
+
+        if (isIndexed) {
+            // Composite Index Active
+            const latency = 1.4;
+            const speedupRatio = Math.round(vol.rawLatency / latency);
+
+            if (metricLatency) {
+                metricLatency.textContent = `${latency.toFixed(1)} ms`;
+                metricLatency.className = 'text-xl sm:text-2xl font-black text-emerald-400 font-mono';
+            }
+            if (metricSpeedup) {
+                metricSpeedup.textContent = `${speedupRatio.toLocaleString()}x Faster`;
+                metricSpeedup.className = 'text-[10.5px] font-mono text-emerald-400 block font-bold';
+            }
+            if (metricExamined) {
+                metricExamined.textContent = '50 rows';
+                metricExamined.className = 'text-xl sm:text-2xl font-black text-emerald-400 font-mono';
+            }
+            if (metricEfficiency) {
+                metricEfficiency.textContent = '100% Index Selectivity';
+                metricEfficiency.className = 'text-[10.5px] font-mono text-slate-400 block';
+            }
+            if (metricBuffer) {
+                metricBuffer.textContent = '0 Disk Reads';
+                metricBuffer.className = 'text-xl sm:text-2xl font-black text-sky-400 font-mono';
+            }
+            if (metricBufferNote) {
+                metricBufferNote.textContent = 'In-Memory B-Tree Descent';
+            }
+            if (metricStatus) {
+                metricStatus.textContent = 'Tier-1 Safe';
+                metricStatus.className = 'text-xl sm:text-2xl font-black text-emerald-400 font-mono';
+            }
+            if (metricStatusNote) {
+                metricStatusNote.textContent = '0 Deadlock Risk';
+                metricStatusNote.className = 'text-[10.5px] font-mono text-emerald-400 block font-bold';
+            }
+            if (appliedTag) {
+                appliedTag.textContent = 'INDEX: `idx_kyc_client_status_created` (client_id, status, created_at DESC)';
+                appliedTag.className = 'text-[11px] font-bold text-emerald-400';
+            }
+
+            explainTbody.innerHTML = `
+                <tr class="hover:bg-white/[0.02] transition-colors">
+                    <td class="p-2.5 font-bold text-white">1</td>
+                    <td class="p-2.5">SIMPLE</td>
+                    <td class="p-2.5 text-sky-300">kyc_request_logs</td>
+                    <td class="p-2.5"><span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">range</span></td>
+                    <td class="p-2.5 text-emerald-400">idx_kyc_client_status_created</td>
+                    <td class="p-2.5 text-emerald-400 font-bold">idx_kyc_client_status_created</td>
+                    <td class="p-2.5">138</td>
+                    <td class="p-2.5 text-slate-500">NULL</td>
+                    <td class="p-2.5 text-emerald-400 font-bold">50</td>
+                    <td class="p-2.5">100.00</td>
+                    <td class="p-2.5 text-emerald-300 font-semibold">Using index condition; Backward index scan</td>
+                </tr>
+            `;
+        } else {
+            // Unindexed - Full Table Scan (ALL)
+            const latency = vol.rawLatency;
+
+            if (metricLatency) {
+                metricLatency.textContent = `${latency.toLocaleString()} ms`;
+                metricLatency.className = 'text-xl sm:text-2xl font-black text-rose-400 font-mono';
+            }
+            if (metricSpeedup) {
+                metricSpeedup.textContent = '1x (BASELINE / SLOW)';
+                metricSpeedup.className = 'text-[10.5px] font-mono text-rose-400 block font-bold';
+            }
+            if (metricExamined) {
+                metricExamined.textContent = `${vol.count.toLocaleString()} rows`;
+                metricExamined.className = 'text-xl sm:text-2xl font-black text-rose-400 font-mono';
+            }
+            if (metricEfficiency) {
+                metricEfficiency.textContent = 'Full Table Scan (ALL)';
+                metricEfficiency.className = 'text-[10.5px] font-mono text-rose-400 block font-bold';
+            }
+            if (metricBuffer) {
+                metricBuffer.textContent = '12.8 GB Churn';
+                metricBuffer.className = 'text-xl sm:text-2xl font-black text-rose-400 font-mono';
+            }
+            if (metricBufferNote) {
+                metricBufferNote.textContent = 'EBS IOPS Bottleneck';
+            }
+            if (metricStatus) {
+                metricStatus.textContent = 'FATAL 504 RISK';
+                metricStatus.className = 'text-xl sm:text-2xl font-black text-rose-400 font-mono';
+            }
+            if (metricStatusNote) {
+                metricStatusNote.textContent = 'Lock Wait Timeouts';
+                metricStatusNote.className = 'text-[10.5px] font-mono text-rose-400 block font-bold';
+            }
+            if (appliedTag) {
+                appliedTag.textContent = 'NO INDEX (ALL ROWS READ FROM DISK)';
+                appliedTag.className = 'text-[11px] font-bold text-rose-400';
+            }
+
+            explainTbody.innerHTML = `
+                <tr class="hover:bg-white/[0.02] transition-colors">
+                    <td class="p-2.5 font-bold text-white">1</td>
+                    <td class="p-2.5">SIMPLE</td>
+                    <td class="p-2.5 text-rose-300">kyc_request_logs</td>
+                    <td class="p-2.5"><span class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-400 font-bold">ALL</span></td>
+                    <td class="p-2.5 text-slate-500">NULL</td>
+                    <td class="p-2.5 text-slate-500">NULL</td>
+                    <td class="p-2.5 text-slate-500">NULL</td>
+                    <td class="p-2.5 text-slate-500">NULL</td>
+                    <td class="p-2.5 text-rose-400 font-bold">${vol.count.toLocaleString()}</td>
+                    <td class="p-2.5">10.00</td>
+                    <td class="p-2.5 text-rose-400 font-bold">Using where; Using filesort</td>
+                </tr>
+            `;
+        }
+    }
+
+    slider.addEventListener('input', () => {
+        renderOptimizer();
+        playHapticTick(600, 0.015);
+    });
+
+    btnNone.addEventListener('click', () => {
+        isIndexed = false;
+        btnNone.className = 'sql-strat-btn active flex-1 py-2.5 px-3 rounded-xl border border-rose-500/40 bg-rose-500/20 text-rose-300 transition-all cursor-pointer text-center font-bold shadow-lg shadow-rose-500/20';
+        btnIndexed.className = 'sql-strat-btn flex-1 py-2.5 px-3 rounded-xl border border-white/10 bg-white/[0.03] text-slate-400 hover:text-white transition-all cursor-pointer text-center font-bold';
+        renderOptimizer();
+        playHapticTick(300, 0.03);
+    });
+
+    btnIndexed.addEventListener('click', () => {
+        isIndexed = true;
+        btnIndexed.className = 'sql-strat-btn active flex-1 py-2.5 px-3 rounded-xl border border-emerald-500/40 bg-emerald-500/20 text-emerald-300 transition-all cursor-pointer text-center font-bold shadow-lg shadow-emerald-500/20';
+        btnNone.className = 'sql-strat-btn flex-1 py-2.5 px-3 rounded-xl border border-white/10 bg-white/[0.03] text-slate-400 hover:text-white transition-all cursor-pointer text-center font-bold';
+        renderOptimizer();
+        playHapticTick(950, 0.03);
+    });
+
+    // Initial render
+    renderOptimizer();
+}
+
 
 
 

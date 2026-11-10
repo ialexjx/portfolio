@@ -35,6 +35,8 @@ public class PortfolioController {
         model.addAttribute("skillCategories", portfolioDataService.getSkillCategories());
         model.addAttribute("awards", portfolioDataService.getAwards());
         model.addAttribute("roasts", portfolioDataService.getRoastQuotes());
+        model.addAttribute("adrs", portfolioDataService.getArchitectureDecisionRecords());
+        model.addAttribute("rcas", portfolioDataService.getIncidentRcas());
         return "index";
     }
 

@@ -11,15 +11,49 @@
     <link rel="apple-touch-icon" sizes="180x180" th:href="@{/apple-touch-icon.png}">
 
     <!-- Open Graph & Social Preview Cards (LinkedIn, Twitter, WhatsApp) -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="profile">
     <meta property="og:title" th:content="${name} + ' | ' + ${titleRole}">
-    <meta property="og:description" content="Senior Software Engineer (SSE). High-throughput FinTech distributed systems, Java 25 & Virtual Threads, 1.5M+ daily hits, 2,500 TPS purge engine, and ShortAF URL shortener.">
+    <meta property="og:description" content="Senior Software Engineer (SSE). High-throughput FinTech distributed systems, Java 25 &amp; Virtual Threads, 1.5M+ daily hits, 2,500 TPS purge engine, and mission-critical banking rails.">
     <meta property="og:image" th:content="@{/images/og-preview.jpg}">
+    <meta property="og:url" content="https://akshatjaiswal.dev/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" th:content="${name} + ' | ' + ${titleRole}">
-    <meta name="twitter:description" content="Senior Software Engineer (SSE). High-Throughput FinTech Rails & Java 25.">
+    <meta name="twitter:description" content="Senior Software Engineer (SSE). High-throughput FinTech distributed systems, Java 25 &amp; Virtual Threads.">
     <meta name="twitter:image" th:content="@{/images/og-preview.jpg}">
     <meta name="theme-color" content="#020617">
+
+    <!-- Structured Data (JSON-LD) for Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Akshat Jaiswal",
+      "jobTitle": "Senior Software Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Digitap.AI"
+      },
+      "alumnusOf": {
+        "@type": "EducationalOrganization",
+        "name": "Buddha Institute of Technology, Dr. A.P.J. Abdul Kalam Technical University"
+      },
+      "knowsAbout": [
+        "Distributed Systems",
+        "Java 25",
+        "Virtual Threads",
+        "High Throughput Architecture",
+        "Spring Boot 3",
+        "Redis Distributed Locking",
+        "MySQL InnoDB Optimization",
+        "Apache PDFBox",
+        "FinTech Core Rails"
+      ],
+      "url": "https://akshatjaiswal.dev/",
+      "sameAs": [
+        "https://www.linkedin.com/in/ialexjx/"
+      ]
+    }
+    </script>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -51,60 +85,66 @@
 
     <!-- Apple Glass Custom Stylesheet -->
     <link rel="stylesheet" th:href="@{/css/apple-glass.css}">
-    <!-- Avengers Marvel Theme Stylesheet -->
-    <link rel="stylesheet" th:href="@{/css/avengers.css}">
 </head>
 <body class="bg-mesh-grid min-h-screen relative antialiased selection:bg-sky-500/20 selection:text-sky-300">
-
-    <!-- Fullscreen Rocket & Patakhe Fireworks Canvas (Celebration Engine) -->
-    <canvas id="fireworks-canvas" class="fixed inset-0 pointer-events-none z-[70] w-full h-full"></canvas>
 
     <!-- ====================================================================
          FLOATING APPLE GLASS NAVBAR
          ==================================================================== -->
-    <header class="fixed top-4 left-0 right-0 z-40 px-3 sm:px-6 max-w-7xl mx-auto">
-        <nav class="apple-glass rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between transition-all duration-300 shadow-2xl">
+    <header class="fixed top-3 left-0 right-0 z-40 px-3 sm:px-6 max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1440px] mx-auto">
+        <nav class="apple-glass rounded-full px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between transition-all duration-300 shadow-2xl">
             <!-- Brand / Logo -->
-            <a href="#" class="flex items-center gap-2.5 sm:gap-3 group shrink-0 mr-2 xl:mr-4">
-                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-sky-500 to-emerald-400 p-0.5 shadow-lg shadow-sky-500/20 shrink-0">
-                    <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center text-xs font-black tracking-tighter text-sky-400 font-mono">
+            <a href="#" class="flex items-center gap-2 sm:gap-2.5 group shrink-0">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-500 to-emerald-400 p-0.5 shadow-md shadow-sky-500/20 shrink-0">
+                    <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center text-[11px] font-black tracking-tighter text-sky-400 font-mono">
                         AJ
                     </div>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-sm font-extrabold tracking-tight text-white group-hover:text-sky-400 transition-colors leading-tight" th:text="${name}">Akshat Jaiswal</span>
-                    <div class="flex items-center gap-1.5 text-[10px] text-emerald-400 font-mono leading-none pt-0.5">
+                    <span class="text-xs sm:text-sm font-extrabold tracking-tight text-white group-hover:text-sky-400 transition-colors leading-tight" th:text="${name}">Akshat Jaiswal</span>
+                    <div class="flex items-center gap-1 text-[9.5px] sm:text-[10px] text-emerald-400 font-mono leading-none pt-0.5">
                         <span class="pulsing-dot"></span>
-                        <span class="font-bold">SSE @ Digitap</span>
+                        <span class="font-bold hidden sm:inline">SSE @ Digitap</span>
+                        <span class="font-bold sm:hidden">SSE</span>
                     </div>
                 </div>
             </a>
 
             <!-- Desktop Nav Links (Cleanly spaced, never overlapping) -->
-            <div class="hidden xl:flex items-center gap-1.5 xl:gap-2 text-[11px] font-semibold tracking-wider text-slate-300 whitespace-nowrap">
-                <a href="#stats" class="mac-dock-item hover:text-sky-400 transition-all">METRICS</a>
-                <a href="#projects" class="mac-dock-item hover:text-sky-400 transition-all">PROJECTS</a>
-                <a href="#skills" class="mac-dock-item hover:text-sky-400 transition-all">SKILLS</a>
-                <a href="#experience" class="mac-dock-item hover:text-sky-400 transition-all">EXPERIENCE</a>
-                <a href="#awards" class="mac-dock-item hover:text-sky-400 transition-all">AWARDS</a>
-                <a href="#roasts" class="mac-dock-item hover:text-sky-400 transition-all">ROASTS</a>
-                <a href="#contact" class="mac-dock-item hover:text-sky-400 transition-all">CONTACT</a>
+            <div class="hidden xl:flex items-center gap-0.5 2xl:gap-1 text-[10px] 2xl:text-[10.5px] font-semibold tracking-wide text-slate-300 whitespace-nowrap">
+                <a href="#stats" class="mac-dock-item hover:text-sky-400 transition-all nav-link">METRICS</a>
+                <a href="#architecture-visualizer" class="mac-dock-item hover:text-sky-400 transition-all nav-link">TOPOLOGY</a>
+                <a href="#projects" class="mac-dock-item hover:text-sky-400 transition-all nav-link">PROJECTS</a>
+                <a href="#tradeoff-simulator" class="mac-dock-item hover:text-sky-400 transition-all nav-link">TRADEOFFS</a>
+                <a href="#sql-optimizer" class="mac-dock-item hover:text-sky-400 transition-all nav-link hidden 2xl:inline-flex">SQL EXPLAIN</a>
+                <a href="#skills" class="mac-dock-item hover:text-sky-400 transition-all nav-link">SKILLS</a>
+                <a href="#experience" class="mac-dock-item hover:text-sky-400 transition-all nav-link">EXPERIENCE</a>
+                <a href="#adrs" class="mac-dock-item hover:text-sky-400 transition-all nav-link">ADRS &amp; RCAS</a>
+                <a href="#principles" class="mac-dock-item hover:text-sky-400 transition-all nav-link hidden 2xl:inline-flex">PRINCIPLES</a>
+                <a href="#contact" class="mac-dock-item hover:text-sky-400 transition-all nav-link">CONTACT</a>
             </div>
 
-            <!-- Right Controls -->
+            <!-- Right Controls (Never overflows outside the pill container) -->
             <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                <!-- Spotlight Command Palette (⌘K) Trigger -->
+                <button id="cmd-palette-trigger" class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white border border-white/10 text-[10.5px] font-mono transition-all cursor-pointer shadow-sm" title="Spotlight Command Palette (⌘K)">
+                    <i data-lucide="command" class="w-3.5 h-3.5 text-sky-400"></i>
+                    <span class="hidden md:inline text-slate-400">Search</span>
+                    <kbd class="px-1.5 py-0.2 rounded bg-white/10 text-[9px] text-sky-300 font-semibold border border-white/15">⌘K</kbd>
+                </button>
+
                 <!-- Systems Lab Portal Button -->
-                <a href="/lab" class="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-bold bg-sky-500/15 text-sky-300 border border-sky-500/35 hover:bg-sky-500/25 hover:scale-105 active:scale-95 transition-all cursor-pointer whitespace-nowrap shrink-0 shadow-sm font-mono" title="Open Interactive Systems Architecture Lab">
-                    <i data-lucide="cpu" class="w-3.5 h-3.5 text-sky-400"></i>
-                    <span>SYSTEMS LAB</span>
+                <a href="/lab" class="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10.5px] font-bold bg-sky-500/15 text-sky-300 border border-sky-500/35 hover:bg-sky-500/25 hover:scale-105 active:scale-95 transition-all cursor-pointer whitespace-nowrap shrink-0 shadow-sm font-mono" title="Open Interactive Systems Architecture Lab">
+                    <i data-lucide="cpu" class="w-3 h-3 text-sky-400"></i>
+                    <span>LAB</span>
                 </a>
 
                 <!-- Download Resume Dropdown -->
                 <div class="relative group hidden sm:block">
-                    <button class="px-3 py-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm">
-                        <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    <button class="px-2.5 py-1 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 text-[10.5px] font-mono font-bold flex items-center gap-1 transition-all cursor-pointer shadow-sm">
+                        <i data-lucide="download" class="w-3 h-3"></i>
                         <span>Resume</span>
-                        <i data-lucide="chevron-down" class="w-3 h-3"></i>
+                        <i data-lucide="chevron-down" class="w-2.5 h-2.5"></i>
                     </button>
                     <div class="absolute right-0 mt-2 w-48 rounded-2xl apple-glass border border-white/15 p-1.5 shadow-2xl hidden group-hover:block z-50">
                         <a href="/downloads/Akshat_Jaiswal_Senior_Software_Engineer.pdf" download class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-mono hover:bg-sky-500/20 text-slate-200 hover:text-white transition-colors">
@@ -122,29 +162,23 @@
                     </div>
                 </div>
 
-                <!-- Grouped Capsule for Sound & Theme -->
+                <!-- Grouped Capsule for Sound & Theme (Fully contained inside navbar) -->
                 <div class="flex items-center p-0.5 rounded-full bg-white/[0.04] border border-white/10 shrink-0">
                     <!-- Sound FX Toggle Button -->
-                    <button id="sound-toggle-btn" class="p-2 rounded-full hover:bg-white/10 text-slate-300 hover:text-white transition-all cursor-pointer" title="Toggle Tactile Sound FX">
+                    <button id="sound-toggle-btn" class="p-1.5 rounded-full hover:bg-white/10 text-slate-300 hover:text-white transition-all cursor-pointer" title="Toggle Tactile Sound FX">
                         <i data-lucide="volume-2" id="sound-on-icon" class="w-3.5 h-3.5 text-emerald-400"></i>
                         <i data-lucide="volume-x" id="sound-off-icon" class="w-3.5 h-3.5 hidden text-slate-500"></i>
                     </button>
 
                     <!-- Theme Toggle Button -->
-                    <button id="theme-toggle-btn" class="p-2 rounded-full hover:bg-white/10 text-slate-300 hover:text-white transition-all cursor-pointer" title="Toggle Light/Dark Theme">
+                    <button id="theme-toggle-btn" class="p-1.5 rounded-full hover:bg-white/10 text-slate-300 hover:text-white transition-all cursor-pointer" title="Toggle Light/Dark Theme">
                         <i data-lucide="sun" id="theme-sun-icon" class="w-3.5 h-3.5"></i>
                         <i data-lucide="moon" id="theme-moon-icon" class="w-3.5 h-3.5 hidden"></i>
                     </button>
                 </div>
 
-                <!-- Break Prod Troll Button -->
-                <button class="break-prod-trigger hidden md:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[10.5px] font-bold bg-rose-500/10 text-rose-400 border border-rose-500/30 hover:bg-rose-500/20 hover:scale-105 active:scale-95 transition-all cursor-pointer whitespace-nowrap shrink-0" title="Break Production (Don't Click!)">
-                    <i data-lucide="alert-triangle" class="w-3 h-3"></i>
-                    <span>BREAK PROD</span>
-                </button>
-
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="xl:hidden p-2 rounded-full savage-pill text-slate-300 hover:text-white cursor-pointer" title="Toggle Menu">
+                <button id="mobile-menu-btn" class="xl:hidden p-1.5 rounded-full savage-pill text-slate-300 hover:text-white cursor-pointer" title="Toggle Menu">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -152,6 +186,13 @@
 
         <!-- Mobile Dropdown Menu -->
         <div id="mobile-menu" class="hidden xl:hidden mt-3 apple-glass rounded-2xl p-5 flex flex-col gap-3 text-sm font-medium text-slate-200 shadow-2xl border border-white/10">
+            <button id="mobile-cmd-palette-trigger" type="button" class="w-full text-left py-2 px-3 rounded-lg bg-sky-500/10 text-sky-300 font-mono font-bold flex items-center justify-between transition-all cursor-pointer">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="command" class="w-4 h-4 text-sky-400"></i>
+                    <span>Command Palette</span>
+                </div>
+                <kbd class="px-2 py-0.5 rounded bg-white/10 text-[10px] text-sky-300 font-semibold">⌘K</kbd>
+            </button>
             <a href="/lab" class="hover:text-sky-400 py-1.5 px-3 rounded-lg bg-sky-500/10 text-sky-300 font-bold flex items-center gap-2 transition-all">
                 <i data-lucide="cpu" class="w-4 h-4 text-sky-400"></i> Systems Architecture Lab
             </a>
@@ -159,40 +200,40 @@
                 <i data-lucide="download" class="w-4 h-4 text-emerald-400"></i> Download Resume (.PDF)
             </a>
             <a href="#stats" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Metrics</a>
+            <a href="#architecture-visualizer" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Distributed Topology</a>
             <a href="#projects" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">War Stories</a>
+            <a href="#tradeoff-simulator" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Trade-off Scorecard</a>
+            <a href="#sql-optimizer" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">SQL EXPLAIN Optimizer</a>
             <a href="#skills" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Skills &amp; Arsenal</a>
             <a href="#experience" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Experience</a>
+            <a href="#adrs" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">ADRs &amp; Incident RCAs</a>
             <a href="#awards" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Awards</a>
-            <a href="#architecture" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Systems Lab Gateway</a>
-            <a href="#roasts" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Confessions (Roasts)</a>
+            <a href="#principles" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Architectural Principles</a>
             <a href="#contact" class="hover:text-sky-400 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all">Contact</a>
-            <button class="break-prod-trigger flex items-center justify-center gap-2 py-2.5 rounded-xl bg-rose-500/15 text-rose-400 border border-rose-500/30 font-bold text-xs mt-1">
-                <i data-lucide="alert-triangle" class="w-4 h-4"></i> BREAK PROD
-            </button>
         </div>
     </header>
 
-    <main class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-32">
+    <main class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-20">
 
         <!-- ====================================================================
              HERO SECTION: THE SAVAGE INTRO
              ==================================================================== -->
         <section class="relative pt-8 pb-4 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             <div class="flex-1 space-y-6 text-center lg:text-left">
-                <!-- Status Pill -->
-                <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 backdrop-blur-md shadow-sm">
-                    <span class="pulsing-dot"></span>
-                    <span>Senior Software Engineer &bull; 4 Products Built Solo &bull; OKYC (3L/day) &bull; DigiLocker (1.5L/day) &bull; Java 25</span>
+                <!-- Status Pill (Responsive wrap on mobile, elegant pill on desktop) -->
+                <div class="inline-flex flex-wrap items-center justify-center lg:justify-start gap-1.5 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 rounded-2xl sm:rounded-full text-[11px] sm:text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 backdrop-blur-md shadow-sm max-w-full text-left sm:text-center">
+                    <span class="pulsing-dot shrink-0"></span>
+                    <span>Senior Software Engineer &bull; 4 Products Built Solo &bull; OKYC (3L/day) &bull; DigiLocker (2L/day) &bull; Java 25</span>
                 </div>
 
-                <!-- Main Punchy Title -->
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15] text-white">
+                <!-- Main Punchy Title (Clean responsive sizing, break-words) -->
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.18] sm:leading-[1.15] text-white break-words">
                     I architect backend systems that <span class="bg-gradient-to-r from-sky-400 via-emerald-400 to-teal-300 bg-clip-text text-transparent">don’t break</span> when production catches fire.
                 </h1>
 
                 <!-- Savage Subtitle -->
                 <p class="text-base sm:text-lg text-slate-300 max-w-3xl leading-relaxed">
-                    Senior Software Engineer (SSE) at <span class="text-white font-semibold">Digitap.AI</span>. I architect high-throughput distributed systems powering India’s core FinTech rails — having single-handedly built <span class="text-white font-medium">4 enterprise products from scratch</span>. Across high-volume identity, banking, and digital execution systems like <span class="text-sky-300 font-medium">OKYC (2L–3L daily successes)</span>, <span class="text-emerald-300 font-medium">DigiLocker (1.5M+ daily hits &amp; 1.5L successful/day)</span>, <span class="text-white font-medium">eSign, eNACH, VKYC, Video-PD, and Clickwrap</span>, I specialize in zero-downtime 150 TPS database migrations, 2,500 TPS purge engines, and turning chaotic third-party banking APIs into sub-50ms Swiss watches.
+                    Senior Software Engineer (SSE) at <span class="text-white font-semibold">Digitap.AI</span>. I architect high-throughput distributed systems powering India’s core FinTech rails — having single-handedly built <span class="text-white font-medium">4 enterprise products from scratch</span>. Across high-volume identity, banking, and digital execution systems like <span class="text-sky-300 font-medium">OKYC (2L–3L daily successes)</span>, <span class="text-emerald-300 font-medium">DigiLocker (1.5M+ daily hits &amp; 2L successful/day, scaled from 30k–35k)</span>, <span class="text-white font-medium">eSign, eNACH, VKYC, Video-PD, and Clickwrap</span>, I specialize in zero-downtime 150 TPS database migrations, 2,500 TPS purge engines, and turning chaotic third-party banking APIs into sub-50ms Swiss watches.
                 </p>
 
                 <!-- Core Architectural Impact Callout -->
@@ -249,14 +290,6 @@
                         <i data-lucide="calendar" class="w-4 h-4 text-sky-400"></i>
                         <span>Book Tech Chat</span>
                     </button>
-                    <button class="open-arcade-btn px-5 py-3.5 rounded-full font-bold text-sm bg-purple-500/15 hover:bg-purple-500/25 text-purple-300 border border-purple-500/35 hover:border-purple-400 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer shadow-lg shadow-purple-500/10 font-mono" title="Play 60-second Retro Arcade Game: Kill The Monolith">
-                        <i data-lucide="gamepad-2" class="w-4 h-4 text-purple-400 animate-bounce"></i>
-                        <span>Kill The Monolith 👾</span>
-                    </button>
-                    <button class="copy-email-btn px-4 py-3.5 rounded-full font-semibold text-sm savage-pill hover:text-sky-400 flex items-center gap-2 transition-all">
-                        <i data-lucide="copy" class="w-4 h-4"></i>
-                        <span>Copy Email</span>
-                    </button>
                 </div>
             </div>
 
@@ -297,20 +330,17 @@
 
                     <!-- Interactive TPS Load Slider Control Panel (Prominent) -->
                     <div class="mt-4 pt-3 border-t border-sky-500/20 space-y-2.5 bg-sky-500/[0.05] -mx-5 -mb-5 p-4 rounded-b-2xl border-b border-x border-sky-500/15">
-                        <div class="flex items-center justify-between text-[11px] font-mono">
+                        <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono">
                             <span class="text-sky-300 flex items-center gap-2 font-bold tracking-wide">
                                 <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
                                 <i data-lucide="gauge" class="w-4 h-4 text-sky-400"></i>
-                                <span>TRAFFIC STRESS TESTER:</span>
+                                <span>TRAFFIC BENCHMARK:</span>
                             </span>
-                            <div class="flex items-center gap-2">
-                                <button id="hero-rocket-btn" class="px-2.5 py-0.5 rounded-full bg-rose-500/15 hover:bg-rose-500/25 text-rose-400 border border-rose-500/30 text-[10px] font-bold font-mono flex items-center gap-1 cursor-pointer hover:scale-105 active:scale-95 transition-all shadow-sm shadow-rose-500/20" title="Launch Celebration Rocket & Patakhe!">
-                                    <span>🚀 Patakha</span>
-                                </button>
-                                <button onclick="window.Avengers && window.Avengers.thor()" class="px-2.5 py-0.5 rounded-full bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/30 text-[10px] font-bold font-mono flex items-center gap-1 cursor-pointer hover:scale-105 active:scale-95 transition-all shadow-sm shadow-sky-500/20" title="Thor's Mjolnir Thunder Strike">
-                                    <span>⚡ Thor</span>
-                                </button>
-                                <span id="tps-slider-val" class="font-extrabold text-xs text-sky-300 bg-sky-500/20 px-2.5 py-0.5 rounded-full border border-sky-400/40 font-mono shadow-sm shadow-sky-500/30">150 TPS</span>
+                            <div class="flex flex-wrap items-center gap-1.5">
+                                <button type="button" class="tps-preset-btn px-2 py-0.5 rounded-md bg-white/5 hover:bg-white/15 text-slate-300 text-[10px] font-mono border border-white/10 cursor-pointer transition" data-preset-tps="150">150 TPS</button>
+                                <button type="button" class="tps-preset-btn px-2 py-0.5 rounded-md bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 text-[10px] font-mono border border-rose-500/30 cursor-pointer transition" data-preset-tps="2500">2.5k Purge</button>
+                                <button type="button" class="tps-preset-btn px-2 py-0.5 rounded-md bg-purple-500/15 hover:bg-purple-500/25 text-purple-300 text-[10px] font-mono border border-purple-500/30 cursor-pointer transition" data-preset-tps="10000">10k Max</button>
+                                <span id="tps-slider-val" class="font-extrabold text-xs text-sky-300 bg-sky-500/20 px-2.5 py-0.5 rounded-full border border-sky-400/40 font-mono shadow-sm shadow-sky-500/30 ml-1">150 TPS</span>
                             </div>
                         </div>
                         
@@ -320,7 +350,7 @@
                             <div class="flex items-center justify-between text-[9px] font-mono text-slate-400 px-0.5 select-none">
                                 <span>100 TPS (Normal)</span>
                                 <span class="text-rose-400 font-bold">2.5k TPS (S3 Purge Engine)</span>
-                                <span class="text-purple-400">10k TPS (Max)</span>
+                                <span class="text-purple-400">10k TPS (Max Fibers)</span>
                             </div>
                         </div>
                         
@@ -365,213 +395,335 @@
 
 
         <!-- ====================================================================
-             FLAGSHIP PROJECTS SHOWCASE (THE WAR STORIES)
+             DISTRIBUTED SYSTEM ARCHITECTURE TOPOLOGY VISUALIZER
              ==================================================================== -->
-        <section id="projects" class="space-y-12">
-            <div class="text-center max-w-3xl mx-auto space-y-3">
-                <span class="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase">FLAGSHIP SYSTEMS</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">The War Stories</h2>
-                <p class="text-sm sm:text-base text-slate-300">
-                    Because building another generic todo app or clone is an insult to engineering. Here is real distributed plumbing that moves money and verifies millions of identities.
+        <section id="architecture-visualizer" class="space-y-6">
+            <div class="text-center max-w-3xl mx-auto space-y-2">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 text-xs font-mono font-bold tracking-wider uppercase">
+                    <i data-lucide="network" class="w-3.5 h-3.5"></i>
+                    <span>INTERACTIVE DISTRIBUTED TOPOLOGY</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">How The Plumbing Actually Runs Under Load</h2>
+                <p class="text-xs sm:text-sm text-slate-300">
+                    Choose a production pipeline below, fire a simulated request, and observe live latency, distributed locking, and virtual thread concurrency in action.
                 </p>
             </div>
 
-            <div class="space-y-10">
-                <div th:each="project, iter : ${projects}" th:id="${project.id}" class="apple-glass-card p-8 lg:p-10 space-y-8">
-                    
-                    <!-- Card Top Header -->
-                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-white/10">
-                        <div class="space-y-2 flex-1">
-                            <div class="flex flex-wrap items-center gap-2.5">
-                                <span class="text-[11px] font-mono font-bold tracking-wider px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 uppercase" th:text="${project.tag}">FINTECH</span>
-                                <span class="text-[11px] font-mono font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase" th:text="${project.statusBadge}">MISSION CRITICAL</span>
-                                
-                                <!-- Live System Glowing Badge -->
-                                <span th:if="${project.liveUrl != null}" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[11px] font-mono font-extrabold uppercase shadow-sm shadow-emerald-500/20">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                                    <span>LIVE IN PRODUCTION</span>
-                                </span>
-                            </div>
-                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight pt-1" th:text="${project.title}">Digitap eSign Gateway</h3>
-                            <p class="text-sm font-medium text-slate-400" th:text="${project.subtitle}">Aadhaar eSign & Digital Contract Execution Engine</p>
+            <!-- Pipeline Selection Switcher Tabs -->
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <button class="arch-tab-btn active px-4 py-2.5 rounded-xl font-mono text-xs font-bold border transition-all cursor-pointer flex items-center gap-2 bg-sky-500/20 text-sky-300 border-sky-500/40 shadow-lg shadow-sky-500/20" data-pipeline="esign">
+                    <i data-lucide="file-signature" class="w-4 h-4 text-sky-400"></i>
+                    <span>1. Single-OTP eSign Pipeline</span>
+                    <span class="px-1.5 py-0.5 rounded bg-sky-400/20 text-[10px]">142ms</span>
+                </button>
+                <button class="arch-tab-btn px-4 py-2.5 rounded-xl font-mono text-xs font-bold border transition-all cursor-pointer flex items-center gap-2 bg-white/[0.03] text-slate-400 border-white/10 hover:border-sky-500/30 hover:text-white" data-pipeline="purge">
+                    <i data-lucide="cpu" class="w-4 h-4 text-rose-400"></i>
+                    <span>2. 2,500 TPS Purge Engine</span>
+                    <span class="px-1.5 py-0.5 rounded bg-rose-400/20 text-rose-300 text-[10px]">0 Deadlocks</span>
+                </button>
+                <button class="arch-tab-btn px-4 py-2.5 rounded-xl font-mono text-xs font-bold border transition-all cursor-pointer flex items-center gap-2 bg-white/[0.03] text-slate-400 border-white/10 hover:border-sky-500/30 hover:text-white" data-pipeline="digilocker">
+                    <i data-lucide="database" class="w-4 h-4 text-emerald-400"></i>
+                    <span>3. DigiLocker 1.5M+ Hits (12-Hop Surge)</span>
+                    <span class="px-1.5 py-0.5 rounded bg-emerald-400/20 text-emerald-300 text-[10px]">150 TPS</span>
+                </button>
+            </div>
 
-                            <!-- Sexy Live Action Buttons for Projects with liveUrl -->
-                            <div th:if="${project.liveUrl != null}" class="flex flex-wrap items-center gap-2.5 pt-2">
-                                <a th:href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-extrabold bg-gradient-to-r from-sky-400 via-teal-300 to-emerald-400 text-slate-950 hover:brightness-110 shadow-lg shadow-sky-500/25 hover:scale-105 active:scale-95 transition-all">
-                                    <i data-lucide="external-link" class="w-4 h-4"></i>
-                                    <span>LAUNCH LIVE APP</span>
-                                </a>
-                                <button type="button" class="preview-live-modal-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-bold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/15 hover:border-sky-400/50 hover:scale-105 active:scale-95 transition-all cursor-pointer" th:attr="data-preview-url=${project.liveUrl}, data-preview-title=${project.title}">
-                                    <i data-lucide="eye" class="w-3.5 h-3.5 text-sky-400"></i>
-                                    <span>Live Preview Modal</span>
-                                </button>
-                                <a th:if="${project.adminUrl != null}" th:href="${project.adminUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-bold bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 border border-rose-500/30 hover:scale-105 active:scale-95 transition-all">
-                                    <i data-lucide="terminal" class="w-3.5 h-3.5 text-rose-400"></i>
-                                    <span>Dictator Console</span>
-                                </a>
-                                <a th:if="${project.githubUrl != null}" th:href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono font-bold bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 hover:text-white transition-all">
-                                    <i data-lucide="github" class="w-3.5 h-3.5"></i>
-                                    <span>Source</span>
-                                </a>
-                            </div>
+            <!-- Visualizer Card Container -->
+            <div class="apple-glass-card p-6 sm:p-8 space-y-6">
+                <!-- Top Pipeline Info & Fire Button Bar -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+                    <div>
+                        <span id="pipeline-category-tag" class="text-xs font-mono font-bold text-sky-400 uppercase tracking-wider">PARALLEL IN-MEMORY PDFBOX ORCHESTRATION</span>
+                        <h3 id="pipeline-title-display" class="text-xl sm:text-2xl font-black text-white tracking-tight mt-0.5">Aadhaar Single OTP Multi-Document Aggregation</h3>
+                        <p id="pipeline-desc-display" class="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl">
+                            Replaces sequential 4-OTP torture with a single cryptographic session. 4 PDFs downloaded, mapped, and stamped in-memory simultaneously.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 shrink-0">
+                        <button id="fire-packet-btn" class="px-5 py-3 rounded-full font-bold text-xs bg-gradient-to-r from-sky-400 to-emerald-400 text-slate-950 hover:brightness-110 shadow-lg shadow-sky-500/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer">
+                            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                            <span>Fire Request Packet</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- View Mode Switcher: Pipeline Topology vs OpenTelemetry Trace Waterfall -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
+                    <div class="flex items-center p-1 rounded-xl bg-white/[0.03] border border-white/10 gap-1 text-xs font-mono">
+                        <button id="topo-view-nodes-btn" type="button" class="active px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5 bg-sky-500/20 text-sky-300 border border-sky-500/40 transition-all cursor-pointer">
+                            <i data-lucide="network" class="w-3.5 h-3.5 text-sky-400"></i>
+                            <span>Topology Flow</span>
+                        </button>
+                        <button id="topo-view-trace-btn" type="button" class="px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5 text-slate-400 hover:text-white transition-all cursor-pointer">
+                            <i data-lucide="activity" class="w-3.5 h-3.5 text-emerald-400"></i>
+                            <span>OpenTelemetry Trace Waterfall (Jaeger)</span>
+                        </button>
+                    </div>
+                    <span class="text-[11px] font-mono text-slate-500 hidden sm:inline">Click any span below to inspect distributed trace tags</span>
+                </div>
+
+                <!-- Interactive Pipeline Nodes Flow Diagram -->
+                <div id="pipeline-nodes-container" class="relative py-4 overflow-x-auto">
+                    <div id="pipeline-nodes-track" class="flex items-center justify-between min-w-[760px] gap-2">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- OpenTelemetry Distributed Trace Waterfall Container -->
+                <div id="pipeline-trace-container" class="hidden space-y-4 pt-2">
+                    <!-- Trace Header Bar -->
+                    <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+                        <div class="flex items-center gap-2">
+                            <span class="text-slate-400">TRACE ID:</span>
+                            <span id="trace-id-display" class="font-bold text-sky-400 select-all">trace_e82b7a94c1f20d88</span>
                         </div>
-                        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 text-sky-400 self-start lg:self-center shadow-inner mac-dock-icon cursor-pointer shrink-0">
-                            <i th:attr="data-lucide=${project.icon}" class="w-8 h-8"></i>
+                        <div class="flex items-center gap-3 text-[11px]">
+                            <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold" id="trace-spans-badge">7 Spans</span>
+                            <span class="text-slate-400">Total Latency: <strong id="trace-total-latency" class="text-white">42.4ms</strong></span>
+                            <span class="px-2 py-0.5 rounded bg-sky-500/10 text-sky-300 border border-sky-500/20 font-bold">VirtualThread[#14829]</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 font-bold">HTTP 200 OK</span>
+                        </div>
+                    </div>
+
+                    <!-- Waterfall Rows Track -->
+                    <div class="trace-waterfall-container p-3 space-y-2 select-text" id="trace-waterfall-track">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <!-- Interactive Span Inspector Drawer -->
+                    <div id="trace-span-inspector" class="p-4 rounded-xl bg-black/60 border border-white/10 space-y-2 text-xs font-mono select-text">
+                        <div class="flex items-center justify-between border-b border-white/10 pb-2">
+                            <span class="text-emerald-400 font-bold flex items-center gap-1.5">
+                                <i data-lucide="tag" class="w-3.5 h-3.5"></i>
+                                <span id="inspector-span-name">POST /api/v2/esign/verify-otp</span>
+                            </span>
+                            <span id="inspector-span-duration" class="text-sky-300 font-bold">42.4ms (100% of trace)</span>
+                        </div>
+                        <div id="inspector-span-tags" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 text-[11px] pt-1">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chaos Monkey / Live Failure Mode Injection Drawer -->
+                <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-500/30 space-y-3">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+                            <span class="text-xs font-mono font-black text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i data-lucide="flame" class="w-3.5 h-3.5"></i>
+                                CHAOS MONKEY &bull; LIVE FAILURE INJECTION
+                            </span>
+                        </div>
+                        <span class="text-[11px] font-mono text-slate-400">Inject transient production failures to verify fault-tolerance</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+                        <button id="chaos-btn-tsp-504" type="button" class="chaos-inject-btn px-3.5 py-3 rounded-xl bg-white/[0.03] hover:bg-rose-500/15 border border-white/10 hover:border-rose-500/40 text-left transition-all cursor-pointer group">
+                            <div class="flex items-center justify-between text-xs font-mono font-bold text-slate-200 group-hover:text-rose-300">
+                                <span>1. Downstream TSP 504</span>
+                                <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-400 font-bold">Circuit Breaker</span>
+                            </div>
+                            <p class="text-[10.5px] text-slate-400 mt-1 line-clamp-2">Upstream eMudhra / DigiLocker gateway timeout &rarr; Circuit breaker OPEN &rarr; Fallback execution</p>
+                        </button>
+
+                        <button id="chaos-btn-surge-burst" type="button" class="chaos-inject-btn px-3.5 py-3 rounded-xl bg-white/[0.03] hover:bg-amber-500/15 border border-white/10 hover:border-amber-500/40 text-left transition-all cursor-pointer group">
+                            <div class="flex items-center justify-between text-xs font-mono font-bold text-slate-200 group-hover:text-amber-300">
+                                <span>2. 10x Flash Surge (25k TPS)</span>
+                                <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold">Rate Limiter</span>
+                            </div>
+                            <p class="text-[10.5px] text-slate-400 mt-1 line-clamp-2">Disbursement spike &rarr; Virtual Thread pool elasticity &rarr; Redis token-bucket 429 throttle</p>
+                        </button>
+
+                        <button id="chaos-btn-twin-race" type="button" class="chaos-inject-btn px-3.5 py-3 rounded-xl bg-white/[0.03] hover:bg-sky-500/15 border border-white/10 hover:border-sky-500/40 text-left transition-all cursor-pointer group">
+                            <div class="flex items-center justify-between text-xs font-mono font-bold text-slate-200 group-hover:text-sky-300">
+                                <span>3. Twin Request Race (2ms)</span>
+                                <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300 font-bold">Redisson Lock</span>
+                            </div>
+                            <p class="text-[10.5px] text-slate-400 mt-1 line-clamp-2">Rapid double-click on Sign OTP &rarr; Distributed lock acquired by Req 1; Req 2 rejected (409)</p>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Pipeline Telemetry Drawer & Tech Realities -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 pt-2">
+                    <div class="lg:col-span-2 terminal-window p-4 rounded-xl space-y-2 text-xs font-mono select-text">
+                        <div class="flex items-center justify-between border-b border-white/10 pb-2 text-[11px] text-slate-400">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <span>LIVE TELEMETRY STREAM</span>
+                            </div>
+                            <span id="pipeline-execution-time" class="text-emerald-400 font-bold">READY TO FIRE</span>
+                        </div>
+                        <div id="pipeline-telemetry-log" class="space-y-1.5 h-32 overflow-y-auto text-slate-300 text-[11px]">
+                            <div class="text-slate-500">// Press "Fire Request Packet" above to trace the execution hop-by-hop...</div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-3 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase">
+                                <i data-lucide="shield-alert" class="w-4 h-4"></i>
+                                <span>Architectural Defense:</span>
+                            </div>
+                            <p id="pipeline-defense-note" class="text-xs text-slate-300 leading-relaxed">
+                                Uses Redis distributed lock with 30s auto-expiry. If user refreshes or submits twin requests, second request is rejected instantly with 409 Conflict, preventing double eMudhra charges.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between pt-2 border-t border-white/10 text-xs font-mono">
+                            <span class="text-slate-400">SAFETY GUARANTEE:</span>
+                            <span id="pipeline-safety-stat" class="text-emerald-400 font-bold">100% IDEMPOTENT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ====================================================================
+             FLAGSHIP PROJECTS SHOWCASE (THE WAR STORIES)
+             ==================================================================== -->
+        <section id="projects" class="space-y-6">
+            <div class="text-center max-w-3xl mx-auto space-y-2">
+                <span class="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase">MISSION CRITICAL SYSTEMS</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">The War Stories</h2>
+                <p class="text-xs sm:text-sm text-slate-300">
+                    Real distributed plumbing powering India’s core FinTech rails — high-throughput batch migrations, sub-50ms Aadhaar verifications, and zero-downtime database boundaries.
+                </p>
+            </div>
+
+            <!-- Segmented Project Navigation Tabs (Full Width Grid - Never Clipped, Zero Scrollbar Bug) -->
+            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-2.5" id="project-tabs-nav">
+                <button th:each="project, iter : ${projects}"
+                        th:attr="data-project-target=${project.id}"
+                        th:class="${iter.index == 0} ? 
+                            'project-tab-btn active p-3 rounded-2xl text-left transition-all border flex flex-col justify-between gap-2 shadow-sm' : 
+                            'project-tab-btn p-3 rounded-2xl text-left transition-all border flex flex-col justify-between gap-2 shadow-sm'">
+                    <div class="flex items-center justify-between">
+                        <div class="p-1.5 rounded-lg bg-sky-500/10 text-sky-400">
+                            <i th:attr="data-lucide=${project.icon}" class="w-4 h-4"></i>
+                        </div>
+                        <span class="project-pulse-dot w-2 h-2 rounded-full bg-emerald-400 animate-pulse" th:classappend="${iter.index != 0} ? ' hidden'"></span>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-white font-mono tracking-tight truncate" th:text="${project.shortTitle != null ? project.shortTitle : project.title}">eSign Gateway</div>
+                        <div class="text-[9.5px] font-mono text-emerald-400/90 truncate mt-0.5 uppercase tracking-wider" th:text="${project.tabBadge != null ? project.tabBadge : project.statusBadge}">MISSION CRITICAL</div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Master-Detail Project Panel Container -->
+            <div class="relative">
+                <div th:each="project, iter : ${projects}" 
+                     th:id="${project.id}" 
+                     th:class="${iter.index == 0} ? 'project-card-panel block apple-glass-card p-6 sm:p-8 space-y-6' : 'project-card-panel hidden apple-glass-card p-6 sm:p-8 space-y-6'">
+                    
+                    <!-- Card Top Header (Full Width - Title never squished) -->
+                    <div class="space-y-2 pb-5 border-b border-white/10">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="text-[10px] font-mono font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 uppercase" th:text="${project.tag}">FINTECH</span>
+                                <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase" th:text="${project.statusBadge}">MISSION CRITICAL</span>
+                            </div>
+                            <span class="text-[11px] font-mono text-slate-500 uppercase tracking-widest">SYSTEM ARCHITECTURE CASE #<span th:text="${iter.index + 1}">1</span> OF 6</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight" th:text="${project.title}">Digitap eSign Gateway</h3>
+                        <p class="text-xs sm:text-sm font-medium text-slate-400" th:text="${project.subtitle}">Aadhaar eSign &amp; Digital Contract Execution Engine</p>
+                    </div>
+                    
+                    <!-- Real-time Metrics Strip (Full Width Grid - Room to Breathe) -->
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 font-mono text-left">
+                        <div th:each="entry : ${project.metrics}" class="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 hover:border-sky-500/30 transition-all flex flex-col justify-between">
+                            <span class="block text-[10px] text-slate-400 uppercase tracking-wider font-semibold truncate" th:text="${entry.key}">METRIC</span>
+                            <span class="block text-xs sm:text-sm font-bold text-emerald-400 mt-1 font-mono tracking-tight" th:text="${entry.value}">VALUE</span>
                         </div>
                     </div>
 
                     <!-- Savage Quote Box -->
-                    <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-rose-500/10 via-purple-500/10 to-sky-500/10 border border-rose-500/20 text-slate-200 font-mono text-xs sm:text-sm italic flex items-center gap-3">
-                        <i data-lucide="quote" class="w-5 h-5 text-rose-400 shrink-0"></i>
-                        <span th:text="${project.savageQuote}">"Because forcing a user to enter 5 separate OTPs just to sign a 5-page agreement is a human rights violation."</span>
+                    <div class="p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-rose-500/10 via-purple-500/10 to-sky-500/10 border border-rose-500/20 text-slate-200 font-mono text-xs sm:text-sm italic flex items-center gap-3">
+                        <i data-lucide="quote" class="w-4 h-4 text-rose-400 shrink-0"></i>
+                        <span th:text="${project.savageQuote}">Savage Quote</span>
                     </div>
 
-                    <!-- Live Interactive Telemetry & Quick Link Shortener for ShortAF -->
-                    <div th:if="${project.id == 'shortaf-url-shortener'}" class="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-900/90 via-slate-950/90 to-sky-950/40 border border-sky-500/30 space-y-4 shadow-xl relative overflow-hidden backdrop-blur-md">
-                        <!-- Top status line -->
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
-                            <div class="flex items-center gap-2.5">
-                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-                                <span class="text-xs font-mono font-black text-white uppercase tracking-wider">LIVE TELEMETRY STREAM &bull; SHORTAF ENGINE</span>
-                            </div>
-                            <div class="flex items-center gap-3 text-[11px] font-mono">
-                                <span class="text-slate-400">Target: <a href="https://scalelink-url-shortener.onrender.com" target="_blank" class="text-sky-400 hover:underline">scalelink-url-shortener.onrender.com</a></span>
-                                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-bold" id="shortaf-live-status-pill">CONNECTING...</span>
-                            </div>
-                        </div>
-
-                        <!-- 4 Stat Capsules -->
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-xs font-mono">
-                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-sky-500/30 transition-all">
-                                <span class="block text-[10px] text-slate-400 uppercase tracking-tight">Engine Runtime</span>
-                                <span class="block text-sm font-black text-sky-400 mt-1" id="shortaf-stat-engine">Java 21 Loom</span>
-                            </div>
-                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/30 transition-all">
-                                <span class="block text-[10px] text-slate-400 uppercase tracking-tight">JVM Heap Footprint</span>
-                                <span class="block text-sm font-black text-emerald-400 mt-1" id="shortaf-stat-heap">~56 MB</span>
-                            </div>
-                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-purple-500/30 transition-all">
-                                <span class="block text-[10px] text-slate-400 uppercase tracking-tight">Guava Bloom Filter</span>
-                                <span class="block text-sm font-black text-purple-400 mt-1" id="shortaf-stat-bloom">1M Keys (1% FPP)</span>
-                            </div>
-                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-amber-500/30 transition-all">
-                                <span class="block text-[10px] text-slate-400 uppercase tracking-tight">Hot Cache Latency</span>
-                                <span class="block text-sm font-black text-amber-400 mt-1" id="shortaf-stat-cache">Caffeine (&lt; 2ms)</span>
-                            </div>
-                        </div>
-
-                        <!-- Quick Test Interactive Form -->
-                        <div class="pt-2 border-t border-white/10 space-y-2.5">
-                            <div class="flex items-center justify-between text-[11px] font-mono">
-                                <span class="text-slate-200 font-bold flex items-center gap-1.5">
-                                    <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400 animate-pulse"></i>
-                                    <span>Test Drive The Engine (Live API Dispatch):</span>
-                                </span>
-                                <span class="text-slate-400 hidden sm:inline text-[10px]">Zero DB Bloat &bull; Atomic Range KGS</span>
-                            </div>
-                            <form id="shortaf-quick-form" class="flex flex-col sm:flex-row gap-2">
-                                <input type="url" id="shortaf-test-url" value="https://github.com/ialexjx" placeholder="Drop your marketing team's 500-word tracking monstrosity here..." required class="flex-1 px-4 py-2.5 rounded-xl bg-black/50 border border-white/15 text-xs font-mono text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-sky-400 transition">
-                                <button type="submit" id="shortaf-shorten-submit-btn" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-400 to-emerald-400 hover:brightness-110 active:scale-95 text-slate-950 font-mono font-black text-xs transition cursor-pointer flex items-center justify-center gap-2 shrink-0 shadow-lg shadow-sky-500/20">
-                                    <i data-lucide="scissors" class="w-3.5 h-3.5"></i>
-                                    <span>Butcher The Bloat</span>
-                                </button>
-                            </form>
-                            <div id="shortaf-quick-result" class="hidden p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-emerald-300">
-                                <div class="flex items-center gap-2 truncate">
-                                    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i>
-                                    <span class="text-slate-300">Shortened:</span>
-                                    <a href="#" id="shortaf-result-link" target="_blank" class="font-bold text-sky-300 underline truncate"></a>
-                                </div>
-                                <div class="flex items-center gap-2 shrink-0">
-                                    <button type="button" id="shortaf-copy-result-btn" class="px-3 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-mono cursor-pointer transition">
-                                        Copy Link
-                                    </button>
-                                    <a href="#" id="shortaf-open-result-btn" target="_blank" class="px-3 py-1 rounded-lg bg-sky-500/20 text-sky-300 hover:bg-sky-500/30 text-[11px] font-mono transition flex items-center gap-1">
-                                        <span>Test Redirect</span>
-                                        <i data-lucide="external-link" class="w-3 h-3"></i>
-                                    </a>
-                                </div>
-                            </div>
+                    <!-- Sub-Navigation Inside Project -->
+                    <div class="flex items-center border-b border-white/10 pb-3 overflow-x-auto">
+                        <div class="flex items-center p-1 rounded-xl bg-white/[0.03] border border-white/10 gap-1 shrink-0">
+                            <button type="button" class="project-subtab-btn active px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 transition-all" data-subtab="architecture">
+                                <i data-lucide="layers" class="w-3.5 h-3.5 text-sky-400"></i>
+                                <span>Architecture &amp; Highlights</span>
+                            </button>
+                            <button type="button" class="project-subtab-btn px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 text-slate-400 hover:text-white transition-all" data-subtab="problem-solution">
+                                <i data-lucide="swords" class="w-3.5 h-3.5 text-amber-400"></i>
+                                <span>Problem vs Solution</span>
+                            </button>
+                            <button type="button" class="project-subtab-btn px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 text-slate-400 hover:text-white transition-all" data-subtab="code-diff">
+                                <i data-lucide="file-diff" class="w-3.5 h-3.5 text-emerald-400"></i>
+                                <span>Code Comparison (Legacy vs Modern)</span>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Problem vs Solution Breakdown -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        <div class="p-6 rounded-2xl bg-rose-500/[0.03] border border-rose-500/20 space-y-3">
-                            <div class="flex items-center gap-2 text-rose-400 font-bold text-xs uppercase tracking-wider font-mono">
-                                <i data-lucide="alert-octagon" class="w-4 h-4"></i>
-                                <span th:text="${project.problemHeading}">The Problem</span>
-                            </div>
-                            <ul th:if="${project.problemBullets != null && !project.problemBullets.isEmpty()}" class="space-y-2.5 text-xs sm:text-sm text-slate-300">
-                                <li th:each="pBullet : ${project.problemBullets}" class="flex items-start gap-2.5">
-                                    <i data-lucide="x-circle" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i>
-                                    <span th:text="${pBullet}">Problem point</span>
-                                </li>
-                            </ul>
-                            <p th:if="${project.problemBullets == null || project.problemBullets.isEmpty()}" class="text-sm text-slate-300 leading-relaxed" th:text="${project.problemStatement}">Problem statement details here.</p>
-                        </div>
-
-                        <div class="p-6 rounded-2xl bg-emerald-500/[0.03] border border-emerald-500/20 space-y-3">
-                            <div class="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase tracking-wider font-mono">
-                                <i data-lucide="check-circle" class="w-4 h-4"></i>
-                                <span th:text="${project.solutionHeading}">The Solution</span>
-                            </div>
-                            <ul th:if="${project.solutionBullets != null && !project.solutionBullets.isEmpty()}" class="space-y-2.5 text-xs sm:text-sm text-slate-300">
-                                <li th:each="sBullet : ${project.solutionBullets}" class="flex items-start gap-2.5">
-                                    <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
-                                    <span th:text="${sBullet}">Solution point</span>
-                                </li>
-                            </ul>
-                            <p th:if="${project.solutionBullets == null || project.solutionBullets.isEmpty()}" class="text-sm text-slate-300 leading-relaxed" th:text="${project.solutionAndImpact}">Solution and impact details here.</p>
-                        </div>
-                    </div>
-
-                    <!-- Architectural Highlights List -->
-                    <div class="space-y-3">
-                        <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">Architectural Innovations & Engineering Depth:</h4>
+                    <!-- Subtab 1: Architecture Highlights -->
+                    <div class="project-subtab-content subtab-architecture space-y-3">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <div th:each="highlight : ${project.architectureHighlights}" class="flex items-start gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-slate-300">
                                 <i data-lucide="shield-check" class="w-4 h-4 text-sky-400 shrink-0 mt-0.5"></i>
-                                <span th:text="${highlight}">Architecture highlight detail.</span>
+                                <span th:text="${highlight}">Highlight detail</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Metrics Grid -->
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                        <div th:each="entry : ${project.metrics}" class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-center">
-                            <span class="block text-[10px] font-mono text-slate-400 uppercase tracking-tight" th:text="${entry.key}">METRIC</span>
-                            <span class="block text-sm font-bold text-white font-mono mt-1" th:text="${entry.value}">VALUE</span>
+                    <!-- Subtab 2: Problem vs Solution -->
+                    <div class="project-subtab-content subtab-problem-solution hidden space-y-4">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            <!-- Problem (Legacy) -->
+                            <div class="p-4 sm:p-5 rounded-2xl bg-rose-500/[0.03] border border-rose-500/20 space-y-2.5">
+                                <div class="flex items-center gap-2 text-rose-400 font-bold text-xs uppercase tracking-wider font-mono">
+                                    <i data-lucide="alert-octagon" class="w-4 h-4"></i>
+                                    <span th:text="${project.problemHeading != null ? project.problemHeading : 'The Legacy Horror'}">The Problem</span>
+                                </div>
+                                <ul th:if="${project.problemBullets != null && !project.problemBullets.isEmpty()}" class="space-y-2 text-xs text-slate-300">
+                                    <li th:each="pBullet : ${project.problemBullets}" class="flex items-start gap-2">
+                                        <i data-lucide="x-circle" class="w-3.5 h-3.5 text-rose-400 shrink-0 mt-0.5"></i>
+                                        <span th:text="${pBullet}">Problem</span>
+                                    </li>
+                                </ul>
+                                <p th:if="${project.problemBullets == null || project.problemBullets.isEmpty()}" class="text-xs text-slate-300 leading-relaxed" th:text="${project.problemStatement}">Problem statement</p>
+                            </div>
+                            <!-- Solution (Modern) -->
+                            <div class="p-4 sm:p-5 rounded-2xl bg-emerald-500/[0.03] border border-emerald-500/20 space-y-2.5">
+                                <div class="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase tracking-wider font-mono">
+                                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                    <span th:text="${project.solutionHeading != null ? project.solutionHeading : 'The Modern Resilient Architecture'}">The Solution</span>
+                                </div>
+                                <ul th:if="${project.solutionBullets != null && !project.solutionBullets.isEmpty()}" class="space-y-2 text-xs text-slate-300">
+                                    <li th:each="sBullet : ${project.solutionBullets}" class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5"></i>
+                                        <span th:text="${sBullet}">Solution</span>
+                                    </li>
+                                </ul>
+                                <p th:if="${project.solutionBullets == null || project.solutionBullets.isEmpty()}" class="text-xs text-slate-300 leading-relaxed" th:text="${project.solutionAndImpact}">Solution details</p>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Expandable Architectural Code Diff -->
-                    <div class="pt-1">
-                        <button class="code-diff-toggle-btn w-full sm:w-auto px-4 py-2 rounded-xl bg-white/[0.03] hover:bg-sky-500/10 border border-white/10 hover:border-sky-500/30 text-xs font-mono font-bold text-slate-300 hover:text-sky-300 flex items-center justify-between sm:justify-start gap-3 transition-all cursor-pointer">
-                            <span class="flex items-center gap-2">
-                                <i data-lucide="file-diff" class="w-4 h-4 text-sky-400"></i>
-                                <span>View Architectural Code Diff (Legacy vs Modern)</span>
-                            </span>
-                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform duration-300 diff-chevron"></i>
-                        </button>
-
-                        <div class="code-diff-drawer hidden mt-3 terminal-window p-4 sm:p-5 text-xs font-mono select-text border border-white/10 space-y-3">
-                            <div class="flex items-center justify-between text-[11px] text-slate-400 pb-2 border-b border-white/10">
-                                <span class="font-bold text-slate-300 flex items-center gap-1.5">
-                                    <i data-lucide="git-commit" class="w-3.5 h-3.5 text-sky-400"></i>
-                                    <span>CODE COMPARISON &bull; <span th:text="${project.title}">Project</span></span>
-                                </span>
-                                <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/15 text-emerald-400 font-bold font-mono">JAVA &bull; ZERO TECH DEBT</span>
-                            </div>
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                                <!-- Legacy Code (Red) -->
-                                <div class="p-3.5 rounded-xl bg-rose-500/[0.04] border border-rose-500/20 space-y-2 overflow-x-auto">
-                                    <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
+                    <!-- Subtab 3: Code Diff -->
+                    <div class="project-subtab-content subtab-code-diff hidden space-y-3">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            <!-- Legacy Code -->
+                            <div class="p-3.5 rounded-xl bg-rose-500/[0.04] border border-rose-500/20 space-y-2 overflow-x-auto">
+                                <div class="flex items-center justify-between pb-1 border-b border-rose-500/20">
+                                    <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1.5 font-mono">
                                         <i data-lucide="x-circle" class="w-3.5 h-3.5"></i>
-                                        <span th:text="${project.legacyCodeTitle != null ? project.legacyCodeTitle : 'The Legacy Horror (Archaic Core Java)'}">The Legacy Horror (Archaic Core Java)</span>
+                                        <span th:text="${project.legacyCodeTitle != null ? project.legacyCodeTitle : 'The Legacy Horror (Archaic Core Java)'}">The Legacy Horror</span>
                                     </div>
-                                    <pre th:if="${project.legacyCodeSnippet != null}" class="text-[11px] text-rose-200/80 leading-relaxed font-mono whitespace-pre"><code th:text="${project.legacyCodeSnippet}"></code></pre>
-                                    <pre th:if="${project.legacyCodeSnippet == null}" class="text-[11px] text-rose-200/80 leading-relaxed font-mono whitespace-pre"><code><span class="text-slate-500">// Zero pre-flight check, crashes mid-flow</span>
+                                    <button type="button" class="copy-code-btn px-2 py-0.5 rounded text-[10px] font-mono text-slate-400 hover:text-white border border-white/10 hover:border-white/20 flex items-center gap-1 transition-all cursor-pointer" title="Copy snippet">
+                                        <i data-lucide="copy" class="w-3 h-3"></i>
+                                        <span>Copy</span>
+                                    </button>
+                                </div>
+                                <pre th:if="${project.legacyCodeSnippet != null}" class="text-[11px] text-rose-200/80 leading-relaxed font-mono whitespace-pre"><code th:text="${project.legacyCodeSnippet}"></code></pre>
+                                <pre th:if="${project.legacyCodeSnippet == null}" class="text-[11px] text-rose-200/80 leading-relaxed font-mono whitespace-pre"><code><span class="text-slate-500">// Zero pre-flight check, crashes mid-flow</span>
 if (pdfBytes.length == 0 || pages &lt; required) {
     throw new RuntimeException("Crash! User already started");
 }
@@ -579,17 +731,22 @@ if (pdfBytes.length == 0 || pages &lt; required) {
 for (String fileId : documentIds) {
     byte[] data = downloadFromS3(fileId); <span class="text-rose-400">// 30s user wait!</span>
     publishToSnsHop1(data);
-    publishToSnsHop2(data);
 }</code></pre>
-                                </div>
-                                <!-- Modern Code (Green) -->
-                                <div class="p-3.5 rounded-xl bg-emerald-500/[0.04] border border-emerald-500/20 space-y-2 overflow-x-auto">
-                                    <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                            </div>
+                            <!-- Modern Code -->
+                            <div class="p-3.5 rounded-xl bg-emerald-500/[0.04] border border-emerald-500/20 space-y-2 overflow-x-auto">
+                                <div class="flex items-center justify-between pb-1 border-b border-emerald-500/20">
+                                    <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5 font-mono">
                                         <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
-                                        <span th:text="${project.modernCodeTitle != null ? project.modernCodeTitle : 'Modern Resilient Architecture (Java 25)'}">Modern Resilient Architecture (Java 25)</span>
+                                        <span th:text="${project.modernCodeTitle != null ? project.modernCodeTitle : 'Modern Resilient Architecture (Java 25)'}">Modern Resilient Architecture</span>
                                     </div>
-                                    <pre th:if="${project.modernCodeSnippet != null}" class="text-[11px] text-emerald-200/90 leading-relaxed font-mono whitespace-pre"><code th:text="${project.modernCodeSnippet}"></code></pre>
-                                    <pre th:if="${project.modernCodeSnippet == null}" class="text-[11px] text-emerald-200/90 leading-relaxed font-mono whitespace-pre"><code><span class="text-slate-500">// In-memory upload validation via PDFBox 3.x</span>
+                                    <button type="button" class="copy-code-btn px-2 py-0.5 rounded text-[10px] font-mono text-slate-400 hover:text-white border border-white/10 hover:border-white/20 flex items-center gap-1 transition-all cursor-pointer" title="Copy snippet">
+                                        <i data-lucide="copy" class="w-3 h-3"></i>
+                                        <span>Copy</span>
+                                    </button>
+                                </div>
+                                <pre th:if="${project.modernCodeSnippet != null}" class="text-[11px] text-emerald-200/90 leading-relaxed font-mono whitespace-pre"><code th:text="${project.modernCodeSnippet}"></code></pre>
+                                <pre th:if="${project.modernCodeSnippet == null}" class="text-[11px] text-emerald-200/90 leading-relaxed font-mono whitespace-pre"><code><span class="text-slate-500">// In-memory upload validation via PDFBox 3.x</span>
 pdfValidator.validatePreFlight(pdfStream, bounds);
 
 <span class="text-slate-500">// Virtual Threads concurrent download in 7s</span>
@@ -599,35 +756,293 @@ try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
         .toList();
     scope.join().throwIfFailed(); <span class="text-emerald-400">// sub-50ms callbacks</span>
 }</code></pre>
-                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Tech Stack Badges -->
                     <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-white/10">
-                        <span class="text-[11px] font-mono text-slate-400 mr-2">TECH STACK:</span>
-                        <span th:each="tech : ${project.techStack}" class="px-3 py-1 rounded-full text-xs font-semibold savage-pill font-mono" th:text="${tech}">Java 25</span>
+                        <span class="text-[10.5px] font-mono text-slate-400 mr-1">TECH STACK:</span>
+                        <span th:each="tech : ${project.techStack}" class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold savage-pill font-mono" th:text="${tech}">Java 25</span>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Interactive War Room Teaser Banner -->
-            <div class="apple-glass-card p-6 sm:p-8 space-y-4 border border-rose-500/30 relative overflow-hidden mt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-                <div class="space-y-1.5 max-w-xl">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 text-xs font-mono font-bold tracking-wider uppercase">
-                        <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-                        <span>INTERACTIVE SRE WAR ROOM CHALLENGE</span>
+
+        <!-- ====================================================================
+             ARCHITECTURE TRADEOFF LIVE SCORECARD
+             ==================================================================== -->
+        <section id="tradeoff-simulator" class="space-y-6">
+            <div class="text-center max-w-3xl mx-auto space-y-2">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 text-xs font-mono font-bold tracking-wider uppercase">
+                    <i data-lucide="scale" class="w-3.5 h-3.5"></i>
+                    <span>SYSTEMS ARCHITECTURE TRADEOFF MATRIX</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Interactive Production Trade-Off Simulator</h2>
+                <p class="text-xs sm:text-sm text-slate-300">
+                    Senior engineering isn't about dogmatic absolutes — it's about deliberate trade-offs between throughput, latency, memory overhead, and blast radius. Toggle real-world architecture choices below to benchmark their production impact.
+                </p>
+            </div>
+
+            <div class="apple-glass-card p-6 sm:p-8 space-y-6">
+                <!-- 3 Decision Axes -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Axis 1: Concurrency Model -->
+                    <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/10 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono font-bold text-sky-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+                                1. Concurrency Engine
+                            </span>
+                            <span class="text-[10px] font-mono text-slate-500">Thread Scheduling</span>
+                        </div>
+                        <div class="space-y-2">
+                            <button type="button" class="tradeoff-toggle-btn w-full text-left p-3 rounded-xl border border-white/10 bg-white/[0.03] text-slate-400 hover:text-white transition-all text-xs font-mono cursor-pointer" data-axis="concurrency" data-choice="platform">
+                                <div class="font-bold flex items-center justify-between">
+                                    <span>OS Platform Threads (1:1)</span>
+                                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Legacy</span>
+                                </div>
+                                <div class="text-[11px] text-slate-400 mt-1">1MB stack per thread + synchronized blocks. Pinning bottleneck.</div>
+                            </button>
+                            <button type="button" class="tradeoff-toggle-btn active w-full text-left p-3 rounded-xl border border-sky-500/40 bg-sky-500/15 text-sky-300 transition-all text-xs font-mono cursor-pointer" data-axis="concurrency" data-choice="virtual">
+                                <div class="font-bold flex items-center justify-between text-white">
+                                    <span class="text-sky-300">Java 21 Virtual Threads</span>
+                                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-400 font-bold">Loom Carrier</span>
+                                </div>
+                                <div class="text-[11px] text-slate-300 mt-1">Few hundred bytes stack + ReentrantLock. Unpinned I/O multiplexing.</div>
+                            </button>
+                        </div>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight">Friday 7:30 PM: The Production Crisis</h3>
-                    <p class="text-xs sm:text-sm text-slate-300">
-                        A partner triggers a 5x spike, third-party bank gateways stall at 4,500ms, and thread pools hit 98%. Step into the hotseat and triage the live crisis in the Systems Lab.
+
+                    <!-- Axis 2: State Synchronization & Locking -->
+                    <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/10 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+                                2. State &amp; Distributed Locking
+                            </span>
+                            <span class="text-[10px] font-mono text-slate-500">Idempotency Guard</span>
+                        </div>
+                        <div class="space-y-2">
+                            <button type="button" class="tradeoff-toggle-btn w-full text-left p-3 rounded-xl border border-white/10 bg-white/[0.03] text-slate-400 hover:text-white transition-all text-xs font-mono cursor-pointer" data-axis="locking" data-choice="mysql_lock">
+                                <div class="font-bold flex items-center justify-between">
+                                    <span>MySQL Row Lock (FOR UPDATE)</span>
+                                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Pessimistic</span>
+                                </div>
+                                <div class="text-[11px] text-slate-400 mt-1">Locks DB row until transaction commit. High deadlock risk at 2k+ TPS.</div>
+                            </button>
+                            <button type="button" class="tradeoff-toggle-btn active w-full text-left p-3 rounded-xl border border-amber-500/40 bg-amber-500/15 text-amber-300 transition-all text-xs font-mono cursor-pointer" data-axis="locking" data-choice="redis_lock">
+                                <div class="font-bold flex items-center justify-between text-white">
+                                    <span class="text-amber-300">Redis Redisson Distributed Lock</span>
+                                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold">Auto-Renewal TTL</span>
+                                </div>
+                                <div class="text-[11px] text-slate-300 mt-1">Sub-millisecond in-memory lock with lease watchdog. 0 DB contention.</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Axis 3: Document & I/O Pipeline -->
+                    <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/10 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i data-lucide="hard-drive" class="w-3.5 h-3.5"></i>
+                                3. Document I/O Pipeline
+                            </span>
+                            <span class="text-[10px] font-mono text-slate-500">PDF &amp; Payload Handling</span>
+                        </div>
+                        <div class="space-y-2">
+                            <button type="button" class="tradeoff-toggle-btn w-full text-left p-3 rounded-xl border border-white/10 bg-white/[0.03] text-slate-400 hover:text-white transition-all text-xs font-mono cursor-pointer" data-axis="io" data-choice="disk_io">
+                                <div class="font-bold flex items-center justify-between">
+                                    <span>Disk Spooling FileSystem (/tmp)</span>
+                                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">I/O Wait</span>
+                                </div>
+                                <div class="text-[11px] text-slate-400 mt-1">Writes files to EBS volume before signing. Hits IOPS limits under surge.</div>
+                            </button>
+                            <button type="button" class="tradeoff-toggle-btn active w-full text-left p-3 rounded-xl border border-emerald-500/40 bg-emerald-500/15 text-emerald-300 transition-all text-xs font-mono cursor-pointer" data-axis="io" data-choice="direct_byte">
+                                <div class="font-bold flex items-center justify-between text-white">
+                                    <span class="text-emerald-300">Direct ByteBuffer / RAM Stream</span>
+                                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">Zero-Disk</span>
+                                </div>
+                                <div class="text-[11px] text-slate-300 mt-1">In-memory byte arrays + off-heap streaming. Zero disk IOPS bottlenecks.</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Scorecard Telemetry Grid -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
+                    <div class="p-4 rounded-xl bg-black/40 border border-white/10 space-y-1">
+                        <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Max Safe Throughput</span>
+                        <div id="scorecard-tps" class="text-xl sm:text-2xl font-black text-emerald-400 font-mono">4,850 TPS</div>
+                        <span class="text-[10.5px] font-mono text-slate-500 block">Sustained under load</span>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-black/40 border border-white/10 space-y-1">
+                        <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">P99 Latency (e2e)</span>
+                        <div id="scorecard-latency" class="text-xl sm:text-2xl font-black text-sky-400 font-mono">38 ms</div>
+                        <span class="text-[10.5px] font-mono text-slate-500 block">Sub-50ms FinTech SLA</span>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-black/40 border border-white/10 space-y-1">
+                        <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">JVM Memory &amp; Overhead</span>
+                        <div id="scorecard-memory" class="text-xl sm:text-2xl font-black text-purple-400 font-mono">420 MB / 16 Carrier</div>
+                        <span class="text-[10.5px] font-mono text-slate-500 block">Zero OS thread starvation</span>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-black/40 border border-white/10 space-y-1">
+                        <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Lock Contention Risk</span>
+                        <div id="scorecard-locks" class="text-xl sm:text-2xl font-black text-emerald-400 font-mono">0.0% Contention</div>
+                        <span class="text-[10.5px] font-mono text-slate-500 block">100% Idempotency Safety</span>
+                    </div>
+                </div>
+
+                <!-- Architectural Verdict Box -->
+                <div class="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-2 font-mono text-xs">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-2">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="award" class="w-4 h-4 text-emerald-400"></i>
+                            <span class="text-slate-300 font-bold uppercase">Architectural Verdict:</span>
+                            <span id="scorecard-verdict-tag" class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">DIGITAP PRODUCTION STANDARD (TIER-1)</span>
+                        </div>
+                        <span class="text-slate-500 text-[11px] hidden sm:inline">Empirically validated under 150-2500 TPS</span>
+                    </div>
+                    <p id="scorecard-verdict-text" class="text-slate-300 leading-relaxed text-xs">
+                        Optimal FinTech architecture: Java 21 Virtual Threads decouple request concurrency from kernel OS threads. Redis Redisson locks prevent database row lock escalations, while Direct ByteBuffer streams eliminate EBS disk write latency. Handles 4,800+ TPS with zero deadlocks.
                     </p>
                 </div>
-                <a href="/lab#incident-war-room" class="px-6 py-3.5 rounded-full font-bold text-xs bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 shrink-0 cursor-pointer font-mono">
-                    <i data-lucide="shield-alert" class="w-4 h-4 text-rose-400"></i>
-                    <span>Enter P0 War Room ➔</span>
-                </a>
+            </div>
+        </section>
+
+
+        <!-- ====================================================================
+             INTERACTIVE MYSQL 8.0 EXPLAIN ANALYZE & B-TREE OPTIMIZER
+             ==================================================================== -->
+        <section id="sql-optimizer" class="space-y-6">
+            <div class="text-center max-w-3xl mx-auto space-y-2">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-mono font-bold tracking-wider uppercase">
+                    <i data-lucide="database" class="w-3.5 h-3.5"></i>
+                    <span>PRODUCTION DATABASE PERFORMANCE</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">MySQL 8.0 EXPLAIN ANALYZE &amp; B-Tree Optimizer</h2>
+                <p class="text-xs sm:text-sm text-slate-300">
+                    At 15M+ rows, an unindexed query doesn't just run slow — it brings down master replica pools with lock wait timeouts. Use the production volume slider below to inspect the actual execution plan changes.
+                </p>
+            </div>
+
+            <div class="apple-glass-card p-6 sm:p-8 space-y-6">
+                <!-- Query Banner -->
+                <div class="terminal-window p-4 rounded-xl space-y-2 font-mono text-xs select-text">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-2 text-[11px] text-slate-400">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                            <span>QUERY BENCHMARK: table `kyc_request_logs` (DigiLocker Audit Registry)</span>
+                        </div>
+                        <span class="text-sky-400 font-bold">MySQL 8.0 InnoDB</span>
+                    </div>
+                    <pre class="text-emerald-300 overflow-x-auto text-xs leading-relaxed py-1">SELECT transaction_id, user_aadhaar_hash, status, created_at
+FROM kyc_request_logs
+WHERE status = 'SUCCESS'
+  AND client_id = 'HDFC_FINTECH_PROD'
+  AND created_at &gt;= '2026-03-01 00:00:00'
+ORDER BY created_at DESC
+LIMIT 50;</pre>
+                </div>
+
+                <!-- Controls: Volume Slider & Index Toggle -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center p-4 rounded-2xl bg-white/[0.02] border border-white/10">
+                    <!-- Slider -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-300 font-bold flex items-center gap-1.5">
+                                <i data-lucide="layers" class="w-3.5 h-3.5 text-sky-400"></i>
+                                Production Table Volume:
+                            </span>
+                            <span id="sql-volume-display" class="text-sky-400 font-bold text-sm">15,000,000 Rows</span>
+                        </div>
+                        <input id="sql-volume-slider" type="range" min="1" max="5" value="5" step="1" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400" />
+                        <div class="flex justify-between text-[10px] font-mono text-slate-500">
+                            <span>10K</span>
+                            <span>100K</span>
+                            <span>1M</span>
+                            <span>5M</span>
+                            <span class="text-sky-400 font-bold">15M+</span>
+                        </div>
+                    </div>
+
+                    <!-- Index Strategy Switcher -->
+                    <div class="space-y-2">
+                        <span class="text-xs font-mono font-bold text-slate-300 block">InnoDB Index Strategy:</span>
+                        <div class="flex items-center gap-2 font-mono text-xs">
+                            <button id="sql-strategy-none-btn" type="button" class="sql-strat-btn flex-1 py-2.5 px-3 rounded-xl border border-white/10 bg-white/[0.03] text-slate-400 hover:text-white transition-all cursor-pointer text-center font-bold">
+                                ❌ No Index (Scan ALL)
+                            </button>
+                            <button id="sql-strategy-indexed-btn" type="button" class="sql-strat-btn active flex-1 py-2.5 px-3 rounded-xl border border-emerald-500/40 bg-emerald-500/20 text-emerald-300 transition-all cursor-pointer text-center font-bold shadow-lg shadow-emerald-500/20">
+                                ⚡ Composite B-Tree
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Metrics Summary Comparison -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="p-3.5 rounded-xl bg-black/40 border border-white/10 space-y-1">
+                        <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Execution Latency</span>
+                        <div id="sql-metric-latency" class="text-xl sm:text-2xl font-black text-emerald-400 font-mono">1.4 ms</div>
+                        <span id="sql-metric-speedup" class="text-[10.5px] font-mono text-emerald-400 block font-bold">3,014x Faster</span>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-black/40 border border-white/10 space-y-1">
+                        <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Rows Examined</span>
+                        <div id="sql-metric-examined" class="text-xl sm:text-2xl font-black text-emerald-400 font-mono">50 rows</div>
+                        <span id="sql-metric-efficiency" class="text-[10.5px] font-mono text-slate-400 block">100% Index Selectivity</span>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-black/40 border border-white/10 space-y-1">
+                        <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Buffer Pool &amp; Disk</span>
+                        <div id="sql-metric-buffer" class="text-xl sm:text-2xl font-black text-sky-400 font-mono">0 Disk Reads</div>
+                        <span id="sql-metric-buffer-note" class="text-[10.5px] font-mono text-slate-400 block">In-Memory B-Tree Descent</span>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-black/40 border border-white/10 space-y-1">
+                        <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Concurrency Safety</span>
+                        <div id="sql-metric-status" class="text-xl sm:text-2xl font-black text-emerald-400 font-mono">Tier-1 Safe</div>
+                        <span id="sql-metric-status-note" class="text-[10.5px] font-mono text-emerald-400 block font-bold">0 Deadlock Risk</span>
+                    </div>
+                </div>
+
+                <!-- Real MySQL EXPLAIN Table -->
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                        <span class="text-slate-300 font-bold flex items-center gap-1.5">
+                            <i data-lucide="terminal" class="w-3.5 h-3.5 text-sky-400"></i>
+                            EXPLAIN ANALYZE Execution Output:
+                        </span>
+                        <span id="sql-index-applied-tag" class="text-[11px] font-bold text-emerald-400">INDEX: `idx_kyc_client_status_created` (client_id, status, created_at DESC)</span>
+                    </div>
+                    <div class="overflow-x-auto rounded-xl border border-white/10 bg-black/50">
+                        <table class="w-full text-left font-mono text-xs">
+                            <thead class="bg-white/[0.04] text-[11px] text-slate-400 border-b border-white/10">
+                                <tr>
+                                    <th class="p-2.5">id</th>
+                                    <th class="p-2.5">select_type</th>
+                                    <th class="p-2.5">table</th>
+                                    <th class="p-2.5">type</th>
+                                    <th class="p-2.5">possible_keys</th>
+                                    <th class="p-2.5">key</th>
+                                    <th class="p-2.5">key_len</th>
+                                    <th class="p-2.5">ref</th>
+                                    <th class="p-2.5">rows</th>
+                                    <th class="p-2.5">filtered</th>
+                                    <th class="p-2.5">Extra</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sql-explain-tbody" class="divide-y divide-white/5 text-slate-300">
+                                <!-- Populated dynamically by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -771,99 +1186,202 @@ try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
 
 
         <!-- ====================================================================
-             SYSTEMS ARCHITECTURE & BENCHMARK LAB (DEDICATED LAB GATEWAY)
+             ARCHITECTURE DECISION RECORDS (ADRS) & INCIDENT POST-MORTEMS (RCAS)
              ==================================================================== -->
-        <section id="architecture" class="space-y-6">
-            <div class="apple-glass-card p-8 sm:p-10 border border-sky-400/30 relative overflow-hidden space-y-6">
-                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-white/10">
-                    <div class="space-y-2 max-w-2xl">
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-500/15 text-sky-400 border border-sky-500/30 text-xs font-mono font-bold tracking-wider uppercase">
-                            <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
-                            <span>INTERACTIVE DEEP DIVE</span>
-                        </div>
-                        <h3 class="text-2xl sm:text-3xl font-black text-white tracking-tight">Systems Architecture &amp; Benchmark Lab</h3>
-                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                            Want to see the distributed systems plumbing in action? Launch the dedicated engineering playground to test live race conditions, analyze query execution plans, benchmark Virtual Threads vs WebFlux, profile JVM garbage collectors, simulate bank jitter, and run production crises.
-                        </p>
-                    </div>
-                    <a href="/lab" class="px-8 py-4 rounded-full font-bold text-sm bg-gradient-to-r from-sky-400 to-emerald-400 text-slate-950 hover:brightness-110 shadow-xl shadow-sky-500/30 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 shrink-0 cursor-pointer font-mono">
-                        <i data-lucide="flask-conical" class="w-5 h-5"></i>
-                        <span>Launch Systems Lab ➔</span>
-                    </a>
+        <section id="adrs" class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-2">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 text-xs font-mono font-bold tracking-wider uppercase">
+                    <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
+                    <span>SYSTEM ARCHITECTURE &amp; PRODUCTION GOVERNANCE</span>
                 </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Architecture Decisions &amp; Post-Mortems</h2>
+                <p class="text-xs sm:text-sm text-slate-300">
+                    How architectural trade-offs are documented, defended, and permanently immunized under high-concurrency production load.
+                </p>
+            </div>
 
-                <!-- 6 Interactive Feature Preview Cards -->
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 font-mono text-center text-xs">
-                    <a href="/lab#payment-switch" class="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-sky-500/15 border border-white/10 hover:border-sky-400/40 transition-all space-y-1 block group">
-                        <span class="text-[10px] text-slate-400 block uppercase">SYSTEM DESIGN</span>
-                        <span class="font-bold text-white text-[11px] group-hover:text-sky-300">100k TPS Switch</span>
-                        <span class="text-[9.5px] text-emerald-400 block font-semibold">99.999% SLA</span>
-                    </a>
-                    <a href="/lab#concurrency-arena" class="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-amber-500/15 border border-white/10 hover:border-amber-400/40 transition-all space-y-1 block group">
-                        <span class="text-[10px] text-slate-400 block uppercase">RACE CONDITION</span>
-                        <span class="font-bold text-white text-[11px] group-hover:text-amber-300">Redis Mutex Arena</span>
-                        <span class="text-[9.5px] text-amber-400 block font-semibold">0 Double-Spends</span>
-                    </a>
-                    <a href="/lab#sql-lab" class="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-rose-500/15 border border-white/10 hover:border-rose-400/40 transition-all space-y-1 block group">
-                        <span class="text-[10px] text-slate-400 block uppercase">DB OPTIMIZER</span>
-                        <span class="font-bold text-white text-[11px] group-hover:text-rose-300">SQL EXPLAIN Lab</span>
-                        <span class="text-[9.5px] text-rose-400 block font-semibold">4,820ms ➔ 1.2ms</span>
-                    </a>
-                    <a href="/lab#jvm-profiler" class="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-purple-500/15 border border-white/10 hover:border-purple-400/40 transition-all space-y-1 block group">
-                        <span class="text-[10px] text-slate-400 block uppercase">JAVA RUNTIME</span>
-                        <span class="font-bold text-white text-[11px] group-hover:text-purple-300">JVM Heap &amp; ZGC</span>
-                        <span class="text-[9.5px] text-purple-400 block font-semibold">&lt;1ms STW Pause</span>
-                    </a>
-                    <a href="/lab#latency-benchmarks" class="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-emerald-500/15 border border-white/10 hover:border-emerald-400/40 transition-all space-y-1 block group">
-                        <span class="text-[10px] text-slate-400 block uppercase">BENCHMARKS</span>
-                        <span class="font-bold text-white text-[11px] group-hover:text-emerald-300">Java 25 vs Monolith</span>
-                        <span class="text-[9.5px] text-emerald-400 block font-semibold">13x Speedup</span>
-                    </a>
-                    <a href="/lab#incident-war-room" class="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-rose-500/15 border border-white/10 hover:border-rose-400/40 transition-all space-y-1 block group">
-                        <span class="text-[10px] text-slate-400 block uppercase">SRE WAR ROOM</span>
-                        <span class="font-bold text-white text-[11px] group-hover:text-rose-300">P0 Incident Triage</span>
-                        <span class="text-[9.5px] text-rose-400 block font-semibold">Active Escalation</span>
-                    </a>
+            <!-- Segmented Switcher: ADRs vs Blameless RCAs (Responsive stack on mobile) -->
+            <div class="flex items-center justify-center">
+                <div class="flex flex-col sm:flex-row items-center p-1 rounded-2xl bg-white/[0.03] border border-white/10 gap-1 font-mono text-xs w-full sm:w-auto">
+                    <button id="toggle-view-adrs-btn" type="button" class="active w-full sm:w-auto justify-center px-4 py-2 rounded-xl font-bold flex items-center gap-2 bg-sky-500/20 text-sky-300 border border-sky-500/40 shadow-lg shadow-sky-500/20 transition-all cursor-pointer">
+                        <i data-lucide="file-text" class="w-4 h-4 text-sky-400"></i>
+                        <span>Architecture Decision Records (4 ADRs)</span>
+                    </button>
+                    <button id="toggle-view-rcas-btn" type="button" class="w-full sm:w-auto justify-center px-4 py-2 rounded-xl font-bold flex items-center gap-2 text-slate-400 hover:text-white transition-all cursor-pointer">
+                        <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-400"></i>
+                        <span>Production Post-Mortems (3 P0 RCAs)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Panel 1: Architecture Decision Records (ADRs) -->
+            <div id="adrs-panel" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div th:each="adr : ${adrs}" class="apple-glass-card p-6 sm:p-7 space-y-4 border border-white/10 hover:border-sky-500/30 transition-all">
+                    <!-- Top ID & Status Header -->
+                    <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-white/10">
+                        <div class="flex items-center gap-2.5">
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-sky-500/15 text-sky-400 border border-sky-500/30" th:text="${adr.id}">ADR-001</span>
+                            <span class="text-xs font-mono text-slate-400" th:text="${adr.date}">Q1 2024</span>
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full text-[10.5px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase tracking-wide" th:text="${adr.status}">ACCEPTED</span>
+                    </div>
+
+                    <!-- Title -->
+                    <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-tight leading-snug" th:text="${adr.title}">ADR Title</h3>
+
+                    <!-- Context Block -->
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block">1. Architectural Context &amp; Problem:</span>
+                        <p class="text-xs text-slate-300 leading-relaxed" th:text="${adr.context}">Context details</p>
+                    </div>
+
+                    <!-- Decision Block -->
+                    <div class="p-3.5 rounded-xl bg-sky-500/[0.04] border border-sky-500/20 space-y-1">
+                        <span class="text-[10px] font-mono font-bold text-sky-400 uppercase tracking-wider flex items-center gap-1.5">
+                            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                            <span>2. Decision Reached:</span>
+                        </span>
+                        <p class="text-xs text-slate-200 leading-relaxed font-mono" th:text="${adr.decision}">Decision details</p>
+                    </div>
+
+                    <!-- Consequences Block -->
+                    <div class="p-3.5 rounded-xl bg-emerald-500/[0.04] border border-emerald-500/20 space-y-1">
+                        <span class="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                            <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+                            <span>3. Measured Production Consequences:</span>
+                        </span>
+                        <p class="text-xs text-emerald-200/90 leading-relaxed" th:text="${adr.consequences}">Consequences details</p>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="flex flex-wrap items-center gap-1.5 pt-1">
+                        <span th:each="tag : ${adr.tags}" class="px-2 py-0.5 rounded-md text-[10px] font-mono savage-pill text-slate-300" th:text="${tag}">Java 25</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 2: Production Incident Post-Mortems (RCAs) -->
+            <div id="rcas-panel" class="hidden grid grid-cols-1 gap-6">
+                <div th:each="rca : ${rcas}" class="apple-glass-card p-6 sm:p-8 space-y-5 border border-rose-500/20 hover:border-rose-500/40 transition-all">
+                    <!-- Top Header -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/10">
+                        <div class="space-y-1">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-rose-500/15 text-rose-400 border border-rose-500/30" th:text="${rca.id}">RCA-001</span>
+                                <span class="px-2.5 py-0.5 rounded-full text-[10.5px] font-mono font-bold bg-rose-500/10 text-rose-300 border border-rose-500/20 uppercase" th:text="${rca.severity}">P0 CRITICAL</span>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight" th:text="${rca.title}">RCA Title</h3>
+                        </div>
+                        <div class="flex items-center gap-3 font-mono text-xs self-start sm:self-auto shrink-0">
+                            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300">MTTR: <strong class="text-sky-400" th:text="${rca.mttr}">14m</strong></span>
+                            <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold" th:text="${rca.financialImpact}">₹0 Lost</span>
+                        </div>
+                    </div>
+
+                    <!-- Impact & Root Cause -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
+                            <span class="text-[10px] font-mono font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i data-lucide="alert-octagon" class="w-3.5 h-3.5"></i>
+                                <span>Impact Experienced:</span>
+                            </span>
+                            <p class="text-xs text-slate-300 leading-relaxed" th:text="${rca.impact}">Impact text</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
+                            <span class="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+                                <span>Deep Technical Root Cause:</span>
+                            </span>
+                            <p class="text-xs text-slate-300 leading-relaxed font-mono" th:text="${rca.rootCause}">Root cause text</p>
+                        </div>
+                    </div>
+
+                    <!-- Immediate Mitigation vs Permanent Guardrail -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-amber-500/[0.04] border border-amber-500/20 space-y-1.5">
+                            <span class="text-[10px] font-mono font-bold text-amber-300 uppercase tracking-wider flex items-center gap-1.5">
+                                <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                                <span>Immediate Operational Mitigation:</span>
+                            </span>
+                            <p class="text-xs text-slate-300 leading-relaxed" th:text="${rca.mitigation}">Mitigation text</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-emerald-500/[0.04] border border-emerald-500/20 space-y-1.5">
+                            <span class="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                                <span>Permanent Architectural Immunization:</span>
+                            </span>
+                            <p class="text-xs text-emerald-200/90 leading-relaxed" th:text="${rca.permanentGuardrail}">Permanent guardrail text</p>
+                        </div>
+                    </div>
+
+                    <!-- Tech Keys -->
+                    <div class="flex flex-wrap items-center gap-2 pt-1 border-t border-white/5">
+                        <span class="text-[10px] font-mono text-slate-500 mr-1">TECH BOUNDARY:</span>
+                        <span th:each="k : ${rca.techKeys}" class="px-2 py-0.5 rounded-full text-[10px] font-mono savage-pill text-slate-300" th:text="${k}">Redis</span>
+                    </div>
                 </div>
             </div>
         </section>
 
 
         <!-- ====================================================================
-             THE CYNICAL ENGINEER'S CONFESSIONAL (ROASTING TECH & MYSELF)
+             SYSTEMS ARCHITECTURE & BENCHMARK LAB (DEDICATED LAB GATEWAY)
              ==================================================================== -->
-        <section id="roasts" class="apple-glass-card p-8 lg:p-12 text-center space-y-6 relative overflow-hidden">
-            <div class="absolute -top-10 -right-10 w-48 h-48 bg-rose-500/10 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <section id="architecture" class="apple-glass-card p-6 sm:p-8 border border-sky-400/30 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-1.5 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-sky-500/15 text-sky-400 border border-sky-500/30 text-[11px] font-mono font-bold uppercase">
+                    <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+                    <span>INTERACTIVE SYSTEMS LAB &amp; SRE BENCHMARKS</span>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight">Test Live Race Conditions, SQL EXPLAIN &amp; JVM ZGC</h3>
+                <p class="text-xs text-slate-300">
+                    Step into the engineering playground to test Redis mutex locks, benchmark Virtual Threads vs WebFlux, and triage live P0 incidents.
+                </p>
+            </div>
+            <a href="/lab" class="px-6 py-3.5 rounded-full font-bold text-xs bg-gradient-to-r from-sky-400 to-emerald-400 text-slate-950 hover:brightness-110 shadow-lg shadow-sky-500/25 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 shrink-0 font-mono">
+                <i data-lucide="flask-conical" class="w-4 h-4"></i>
+                <span>Launch Systems Lab ➔</span>
+            </a>
+        </section>
+
+
+        <!-- ====================================================================
+             ARCHITECTURAL PRINCIPLES & PRODUCTION CONVICTIONS
+             ==================================================================== -->
+        <section id="principles" class="apple-glass-card p-8 lg:p-12 text-center space-y-6 relative overflow-hidden border border-sky-500/20">
+            <div class="absolute -top-10 -right-10 w-48 h-48 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="max-w-3xl mx-auto space-y-3">
                 <div class="flex items-center justify-center gap-3">
-                    <span class="text-xs font-mono font-bold tracking-widest text-rose-400 uppercase">DARK HUMOR &bull; SELF-ROASTS &bull; REALITY CHECKS</span>
-                    <span id="roast-counter-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-rose-500/15 text-rose-400 border border-rose-500/30">1 / 22</span>
+                    <span class="text-xs font-mono font-bold tracking-widest text-sky-400 uppercase">CORE ARCHITECTURAL TENETS &bull; SRE REALITIES</span>
+                    <span id="roast-counter-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-sky-500/15 text-sky-400 border border-sky-500/30">1 / 10</span>
                 </div>
-                <h2 class="text-3xl font-extrabold text-white tracking-tight">The Cynical Engineer’s Confessional</h2>
-                <p class="text-sm text-slate-300">Because if you can’t roast yourself for getting kicked out of Merck for playing office hide-and-seek, you have no right to roast frontend developers.</p>
+                <h2 class="text-3xl font-extrabold text-white tracking-tight">Architectural Principles &amp; Production Convictions</h2>
+                <p class="text-sm text-slate-300">Hard-learned engineering convictions forged across high-concurrency banking rails, 1.5M+ daily API hits, and zero-downtime database migrations.</p>
             </div>
 
-            <div id="roast-card-container" class="p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/10 max-w-3xl mx-auto min-h-[120px] flex flex-col items-center justify-center relative overflow-hidden group cursor-pointer hover:border-white/20 transition-all" title="Click or hover to pause / advance">
+            <div id="roast-card-container" class="p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/10 max-w-3xl mx-auto min-h-[140px] flex flex-col items-center justify-center relative overflow-hidden group cursor-pointer hover:border-sky-500/30 transition-all shadow-inner" title="Click or hover to pause / advance">
                 <!-- Subtle auto-loop progress line -->
                 <div class="absolute top-0 left-0 right-0 h-1 bg-white/5">
-                    <div id="roast-progress-bar" class="h-full bg-gradient-to-r from-rose-500 via-purple-500 to-sky-400 w-0"></div>
+                    <div id="roast-progress-bar" class="h-full bg-gradient-to-r from-sky-500 via-emerald-400 to-teal-300 w-0"></div>
                 </div>
 
                 <blockquote class="text-sm sm:text-base font-mono text-slate-200 italic leading-relaxed select-text" id="active-roast-display">
-                    "Merck let me go after a 1-year internship. Not because my Java code had bugs (it had 98% test coverage), but because the moment tickets were done, I was the undisputed office foosball champion and playing extreme luka chhipi (hide-and-seek) behind the server racks."
+                    "Virtual Threads Over Reactive Complexity: Blocking I/O code with Java 25 Virtual Threads scales to hundreds of thousands of concurrent requests with clean, readable synchronous stack traces, completely eliminating the cognitive tax of WebFlux and Mono/Flux debugging."
                 </blockquote>
             </div>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-1">
-                <button id="generate-roast-btn" class="px-6 py-3 rounded-full font-bold text-sm bg-gradient-to-r from-rose-500 to-purple-600 text-white hover:brightness-110 shadow-lg shadow-rose-500/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer">
-                    <span>Next Reality Check 🔥</span>
+                <button id="generate-roast-btn" class="px-6 py-3 rounded-full font-bold text-sm bg-gradient-to-r from-sky-500 to-emerald-500 text-slate-950 hover:brightness-110 shadow-lg shadow-sky-500/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer font-mono">
+                    <span>Next Principle ➔</span>
                     <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </button>
                 <div class="text-[11px] font-mono text-slate-400 flex items-center gap-2">
                     <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>Auto-looping every 6s (hover card to pause)</span>
+                    <span>Auto-cycling every 6.5s (hover card to pause)</span>
                 </div>
             </div>
         </section>
@@ -965,32 +1483,32 @@ try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
             </div>
 
             <!-- ================================================================
-                 SPOTIFY-STYLE FINTECH PRODUCTION WRAPPED 2026
+                 EXECUTIVE SRE & PRODUCTION TELEMETRY SNAPSHOT
                  ================================================================ -->
             <div class="apple-glass-card wrapped-sheen p-6 sm:p-8 space-y-6 border border-sky-400/30 relative overflow-hidden mt-6">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
                     <div class="space-y-1">
                         <span class="text-xs font-mono font-black text-sky-400 uppercase tracking-widest flex items-center gap-2">
-                            <i data-lucide="sparkles" class="w-4 h-4"></i>
-                            <span>FINTECH PRODUCTION WRAPPED &bull; 2026</span>
+                            <i data-lucide="gauge" class="w-4 h-4"></i>
+                            <span>SYSTEM ARCHITECTURE &bull; PRODUCTION TELEMETRY</span>
                         </span>
-                        <h3 class="text-2xl sm:text-3xl font-black text-white tracking-tight">Battle Record at a Glance</h3>
+                        <h3 class="text-2xl sm:text-3xl font-black text-white tracking-tight">Verified Production Runtime Metrics</h3>
                         <p class="text-xs sm:text-sm text-slate-300">
-                            The cold, hard production telemetry achieved across mission-critical banking and identity services.
+                            Battle-tested telemetry achieved across mission-critical banking, identity, and asynchronous data pipelines.
                         </p>
                     </div>
                     <button id="copy-wrapped-btn" class="px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-mono font-bold flex items-center gap-2 cursor-pointer transition-all hover:scale-105 active:scale-95 shrink-0 border border-white/15">
                         <i data-lucide="copy" class="w-3.5 h-3.5 text-sky-400"></i>
-                        <span>Copy Summary Card</span>
+                        <span>Copy SRE Summary</span>
                     </button>
                 </div>
 
                 <!-- 4 Highlight Tiles -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-center">
                     <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1">
-                        <span class="text-[10px] text-slate-400 uppercase">Daily DigiLocker Ingress</span>
+                        <span class="text-[10px] text-slate-400 uppercase">Daily Platform Ingress</span>
                         <span class="block text-xl sm:text-2xl font-black text-emerald-400">1.5M+ Hits</span>
-                        <span class="text-[10px] text-slate-400">1.5L Tx/Day (12+ APIs/Journey)</span>
+                        <span class="text-[10px] text-slate-400">2L Tx/Day (Scaled from 30k–35k)</span>
                     </div>
                     <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1">
                         <span class="text-[10px] text-slate-400 uppercase">Async Purge Velocity</span>
@@ -1003,21 +1521,21 @@ try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
                         <span class="text-[10px] text-slate-400">Zero Downtime</span>
                     </div>
                     <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1">
-                        <span class="text-[10px] text-slate-400 uppercase">Deadlocks in Prod</span>
-                        <span class="block text-xl sm:text-2xl font-black text-emerald-400">0</span>
-                        <span class="text-[10px] text-slate-400">14M+ Rows Purged</span>
+                        <span class="text-[10px] text-slate-400 uppercase">Aadhaar OKYC Latency</span>
+                        <span class="block text-xl sm:text-2xl font-black text-emerald-400">&lt;40ms</span>
+                        <span class="text-[10px] text-slate-400">300k Daily Transactions</span>
                     </div>
                 </div>
 
                 <!-- Bottom Metadata Line -->
                 <div class="flex flex-wrap items-center justify-between gap-3 pt-2 text-xs font-mono text-slate-400 border-t border-white/5">
                     <div>
-                        <span class="text-slate-500">Weapon of Choice:</span>
-                        <span class="text-white font-bold ml-1">Java 25 (Virtual Threads) &bull; Spring Boot 3</span>
+                        <span class="text-slate-500">Core Engine:</span>
+                        <span class="text-white font-bold ml-1">Java 25 (Virtual Threads) &bull; Spring Boot 3 &bull; Redis Mutex &bull; MySQL 8.0</span>
                     </div>
                     <div>
-                        <span class="text-slate-500">Staging Safety Net:</span>
-                        <span class="text-rose-400 font-bold ml-1">0% (Straight to Production)</span>
+                        <span class="text-slate-500">Architecture:</span>
+                        <span class="text-emerald-400 font-bold ml-1">In-Memory Buffers &bull; Zero Disk Bottlenecks</span>
                     </div>
                 </div>
             </div>
@@ -1036,34 +1554,10 @@ try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
 
 
     <!-- ====================================================================
-         FLOATING "LO-FI CODING BEATS" AMBIENT PLAYER (APPLE STYLE)
-         ==================================================================== -->
-    <div class="fixed bottom-6 left-6 z-40">
-        <button id="lofi-player-btn" class="px-3.5 py-2.5 rounded-full bg-slate-950/90 text-slate-300 border border-purple-500/30 shadow-2xl backdrop-blur-xl flex items-center gap-3 text-xs font-mono font-semibold hover:border-purple-400 hover:scale-105 active:scale-95 transition-all group cursor-pointer" title="Toggle Lo-Fi Coding Beats">
-            <div id="lofi-equalizer" class="flex items-end gap-0.5 h-3.5 w-3.5 shrink-0">
-                <span class="lofi-bar w-0.5 bg-purple-400 rounded-full h-1.5 transition-all"></span>
-                <span class="lofi-bar w-0.5 bg-sky-400 rounded-full h-3 transition-all"></span>
-                <span class="lofi-bar w-0.5 bg-emerald-400 rounded-full h-2 transition-all"></span>
-                <span class="lofi-bar w-0.5 bg-rose-400 rounded-full h-1 transition-all"></span>
-            </div>
-            <div class="flex flex-col text-left">
-                <span class="text-[11px] font-bold text-white group-hover:text-purple-300 flex items-center gap-1.5 leading-none">
-                    <span>Lo-Fi Beats</span>
-                    <span id="lofi-status-tag" class="text-[8.5px] px-1 py-0.2 rounded bg-purple-500/20 text-purple-300 font-bold">OFF</span>
-                </span>
-                <span class="text-[9px] text-slate-400 truncate max-w-[110px] sm:max-w-[140px] pt-0.5">2.5k TPS Purge Vibe</span>
-            </div>
-            <i data-lucide="play" id="lofi-play-icon" class="w-3.5 h-3.5 text-purple-400 ml-0.5"></i>
-            <i data-lucide="pause" id="lofi-pause-icon" class="w-3.5 h-3.5 text-purple-400 ml-0.5 hidden"></i>
-        </button>
-    </div>
-
-
-    <!-- ====================================================================
          FLOATING "ASK AKSHAT'S CLI" ACTION BUTTON
          ==================================================================== -->
-    <div class="fixed bottom-6 right-6 z-40">
-        <button id="open-cli-qa-btn" class="px-4 py-3 rounded-full bg-slate-950/90 text-sky-400 border border-sky-500/40 shadow-2xl backdrop-blur-xl flex items-center gap-2.5 text-xs font-mono font-bold hover:scale-105 active:scale-95 transition-all group cursor-pointer hover:border-sky-400 hover:shadow-sky-500/20" title="Ask Akshat's CLI Alter-Ego">
+    <div class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40">
+        <button id="open-cli-qa-btn" class="px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-full bg-slate-950/90 text-sky-400 border border-sky-500/40 shadow-2xl backdrop-blur-xl flex items-center gap-2 sm:gap-2.5 text-xs font-mono font-bold hover:scale-105 active:scale-95 transition-all group cursor-pointer hover:border-sky-400 hover:shadow-sky-500/20" title="Ask Akshat's CLI Alter-Ego">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
             <i data-lucide="terminal" class="w-4 h-4 text-sky-400 group-hover:rotate-12 transition-transform"></i>
             <span class="text-white group-hover:text-sky-300">Ask Akshat's CLI</span>
@@ -1094,61 +1588,40 @@ try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
             <div class="space-y-2">
                 <div class="text-[11px] font-mono text-slate-400 font-semibold uppercase tracking-wider flex items-center gap-1.5">
                     <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400"></i>
-                    <span>Quick Architectural Queries (Click To Execute):</span>
+                    <span>Quick Architectural &amp; System Design Drills (Click To Execute):</span>
                 </div>
                 <div class="flex flex-wrap gap-2">
                     <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-sky-500/15 border border-white/10 hover:border-sky-500/40 text-slate-300 hover:text-sky-300 font-mono text-xs transition-all cursor-pointer" data-question="virtual-threads">
                         1. Why Java 25 Virtual Threads over Go/Node?
                     </button>
                     <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-sky-500/15 border border-white/10 hover:border-sky-500/40 text-slate-300 hover:text-sky-300 font-mono text-xs transition-all cursor-pointer" data-question="digilocker-hell">
-                        2. The 4-Repo DigiLocker Hell & DB Civil War
+                        2. DigiLocker 4-Repo Consolidation &amp; Dual-DB
                     </button>
-                    <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-rose-500/15 border border-white/10 hover:border-rose-500/40 text-slate-300 hover:text-rose-300 font-mono text-xs transition-all cursor-pointer" data-question="merck-foosball">
-                        3. Merck Foosball & Hide-and-Seek Story
+                    <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-sky-500/15 border border-white/10 hover:border-sky-500/40 text-slate-300 hover:text-sky-300 font-mono text-xs transition-all cursor-pointer" data-question="aadhaar-okyc">
+                        3. Sub-40ms Aadhaar OKYC Pipeline (300k/day)
                     </button>
-                    <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-amber-500/15 border border-white/10 hover:border-amber-500/40 text-slate-300 hover:text-amber-300 font-mono text-xs transition-all cursor-pointer" data-question="zero-staging">
-                        4. Why 0 Staging at Digitap?
+                    <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-emerald-500/15 border border-white/10 hover:border-emerald-500/40 text-slate-300 hover:text-emerald-300 font-mono text-xs transition-all cursor-pointer" data-question="live-migration">
+                        4. Zero-Downtime 150 TPS Database Migration
                     </button>
-                    <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-emerald-500/15 border border-white/10 hover:border-emerald-500/40 text-slate-300 hover:text-emerald-300 font-mono text-xs transition-all cursor-pointer" data-question="purge-engine">
-                        5. 2,500 TPS S3 Purge (How AWS Throttled Me)
+                    <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-purple-500/15 border border-white/10 hover:border-purple-500/40 text-slate-300 hover:text-purple-300 font-mono text-xs transition-all cursor-pointer" data-question="purge-engine">
+                        5. 2,500 TPS S3 Purge &amp; AWS Rate Limits
                     </button>
-                </div>
-
-                <!-- Marvel Avengers Heroes Chips -->
-                <div class="pt-1 border-t border-white/5">
-                    <div class="text-[10px] font-mono text-amber-400/90 font-bold uppercase tracking-wider flex items-center gap-1.5 mb-1.5">
-                        <span>🅰️ MARVEL AVENGERS POWERS (CLICK TO TRIGGER SOUND &amp; FX):</span>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5">
-                        <button class="cli-prompt-chip px-2.5 py-1 rounded-lg bg-sky-500/10 hover:bg-sky-500/25 border border-sky-500/30 text-sky-300 font-mono text-[11px] transition-all cursor-pointer hover:scale-105 active:scale-95" data-command="thor">
-                            ⚡ Thor Strike
-                        </button>
-                        <button class="cli-prompt-chip px-2.5 py-1 rounded-lg bg-red-500/10 hover:bg-red-500/25 border border-red-500/30 text-red-300 font-mono text-[11px] transition-all cursor-pointer hover:scale-105 active:scale-95" data-command="ironman">
-                            🤖 Iron Man Jarvis
-                        </button>
-                        <button class="cli-prompt-chip px-2.5 py-1 rounded-lg bg-purple-500/10 hover:bg-purple-500/25 border border-purple-500/30 text-purple-300 font-mono text-[11px] transition-all cursor-pointer hover:scale-105 active:scale-95" data-command="thanos">
-                            🫰 Thanos Snap
-                        </button>
-                        <button class="cli-prompt-chip px-2.5 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-300 font-mono text-[11px] transition-all cursor-pointer hover:scale-105 active:scale-95" data-command="hulk">
-                            🟢 Hulk Smash
-                        </button>
-                        <button class="cli-prompt-chip px-2.5 py-1 rounded-lg bg-blue-500/10 hover:bg-blue-500/25 border border-blue-500/30 text-blue-300 font-mono text-[11px] transition-all cursor-pointer hover:scale-105 active:scale-95" data-command="cap">
-                            🛡️ Cap Shield
-                        </button>
-                        <button class="cli-prompt-chip px-2.5 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/25 border border-rose-500/30 text-rose-300 font-mono text-[11px] transition-all cursor-pointer hover:scale-105 active:scale-95" data-command="spidey">
-                            🕷️ Spidey Web
-                        </button>
-                        <button class="cli-prompt-chip px-3 py-1 rounded-lg bg-gradient-to-r from-red-500/20 to-amber-500/20 hover:from-red-500/30 hover:to-amber-500/30 border border-amber-500/40 text-amber-300 font-mono text-[11px] font-bold transition-all cursor-pointer hover:scale-105 active:scale-95" data-command="assemble">
-                            🅰️ ASSEMBLE ALL
-                        </button>
-                    </div>
+                    <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-sky-500/15 border border-sky-500/30 text-sky-300 font-mono text-xs transition-all cursor-pointer" data-question="distributed-tx">
+                        6. Distributed Tx without 2PC (Saga + Outbox)
+                    </button>
+                    <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-amber-500/15 border border-amber-500/30 text-amber-300 font-mono text-xs transition-all cursor-pointer" data-question="mysql-deadlocks">
+                        7. MySQL Deadlocks on Concurrent INSERT ... UPDATE
+                    </button>
+                    <button class="cli-prompt-chip px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-xs transition-all cursor-pointer" data-question="vt-pinning">
+                        8. Java 25 Virtual Thread Pinning &amp; synchronized
+                    </button>
                 </div>
             </div>
 
             <!-- Terminal Screen Output Container -->
             <div id="cli-terminal-screen" class="terminal-window p-4 sm:p-5 h-64 overflow-y-auto space-y-3 font-mono text-xs select-text">
-                <div class="text-slate-500">// Akshat's Interactive Alter-Ego CLI v2.5 (Java 25 Corretto)</div>
-                <div class="text-slate-400">Click any query chip above or type a command below (<span class="text-sky-400 font-bold">help</span>, <span class="text-amber-400 font-bold">thor</span>, <span class="text-purple-400 font-bold">thanos</span>, <span class="text-emerald-400 font-bold">projects</span>, <span class="text-rose-400 font-bold">roast</span>, <span class="text-amber-400 font-bold">clear</span>).</div>
+                <div class="text-slate-500">// Akshat's Distributed Systems Architecture CLI (Java 25 Corretto)</div>
+                <div class="text-slate-400">Click any architectural query above or type a command (<span class="text-sky-400 font-bold">help</span>, <span class="text-emerald-400 font-bold">projects</span>, <span class="text-purple-400 font-bold">principles</span>, <span class="text-amber-400 font-bold">clear</span>).</div>
                 <div id="cli-output-stream" class="space-y-3">
                     <!-- Dynamic Q&A typewriter content goes here -->
                 </div>
@@ -1157,49 +1630,12 @@ try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
             <!-- Terminal Command Input Line -->
             <form id="cli-terminal-form" class="flex items-center gap-2 font-mono text-xs border border-white/10 rounded-xl px-3 py-2 bg-white/[0.02]">
                 <span class="text-emerald-400 font-bold">&gt;</span>
-                <input id="cli-input-field" type="text" placeholder="Type a command (help, roasts, tps, projects, clear)..." 
+                <input id="cli-input-field" type="text" placeholder="Type a command (help, principles, tps, projects, clear)..." 
                        class="bg-transparent border-none outline-none text-slate-200 placeholder-slate-600 flex-1 font-mono text-xs">
                 <button type="submit" class="px-3 py-1 rounded-lg bg-sky-500/20 text-sky-400 hover:bg-sky-500/30 text-[11px] font-bold cursor-pointer transition-colors">
                     EXEC
                 </button>
             </form>
-        </div>
-    </div>
-
-
-    <!-- ====================================================================
-         "BREAK PROD" PANIC MODAL (INTERACTIVE TROLL)
-         ==================================================================== -->
-    <div id="break-prod-modal" class="fixed inset-0 z-50 savage-modal-backdrop flex items-center justify-center p-4 hidden">
-        <div class="apple-glass max-w-xl w-full rounded-3xl p-6 sm:p-8 space-y-6 border border-rose-500/40 shadow-2xl relative animate-in fade-in zoom-in duration-200">
-            <!-- Modal Header -->
-            <div class="flex items-center justify-between pb-3 border-b border-rose-500/20">
-                <div class="flex items-center gap-3">
-                    <div class="p-2 rounded-xl bg-rose-500/20 text-rose-400 animate-pulse">
-                        <i data-lucide="alert-octagon" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-white tracking-tight">PRODUCTION INCIDENT SIMULATOR</h3>
-                        <span class="text-[11px] font-mono text-rose-400">Severity: P0 Blocker &bull; Friday 7:30 PM</span>
-                    </div>
-                </div>
-                <button id="break-prod-close" class="p-2 rounded-full savage-pill text-slate-400 hover:text-white">
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
-            </div>
-
-            <!-- Terminal Output for Incident -->
-            <div id="panic-terminal" class="terminal-window p-4 h-64 overflow-y-auto space-y-2.5 font-mono text-xs select-text">
-                <!-- Panic text rendered by JS -->
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="flex items-center justify-between pt-2">
-                <span class="text-xs font-mono text-slate-400">Unit Tests: 98% Passing</span>
-                <button onclick="document.getElementById('break-prod-modal').classList.add('hidden')" class="px-5 py-2.5 rounded-full text-xs font-bold bg-emerald-500 text-slate-950 hover:brightness-110 transition-all">
-                    Thank God For Good Architecture
-                </button>
-            </div>
         </div>
     </div>
 
@@ -1286,126 +1722,33 @@ try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
 
 
     <!-- ====================================================================
-         "KILL THE MONOLITH" RETRO CYBERPUNK ARCADE MODAL
+         SPOTLIGHT / RAYCAST COMMAND PALETTE MODAL (⌘K)
          ==================================================================== -->
-    <div id="arcade-game-modal" class="fixed inset-0 z-50 savage-modal-backdrop flex items-center justify-center p-3 sm:p-4 hidden">
-        <div class="apple-glass-card max-w-2xl w-full p-4 sm:p-6 space-y-4 relative shadow-2xl border border-purple-500/40 animate-in fade-in zoom-in duration-200">
-            <!-- Header bar with retro badge & close button -->
-            <div class="flex items-center justify-between border-b border-white/10 pb-3 font-mono">
-                <div class="flex items-center gap-2">
-                    <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 text-xs font-bold flex items-center gap-1.5">
-                        <i data-lucide="gamepad-2" class="w-3.5 h-3.5"></i>
-                        <span>ARCADE ENGINE v1.0</span>
-                    </span>
-                    <span class="text-xs font-bold text-white hidden sm:inline">KILL THE MONOLITH (Java 25 vs The Legacy)</span>
-                </div>
+    <div id="cmd-palette-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-start justify-center pt-16 sm:pt-24 px-4 select-none">
+        <div class="w-full max-w-xl apple-glass rounded-2xl border border-sky-500/30 shadow-2xl overflow-hidden flex flex-col bg-slate-950/95 animate-fadeIn">
+            <!-- Search Header -->
+            <div class="p-3.5 border-b border-white/10 flex items-center gap-3 bg-white/[0.02]">
+                <i data-lucide="search" class="w-4 h-4 text-sky-400 shrink-0"></i>
+                <input id="cmd-palette-input" type="text" placeholder="Type a command or jump to section (e.g. 'Tradeoffs', 'Purge', 'ADR', 'Chaos')..." class="w-full bg-transparent text-sm text-white placeholder-slate-500 font-mono focus:outline-none" autocomplete="off" spellcheck="false" />
+                <kbd id="cmd-palette-close-esc" class="px-2 py-0.5 rounded bg-white/10 text-[10px] font-mono text-slate-400 border border-white/15 cursor-pointer hover:text-white">ESC</kbd>
+            </div>
+
+            <!-- Results List -->
+            <div id="cmd-palette-results" class="max-h-[380px] overflow-y-auto p-2 space-y-1 font-mono text-xs">
+                <!-- Populated dynamically via JS -->
+            </div>
+
+            <!-- Footer Shortcut Hints -->
+            <div class="px-4 py-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-500 bg-black/40">
                 <div class="flex items-center gap-3">
-                    <button id="arcade-sound-toggle" class="px-2 py-1 rounded bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-xs cursor-pointer" title="Toggle 8-bit Sound Effects">
-                        <i data-lucide="volume-2" class="w-3.5 h-3.5 text-emerald-400" id="arcade-sound-icon"></i>
-                    </button>
-                    <button id="arcade-modal-close" class="p-1 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-all cursor-pointer">
-                        <i data-lucide="x" class="w-4 h-4"></i>
-                    </button>
+                    <span><kbd class="px-1.5 py-0.5 rounded bg-white/10 text-slate-300 text-[10px]">↑</kbd> <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-slate-300 text-[10px]">↓</kbd> navigate</span>
+                    <span><kbd class="px-1.5 py-0.5 rounded bg-white/10 text-slate-300 text-[10px]">↵</kbd> select</span>
                 </div>
-            </div>
-
-            <!-- Arcade HUD Bar -->
-            <div class="grid grid-cols-4 gap-2 text-center font-mono text-xs">
-                <div class="p-2 rounded-xl bg-white/[0.03] border border-white/10">
-                    <span class="text-[9px] text-slate-500 block">SCORE</span>
-                    <span id="arcade-score" class="font-bold text-emerald-400 text-sm">0</span>
-                </div>
-                <div class="p-2 rounded-xl bg-white/[0.03] border border-white/10">
-                    <span class="text-[9px] text-slate-500 block">TPS PURGED</span>
-                    <span id="arcade-tps" class="font-bold text-sky-400 text-sm">0 / 2,500</span>
-                </div>
-                <div class="p-2 rounded-xl bg-white/[0.03] border border-white/10">
-                    <span class="text-[9px] text-slate-500 block">JVM HEALTH</span>
-                    <span id="arcade-health" class="font-bold text-emerald-400 text-sm">100%</span>
-                </div>
-                <div class="p-2 rounded-xl bg-white/[0.03] border border-white/10">
-                    <span class="text-[9px] text-slate-500 block">HIGH SCORE</span>
-                    <span id="arcade-high-score" class="font-bold text-amber-400 text-sm">0</span>
-                </div>
-            </div>
-
-            <!-- Game Canvas Container -->
-            <div class="relative w-full aspect-[16/10] max-h-[360px] bg-slate-950 rounded-2xl overflow-hidden border border-purple-500/30 shadow-inner flex items-center justify-center">
-                <canvas id="arcade-canvas" width="640" height="400" class="w-full h-full block select-none touch-none"></canvas>
-
-                <!-- Overlay Screens (Start / Game Over / Victory) -->
-                <div id="arcade-overlay" class="absolute inset-0 bg-slate-950/85 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center font-mono space-y-4">
-                    <div id="arcade-overlay-badge" class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-bold border border-purple-500/40">
-                        SPACE INVADERS &bull; FINTECH DEFENDER
-                    </div>
-                    <h3 id="arcade-overlay-title" class="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                        KILL THE MONOLITH
-                    </h3>
-                    <p id="arcade-overlay-desc" class="text-xs text-slate-300 max-w-md leading-relaxed">
-                        Production is getting bombarded by <span class="text-rose-400 font-bold">OutOfMemoryErrors</span>, <span class="text-amber-400 font-bold">Deadlocks</span>, and <span class="text-sky-400 font-bold">Full Table Scans</span>! Blast them with Java 25 Virtual Threads before the JVM crashes.
-                    </p>
-                    <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
-                        <button id="arcade-start-btn" class="px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-sky-400 text-slate-950 font-bold text-xs hover:brightness-110 shadow-lg shadow-purple-500/30 hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center gap-2">
-                            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
-                            <span>START PURGE MISSION (60s)</span>
-                        </button>
-                    </div>
-                    <div class="text-[10px] text-slate-400 flex items-center gap-4 pt-1">
-                        <span>Desktop: <kbd class="px-1.5 py-0.5 bg-white/10 rounded text-slate-200">←</kbd> <kbd class="px-1.5 py-0.5 bg-white/10 rounded text-slate-200">→</kbd> to move, <kbd class="px-1.5 py-0.5 bg-white/10 rounded text-slate-200">Space</kbd> to shoot</span>
-                        <span class="hidden sm:inline">&bull;</span>
-                        <span>Mobile: Touch left/right / tap to fire</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mobile Controls Bar -->
-            <div class="flex sm:hidden items-center justify-between gap-2 pt-1 font-mono text-xs">
-                <button id="arcade-left-btn" class="flex-1 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold active:bg-sky-500/30">◀ LEFT</button>
-                <button id="arcade-fire-btn" class="flex-2 py-2.5 rounded-xl bg-gradient-to-r from-purple-500 to-sky-400 text-slate-950 font-black active:scale-95">⚡ FIRE (VIRTUAL THREAD)</button>
-                <button id="arcade-right-btn" class="flex-1 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold active:bg-sky-500/30">RIGHT ▶</button>
+                <span class="text-sky-400/80">Akshat Jaiswal &bull; Distributed Systems</span>
             </div>
         </div>
     </div>
 
-    <!-- ====================================================================
-         LIVE SYSTEM INTERACTIVE PREVIEW MODAL (ShortAF & External Demos)
-         ==================================================================== -->
-    <div id="live-system-preview-modal" class="fixed inset-0 z-50 savage-modal-backdrop flex items-center justify-center p-3 sm:p-6 hidden">
-        <div class="apple-glass rounded-2xl w-full max-w-5xl h-[85vh] flex flex-col border border-white/20 shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
-            <!-- Modal Top Bar -->
-            <div class="px-5 py-3.5 border-b border-white/10 flex items-center justify-between bg-black/40">
-                <div class="flex items-center gap-3">
-                    <div class="flex items-center gap-1.5">
-                        <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block cursor-pointer close-preview-modal-btn" title="Close"></span>
-                        <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-                    </div>
-                    <div class="flex items-center gap-2 text-xs font-mono text-slate-300 border-l border-white/10 pl-3">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                        <span id="preview-modal-title" class="font-bold text-white">ShortAF — Live System Preview</span>
-                        <span class="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] bg-sky-500/20 text-sky-300 font-mono">LIVE ONRENDER CONTAINER</span>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2">
-                    <a id="preview-modal-external-link" href="https://scalelink-url-shortener.onrender.com/" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/30 text-xs font-mono font-bold flex items-center gap-1.5 transition">
-                        <span>Open in Tab</span>
-                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                    </a>
-                    <button type="button" class="close-preview-modal-btn p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition cursor-pointer">
-                        <i data-lucide="x" class="w-4 h-4"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- Modal Content: Embedded Iframe -->
-            <div class="flex-1 relative bg-slate-950">
-                <div id="preview-loading-spinner" class="absolute inset-0 flex flex-col items-center justify-center gap-3 text-slate-400 font-mono text-xs z-10 bg-slate-950/70">
-                    <div class="w-8 h-8 border-2 border-sky-400 border-t-transparent rounded-full animate-spin"></div>
-                    <span>Connecting to Live Container (https://scalelink-url-shortener.onrender.com)...</span>
-                </div>
-                <iframe id="preview-modal-iframe" src="" class="w-full h-full border-0" sandbox="allow-scripts allow-forms allow-same-origin allow-popups" loading="lazy"></iframe>
-            </div>
-        </div>
-    </div>
 
     <!-- Portfolio Data & Interactive Logic -->
     <script th:inline="javascript">
@@ -1413,9 +1756,7 @@ try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
         window.PORTFOLIO_ROASTS = /*[[${roasts}]]*/ [];
         /*]]>*/
     </script>
-    <script th:src="@{/js/avengers.js}"></script>
     <script th:src="@{/js/portfolio.js}"></script>
-    <script th:src="@{/js/arcade-game.js}"></script>
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
